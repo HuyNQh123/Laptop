@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="text-primary">K-Means Clustering</h2>
+        <p class="text-muted">Phân nhóm tự động dựa trên mức độ tương đồng của thông số cấu hình và giá.</p>
+    </div>
+</div>
+
+<!-- Overview -->
+<div class="row mb-5 text-center">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Total Laptops</h5>
+                <h3 class="card-text text-primary">{{ results.total_laptops }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Best K (Clusters)</h5>
+                <h3 class="card-text text-success">{{ results.best_k }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Best Silhouette Score</h5>
+                <h3 class="card-text text-danger">{{ "{:.4f}".format(results.best_score) }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PCA Visualization -->
+{% if results.pca_results %}
+<div class="row mb-5">
+    <div class="col-12">
+        <h3 class="mb-3 text-secondary">1. Giảm chiều dữ liệu & Trực quan hóa (PCA)</h3>
+        <p class="text-muted">Biểu diễn các Cluster trên mặt phẳng 2D. 
+            <strong>Tổng lượng thông tin giữ lại được (Total Variance): <span class="text-success">{{ "{:.1f}".format(results.pca_results.total_variance) }}%</span></strong> 
+            <br><small>(PC1: {{ "{:.1f}".format(results.pca_results.pc1_variance) }}%, PC2: {{ "{:.1f}".format(results.pca_results.pc2_variance) }}%).</small>
+        </p>
+    </div>
+    <div class="col-12 mb-4">
+        <div class="card shadow-sm p-2 border-primary">
+            <img src="{{ url_for('static', filename='charts/pca_clusters.png') }}" class="card-img-top img-fluid" alt="PCA Clusters">
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Selecting K -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h3 class="mb-3 text-secondary">2. Tìm số nhóm (K) phù hợp</h3>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm p-2">
+            <img src="{{ url_for('static', filename='charts/elbow_method.png') }}" class="card-img-top img-fluid" alt="Elbow Method">
+            <div class="card-body text-center">
+                <p class="card-text small text-muted">Phương pháp Elbow (Khuỷu tay)</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm p-2">
+            <img src="{{ url_for('static', filename='charts/silhouette_score.png') }}" class="card-img-top img-fluid" alt="Silhouette Score">
+            <div class="card-body text-center">
+                <p class="card-text small text-muted">Silhouette Score (K cao nhất là {{ results.best_k }})</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cluster Details -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h3 class="mb-3 text-secondary">3. Phân tích đặc điểm các Cluster</h3>
+    </div>
+    
+    {% for cluster in results.cluster_details %}
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card shadow-sm h-100 border-primary">
+            <div class="card-header bg-primary text-white text-center fw-bold">
+                Cluster {{ cluster.cluster_id }}
+            </div>
+            <div class="card-body">
+                <p class="mb-2"><strong>Label:</strong> <span class="badge bg-warning text-dark">{{ cluster.label }}</span></p>
+                <p class="mb-2"><strong>Count:</strong> {{ cluster.count }} laptops</p>
+                <hr>
+                <ul class="list-unstyled small mb-0">
+                    <li><strong>Avg CPU Score:</strong> {{ "{:,.0f}".format(cluster.avg_cpu) }}</li>
+                    <li><strong>Avg GPU Score:</strong> {{ "{:,.0f}".format(cluster.avg_gpu) }}</li>
+                    <li><strong>Avg RAM:</strong> {{ "{:,.1f}".format(cluster.avg_ram) }} GB</li>
+                    <li><strong>Avg Storage:</strong> {{ "{:,.0f}".format(cluster.avg_storage) }} GB</li>
+                    <li class="text-success fw-bold mt-2"><strong>Avg Price:</strong> <br> {{ "{:,.0f}".format(cluster.avg_price) }} VND</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Laptops in Clusters -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h3 class="mb-3 text-secondary">4. Danh sách Laptop theo Cluster</h3>
+        
+        <!-- Bộ lọc (Filter) theo Cluster -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <select id="clusterFilter" class="form-select shadow-sm border-primary">
+                    <option value="">Tất cả cụm (All Clusters)</option>
+                    {% for cluster in results.cluster_details %}
+                    <option value="Cluster {{ cluster.cluster_id }}">Cluster {{ cluster.cluster_id }} ({{ cluster.label }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="table-responsive shadow-sm bg-white rounded p-3">
+            <table id="clusterTable" class="table table-hover table-striped align-middle mb-0 w-100">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Cluster</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>CPU Score</th>
+                        <th>GPU Score</th>
+                        <th>RAM</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in results.df_clustered %}
+                    <tr>
+                        <td><span class="badge bg-primary">Cluster {{ item.cluster }}</span></td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.brand }}</td>
+                        <td>{{ item.cpu_score }}</td>
+                        <td>{{ item.gpu_score }}</td>
+                        <td>{{ item.ram }} GB</td>
+                        <td class="text-success fw-bold">{{ "{:,.0f}".format(item.price) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Thêm thư viện DataTables cho Tìm kiếm, Phân trang và Sắp xếp -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Khởi tạo bảng với DataTables
+        var table = $('#clusterTable').DataTable({
+            "pageLength": 10, // Hiển thị 10 dòng 1 trang
+            "lengthChange": false, // Ẩn nút đổi số dòng hiển thị cho giao diện gọn
+            "language": {
+                "search": "🔍 Tìm kiếm laptop:",
+                "paginate": {
+                    "next": "Trang sau",
+                    "previous": "Trang trước"
+                },
+                "info": "Đang hiển thị _START_ đến _END_ của tổng số _TOTAL_ laptop",
+                "infoEmpty": "Không tìm thấy laptop nào",
+                "zeroRecords": "Không có dữ liệu phù hợp"
+            }
+        });
+
+        // Bắt sự kiện khi người dùng chọn Filter Cluster
+        $('#clusterFilter').on('change', function() {
+            var selectedCluster = $(this).val();
+            // Lọc trên cột số 0 (cột chứa chữ Cluster)
+            // Dùng regex: false, smart: true để tìm kiếm chuỗi nguyên mẫu
+            table.column(0).search(selectedCluster ? '^' + selectedCluster + '$' : '', true, false).draw();
+        });
+    });
+</script>
+
+{% endblock %}

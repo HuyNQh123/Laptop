@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="text-primary">Laptop Price Prediction</h2>
+        <p class="text-muted">Dự đoán giá laptop chính xác dựa trên cấu hình kỹ thuật bằng mô hình Machine Learning.</p>
+    </div>
+</div>
+
+<!-- Thống kê Model -->
+<div class="row mb-4">
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm h-100 border-primary">
+            <div class="card-header bg-primary text-white fw-bold">
+                Mô hình đang sử dụng: {{ model_info.model_name }}
+            </div>
+            <div class="card-body">
+                <p class="mb-2"><strong>Dữ liệu huấn luyện:</strong> {{ model_info.train_size }} mẫu (80%) | <strong>Test:</strong> {{ model_info.test_size }} mẫu (20%)</p>
+                <div class="row text-center mt-3">
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <small class="text-muted d-block">MAE</small>
+                            <span class="fw-bold text-dark">{{ "{:,.0f}".format(model_info.metrics[active_key].mae) }} đ</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <small class="text-muted d-block">RMSE</small>
+                            <span class="fw-bold text-dark">{{ "{:,.0f}".format(model_info.metrics[active_key].rmse) }} đ</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <small class="text-muted d-block">R² Score</small>
+                            <span class="fw-bold text-success">{{ "{:.4f}".format(model_info.metrics[active_key].r2) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-dark text-white fw-bold">
+                Bảng so sánh 2 Mô hình (Evaluation)
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover table-striped mb-0 small align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mô hình</th>
+                            <th>MAE</th>
+                            <th>RMSE</th>
+                            <th>R² Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr {% if model_info.model_name == 'Linear Regression' %}class="table-success fw-bold"{% endif %}>
+                            <td>Linear Regression</td>
+                            <td>{{ "{:,.0f}".format(model_info.metrics.lr.mae) }} đ</td>
+                            <td>{{ "{:,.0f}".format(model_info.metrics.lr.rmse) }} đ</td>
+                            <td>{{ "{:.4f}".format(model_info.metrics.lr.r2) }}</td>
+                        </tr>
+                        <tr {% if model_info.model_name == 'Random Forest Regressor' %}class="table-success fw-bold"{% endif %}>
+                            <td>Random Forest</td>
+                            <td>{{ "{:,.0f}".format(model_info.metrics.rf.mae) }} đ</td>
+                            <td>{{ "{:,.0f}".format(model_info.metrics.rf.rmse) }} đ</td>
+                            <td>{{ "{:.4f}".format(model_info.metrics.rf.r2) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Kết quả dự đoán nếu có -->
+{% if predicted_price is not none %}
+<div class="alert alert-success shadow-sm mb-4 border-success">
+    <div class="d-flex align-items-center justify-content-between">
+        <div>
+            <h4 class="alert-heading mb-1">🎉 Kết quả ước tính giá Laptop:</h4>
+            <span class="fs-2 fw-bold text-success">{{ "{:,.0f}".format(predicted_price) }} VND</span>
+        </div>
+        <a href="#predictForm" class="btn btn-outline-success">Thử cấu hình khác</a>
+    </div>
+</div>
+{% endif %}
+
+<!-- Thông báo lỗi nếu có -->
+{% if error %}
+<div class="alert alert-danger shadow-sm mb-4" role="alert">
+    <strong>Lỗi:</strong> {{ error }}
+</div>
+{% endif %}
+
+<!-- Form nhập thông số -->
+<div class="card shadow-sm border-0 mb-5" id="predictForm">
+    <div class="card-header bg-primary text-white fw-bold">
+        Nhập thông số kỹ thuật cấu hình
+    </div>
+    <div class="card-body p-4">
+        <form method="POST" action="{{ url_for('predict') }}">
+            <div class="row g-3">
+                
+                <!-- CPU Score -->
+                <div class="col-md-4">
+                    <label for="cpu_score" class="form-label fw-bold">CPU Score (Điểm hiệu năng CPU)</label>
+                    <input type="number" step="any" class="form-control" id="cpu_score" name="cpu_score" 
+                           value="{{ form_data.cpu_score if form_data else '18000' }}" placeholder="VD: 18000" required>
+                    <small class="text-muted">Thường từ 5,000 - 35,000 điểm</small>
+                </div>
+
+                <!-- GPU Score -->
+                <div class="col-md-4">
+                    <label for="gpu_score" class="form-label fw-bold">GPU Score (Điểm đồ họa GPU)</label>
+                    <input type="number" step="any" class="form-control" id="gpu_score" name="gpu_score" 
+                           value="{{ form_data.gpu_score if form_data else '12000' }}" placeholder="VD: 12000" required>
+                    <small class="text-muted">Thường từ 2,000 - 25,000 điểm</small>
+                </div>
+
+                <!-- RAM -->
+                <div class="col-md-4">
+                    <label for="ram" class="form-label fw-bold">Dung lượng RAM (GB)</label>
+                    <input type="number" step="any" class="form-control" id="ram" name="ram" 
+                           value="{{ form_data.ram if form_data else '16' }}" placeholder="VD: 16" required>
+                    <small class="text-muted">VD: 8, 16, 32, 64 GB</small>
+                </div>
+
+                <!-- Storage -->
+                <div class="col-md-4">
+                    <label for="storage" class="form-label fw-bold">Ổ cứng Lưu trữ (GB)</label>
+                    <input type="number" step="any" class="form-control" id="storage" name="storage" 
+                           value="{{ form_data.storage if form_data else '512' }}" placeholder="VD: 512" required>
+                    <small class="text-muted">VD: 256, 512, 1024, 2048 GB</small>
+                </div>
+
+                <!-- Screen Size -->
+                <div class="col-md-4">
+                    <label for="screen_size" class="form-label fw-bold">Kích thước màn hình (inch)</label>
+                    <input type="number" step="0.1" class="form-control" id="screen_size" name="screen_size" 
+                           value="{{ form_data.screen_size if form_data else '15.6' }}" placeholder="VD: 15.6" required>
+                    <small class="text-muted">VD: 13.3, 14.0, 15.6, 16.0, 17.3</small>
+                </div>
+
+                <!-- Refresh Rate -->
+                <div class="col-md-4">
+                    <label for="refresh_rate" class="form-label fw-bold">Tần số quét (Hz)</label>
+                    <input type="number" step="any" class="form-control" id="refresh_rate" name="refresh_rate" 
+                           value="{{ form_data.refresh_rate if form_data else '144' }}" placeholder="VD: 144" required>
+                    <small class="text-muted">VD: 60, 120, 144, 165, 240 Hz</small>
+                </div>
+
+                <!-- Weight -->
+                <div class="col-md-4">
+                    <label for="weight" class="form-label fw-bold">Trọng lượng (kg)</label>
+                    <input type="number" step="0.01" class="form-control" id="weight" name="weight" 
+                           value="{{ form_data.weight if form_data else '2.1' }}" placeholder="VD: 2.1" required>
+                    <small class="text-muted">VD: 1.1 - 3.5 kg</small>
+                </div>
+
+                <!-- Battery -->
+                <div class="col-md-4">
+                    <label for="battery" class="form-label fw-bold">Dung lượng Pin (Wh)</label>
+                    <input type="number" step="any" class="form-control" id="battery" name="battery" 
+                           value="{{ form_data.battery if form_data else '70' }}" placeholder="VD: 70" required>
+                    <small class="text-muted">VD: 40 - 99 Wh</small>
+                </div>
+
+                <!-- Rating -->
+                <div class="col-md-4">
+                    <label for="rating" class="form-label fw-bold">Đánh giá người dùng (Rating /5)</label>
+                    <input type="number" step="0.1" min="1" max="5" class="form-control" id="rating" name="rating" 
+                           value="{{ form_data.rating if form_data else '4.5' }}" placeholder="VD: 4.5" required>
+                    <small class="text-muted">Thang điểm từ 1.0 đến 5.0</small>
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">
+                    🚀 Predict Price (Dự đoán giá)
+                </button>
+                <a href="{{ url_for('predict') }}" class="btn btn-outline-secondary px-4 py-2">
+                    Đặt lại mặc định
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Compare Laptops</h2>
+    
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('compare') }}">
+        <div class="row">
+            <!-- Laptop 1 Selection -->
+            <div class="col-md-6 mb-3">
+                <label for="laptop1" class="form-label fw-bold">Laptop 1</label>
+                <select class="form-select shadow-sm" id="laptop1" name="laptop1" required>
+                    <option value="" disabled {% if not laptop1_name %}selected{% endif %}>Chọn laptop đầu tiên...</option>
+                    {% for name in laptop_names %}
+                        <option value="{{ name }}" {% if name == laptop1_name %}selected{% endif %}>{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <!-- Laptop 2 Selection -->
+            <div class="col-md-6 mb-3">
+                <label for="laptop2" class="form-label fw-bold">Laptop 2</label>
+                <select class="form-select shadow-sm" id="laptop2" name="laptop2" required>
+                    <option value="" disabled {% if not laptop2_name %}selected{% endif %}>Chọn laptop thứ hai...</option>
+                    {% for name in laptop_names %}
+                        <option value="{{ name }}" {% if name == laptop2_name %}selected{% endif %}>{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <!-- Attributes Selection -->
+        <div class="mb-4 mt-3">
+            <label class="form-label fw-bold">Attributes to Compare</label>
+            <div class="row bg-light p-3 rounded border">
+                {% for attr in available_attributes %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="attributes" value="{{ attr }}" id="attr_{{ attr }}"
+                        {% if attr in selected_attributes %}checked{% endif %}>
+                        <label class="form-check-label" for="attr_{{ attr }}">
+                            {{ attr }}
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary px-4 shadow">Compare</button>
+    </form>
+
+    {% if comparison_data %}
+    <div class="mt-5 mb-5">
+        <h3 class="mb-4">Comparison Results</h3>
+        
+        <div class="row">
+            <!-- Data Table -->
+            <div class="col-lg-5 mb-4">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered shadow-sm">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Attribute</th>
+                                <th>{{ laptop1_name }}</th>
+                                <th>{{ laptop2_name }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for attr, val1, val2 in comparison_data %}
+                            <tr>
+                                <td><strong>{{ attr }}</strong></td>
+                                <td>
+                                    {% if attr == 'price' %}
+                                        {{ "{:,.0f}".format(val1) }} VND
+                                    {% elif attr in ['ram', 'storage'] %}
+                                        {{ val1 }} GB
+                                    {% elif attr == 'refresh_rate' %}
+                                        {{ val1 }} Hz
+                                    {% elif attr == 'screen_size' %}
+                                        {{ val1 }} inch
+                                    {% elif attr == 'weight' %}
+                                        {{ val1 }} kg
+                                    {% elif attr == 'battery' %}
+                                        {{ val1 }} Wh
+                                    {% else %}
+                                        {{ val1 }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if attr == 'price' %}
+                                        {{ "{:,.0f}".format(val2) }} VND
+                                    {% elif attr in ['ram', 'storage'] %}
+                                        {{ val2 }} GB
+                                    {% elif attr == 'refresh_rate' %}
+                                        {{ val2 }} Hz
+                                    {% elif attr == 'screen_size' %}
+                                        {{ val2 }} inch
+                                    {% elif attr == 'weight' %}
+                                        {{ val2 }} kg
+                                    {% elif attr == 'battery' %}
+                                        {{ val2 }} Wh
+                                    {% else %}
+                                        {{ val2 }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Radar Chart -->
+            <div class="col-lg-7 text-center mb-4">
+                <div class="p-3 border rounded bg-white shadow-sm">
+                    <img src="{{ url_for('static', filename='charts/radar_comparison.png') }}?{{ rand }}" alt="Radar Chart" class="img-fluid" style="max-height: 550px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

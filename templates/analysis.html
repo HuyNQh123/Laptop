@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="text-primary">Data Analysis & Visualization</h2>
+        <p class="text-muted">Phân tích thống kê và trực quan hóa dữ liệu.</p>
+    </div>
+</div>
+
+<!-- Overview -->
+<div class="row mb-5 text-center">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Total Laptops & Brands</h5>
+                <h3 class="card-text text-primary">{{ total_laptops }} Laptops / {{ total_brands }} Brands</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Price Mean & Median</h5>
+                <h3 class="card-text text-success">{{ "{:,.0f}".format(avg_price) }} / {{ "{:,.0f}".format(med_price) }} VNĐ</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Price Standard Deviation</h5>
+                <h3 class="card-text text-danger">{{ "{:,.0f}".format(std_price) }} VNĐ</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top & Bottom -->
+<div class="row mb-5">
+    <h3 class="mb-3 text-secondary">Top & Bottom 3 Highlights</h3>
+    
+    <!-- Price -->
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-dark text-white">Price (VND)</div>
+            <div class="card-body">
+                <h6 class="text-success fw-bold">Top 3 (Highest)</h6>
+                <ol class="small">
+                    {% for item in top_price %}
+                    <li>{{ item.name }} ({{ item.brand }}) - {{ "{:,.0f}".format(item.price) }}</li>
+                    {% endfor %}
+                </ol>
+                <hr>
+                <h6 class="text-danger fw-bold mt-3">Bottom 3 (Lowest)</h6>
+                <ol class="small">
+                    {% for item in bottom_price %}
+                    <li>{{ item.name }} ({{ item.brand }}) - {{ "{:,.0f}".format(item.price) }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CPU -->
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-dark text-white">CPU Score</div>
+            <div class="card-body">
+                <h6 class="text-success fw-bold">Top 3 (Highest)</h6>
+                <ol class="small">
+                    {% for item in top_cpu %}
+                    <li>{{ item.name }} - {{ item.cpu_score }}</li>
+                    {% endfor %}
+                </ol>
+                <hr>
+                <h6 class="text-danger fw-bold mt-3">Bottom 3 (Lowest)</h6>
+                <ol class="small">
+                    {% for item in bottom_cpu %}
+                    <li>{{ item.name }} - {{ item.cpu_score }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    <!-- GPU -->
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-dark text-white">GPU Score</div>
+            <div class="card-body">
+                <h6 class="text-success fw-bold">Top 3 (Highest)</h6>
+                <ol class="small">
+                    {% for item in top_gpu %}
+                    <li>{{ item.name }} - {{ item.gpu_score }}</li>
+                    {% endfor %}
+                </ol>
+                <hr>
+                <h6 class="text-danger fw-bold mt-3">Bottom 3 (Lowest)</h6>
+                <ol class="small">
+                    {% for item in bottom_gpu %}
+                    <li>{{ item.name }} - {{ item.gpu_score }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Best Sellers -->
+{% if best_sellers %}
+<div class="row mb-5">
+    <div class="col-12">
+        <h3 class="mb-3 text-secondary">🔥 Best Sellers (Top 5)</h3>
+        <div class="card shadow-sm border-warning">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-warning">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Brand</th>
+                                <th>Units Sold</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in best_sellers %}
+                            <tr>
+                                <td><span class="badge bg-danger">{{ loop.index }}</span></td>
+                                <td class="fw-bold">{{ item.name }}</td>
+                                <td><span class="badge bg-secondary">{{ item.brand }}</span></td>
+                                <td class="text-success fw-bold">{{ "{:,.0f}".format(item.units_sold) }} máy</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Statistics by Brand -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h3 class="mb-3 text-secondary">Statistics by Brand</h3>
+        <div class="table-responsive shadow-sm bg-white rounded">
+            <table class="table table-hover table-striped align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Brand</th>
+                        <th>Mean Price</th>
+                        <th>Median Price</th>
+                        <th>Std Price</th>
+                        <th>Mean CPU Score</th>
+                        <th>Mean GPU Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in brand_stats %}
+                    <tr>
+                        <td class="fw-bold"><span class="badge bg-secondary">{{ row['Brand'] }}</span></td>
+                        <td>{{ "{:,.0f}".format(row['Mean Price']) }}</td>
+                        <td>{{ "{:,.0f}".format(row['Median Price']) }}</td>
+                        <td>{{ "{:,.0f}".format(row['Std Price']) }}</td>
+                        <td>{{ "{:,.0f}".format(row['Mean CPU']) }}</td>
+                        <td>{{ "{:,.0f}".format(row['Mean GPU']) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h3 class="mb-3 text-secondary">Data Visualization</h3>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100 p-2">
+            <img src="{{ url_for('static', filename='charts/price_histogram.png') }}" class="card-img-top img-fluid" alt="Price Histogram">
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100 p-2">
+            <img src="{{ url_for('static', filename='charts/cpu_score_histogram.png') }}" class="card-img-top img-fluid" alt="CPU Score Histogram">
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100 p-2">
+            <img src="{{ url_for('static', filename='charts/avg_price_by_brand.png') }}" class="card-img-top img-fluid" alt="Average Price by Brand">
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100 p-2">
+            <img src="{{ url_for('static', filename='charts/cpu_vs_price.png') }}" class="card-img-top img-fluid" alt="CPU Score vs Price">
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100 p-2">
+            <img src="{{ url_for('static', filename='charts/gpu_vs_price.png') }}" class="card-img-top img-fluid" alt="GPU Score vs Price">
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100 p-2">
+            <img src="{{ url_for('static', filename='charts/ram_vs_price.png') }}" class="card-img-top img-fluid" alt="RAM vs Price">
+        </div>
+    </div>
+</div>
+{% endblock %}
