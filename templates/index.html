@@ -4,13 +4,14 @@
 <!-- Hero Section -->
 <div class="p-5 mb-5 bg-light rounded-3 shadow-sm border">
     <div class="container-fluid py-4 text-center">
-        <h1 class="display-5 fw-bold text-primary mb-3">Laptop Analysis & Price Prediction System</h1>
+        <h1 class="display-5 fw-bold text-primary mb-3">LapInsight – Phân tích và ước tính giá laptop</h1>
         <p class="col-md-9 mx-auto fs-5 text-muted">
-            Hệ thống toàn diện ứng dụng Machine Learning và Data Science để thu thập, phân tích thống kê, phân cụm laptop và dự đoán giá bán dựa trên cấu hình phần cứng.
+            Khám phá thông số laptop, phân tích dữ liệu, tìm các nhóm sản phẩm tương đồng, so sánh cấu hình và ước tính giá bằng các mô hình học máy.
         </p>
-        <div class="d-flex justify-content-center gap-3 mt-4">
-            <a href="/predict" class="btn btn-primary btn-lg shadow-sm px-4">🚀 Dự đoán giá ngay</a>
-            <a href="/analysis" class="btn btn-outline-secondary btn-lg px-4">📊 Xem Dashboard phân tích</a>
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+            <a href="/predict" class="btn btn-primary btn-lg shadow-sm px-4">🚀 Định giá & Tư vấn cấu hình</a>
+            <a href="/clustering" class="btn btn-outline-primary btn-lg shadow-sm px-4">🗺️ Bản đồ thị trường laptop</a>
+            <a href="/analysis" class="btn btn-outline-secondary btn-lg px-4">📊 Phân tích dữ liệu</a>
         </div>
     </div>
 </div>
@@ -20,34 +21,34 @@
     <div class="col-md-3 col-sm-6">
         <div class="card shadow-sm h-100 border-0 bg-primary text-white">
             <div class="card-body py-4">
-                <h6 class="text-white-50 text-uppercase">Total Laptops</h6>
+                <h6 class="text-white-50 text-uppercase">Tổng số laptop</h6>
                 <h2 class="card-text fw-bold">{{ total_laptops }}</h2>
-                <small class="text-white-50">Mẫu dữ liệu đã làm sạch</small>
+                <small class="text-white-50">Mẫu laptop thực tế trên thị trường</small>
             </div>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="card shadow-sm h-100 border-0 bg-success text-white">
             <div class="card-body py-4">
-                <h6 class="text-white-50 text-uppercase">Brands</h6>
+                <h6 class="text-white-50 text-uppercase">Số thương hiệu</h6>
                 <h2 class="card-text fw-bold">{{ total_brands }}</h2>
-                <small class="text-white-50">Thương hiệu laptop phổ biến</small>
+                <small class="text-white-50">Hãng sản xuất hàng đầu</small>
             </div>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="card shadow-sm h-100 border-0 bg-info text-white">
             <div class="card-body py-4">
-                <h6 class="text-white-50 text-uppercase">Avg Price</h6>
+                <h6 class="text-white-50 text-uppercase">Giá trung bình</h6>
                 <h2 class="card-text fw-bold">{{ "{:,.0f}".format(avg_price) }}</h2>
-                <small class="text-white-50">Giá trung bình (VND)</small>
+                <small class="text-white-50">Giá bán trung bình (VND)</small>
             </div>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="card shadow-sm h-100 border-0 bg-dark text-white">
             <div class="card-body py-4">
-                <h6 class="text-white-50 text-uppercase">Highest Price</h6>
+                <h6 class="text-white-50 text-uppercase">Giá cao nhất</h6>
                 <h2 class="card-text fw-bold">{{ "{:,.0f}".format(max_price) }}</h2>
                 <small class="text-white-50">Mức giá cao nhất (VND)</small>
             </div>
@@ -62,98 +63,98 @@
         <p class="text-muted">Chọn một phân hệ để bắt đầu khám phá và tương tác</p>
     </div>
 
-    <!-- 1. Laptop Dataset -->
+    <!-- 1. Kho dữ liệu laptop -->
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card shadow-sm h-100 border-0 card-hover">
             <div class="card-body d-flex flex-column p-4">
                 <div class="d-flex align-items-center mb-3">
                     <span class="fs-2 me-3">💻</span>
-                    <h5 class="card-title fw-bold mb-0">Laptop Dataset</h5>
+                    <h5 class="card-title fw-bold mb-0">Kho dữ liệu laptop</h5>
                 </div>
                 <p class="card-text text-muted flex-grow-1">
-                    Khám phá toàn bộ dữ liệu cấu hình chi tiết (CPU, GPU, RAM, Ổ cứng, Giá...) đã được làm sạch và chuẩn hóa.
+                    Tra cứu và lọc thông số kỹ thuật chi tiết (CPU, GPU, RAM, Ổ cứng, Màn hình, Giá bán) của 225 mẫu laptop thực tế với bộ công cụ tìm kiếm và phân trang linh hoạt.
                 </p>
-                <a href="/laptops" class="btn btn-outline-primary w-100 mt-2">Xem danh sách Laptop</a>
+                <a href="/laptops" class="btn btn-outline-primary w-100 mt-2">Xem danh sách laptop</a>
             </div>
         </div>
     </div>
 
-    <!-- 2. Statistical Analysis -->
+    <!-- 2. Thống kê và phân tích dữ liệu -->
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card shadow-sm h-100 border-0 card-hover">
             <div class="card-body d-flex flex-column p-4">
                 <div class="d-flex align-items-center mb-3">
                     <span class="fs-2 me-3">📊</span>
-                    <h5 class="card-title fw-bold mb-0">Statistical Analysis</h5>
+                    <h5 class="card-title fw-bold mb-0">Thống kê và phân tích dữ liệu</h5>
                 </div>
                 <p class="card-text text-muted flex-grow-1">
-                    Dashboard thống kê chuyên sâu: Mean/Median/Std theo hãng, Top/Bottom cấu hình, Best Sellers và các biểu đồ phân bố.
+                    Báo cáo thống kê toàn diện: Giá trị trung bình, trung vị, độ lệch chuẩn, phân bố giá theo từng hãng và biểu đồ tương quan phần cứng.
                 </p>
-                <a href="/analysis" class="btn btn-outline-primary w-100 mt-2">Mở Dashboard Phân tích</a>
+                <a href="/analysis" class="btn btn-outline-primary w-100 mt-2">Mở phân tích dữ liệu</a>
             </div>
         </div>
     </div>
 
-    <!-- 3. K-Means Clustering -->
+    <!-- 3. Phân nhóm laptop tự động -->
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card shadow-sm h-100 border-0 card-hover">
             <div class="card-body d-flex flex-column p-4">
                 <div class="d-flex align-items-center mb-3">
                     <span class="fs-2 me-3">🔍</span>
-                    <h5 class="card-title fw-bold mb-0">K-Means Clustering</h5>
+                    <h5 class="card-title fw-bold mb-0">Phân nhóm laptop tự động</h5>
                 </div>
                 <p class="card-text text-muted flex-grow-1">
-                    Thuật toán phân cụm tự động không giám sát (Unsupervised ML) tìm số cụm tối ưu qua Elbow & Silhouette Score.
+                    Ứng dụng thuật toán học máy không giám sát K-Means để tự động phân nhóm laptop theo phân khúc thị trường dựa trên phương pháp khuỷu tay (Elbow) và Silhouette Score.
                 </p>
-                <a href="/clustering" class="btn btn-outline-primary w-100 mt-2">Khám phá Phân cụm</a>
+                <a href="/clustering" class="btn btn-outline-primary w-100 mt-2">Khám phá phân nhóm</a>
             </div>
         </div>
     </div>
 
-    <!-- 4. PCA Visualization -->
+    <!-- 4. Trực quan hóa cấu hình 2D (PCA) -->
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card shadow-sm h-100 border-0 card-hover">
             <div class="card-body d-flex flex-column p-4">
                 <div class="d-flex align-items-center mb-3">
                     <span class="fs-2 me-3">🗺️</span>
-                    <h5 class="card-title fw-bold mb-0">PCA Visualization</h5>
+                    <h5 class="card-title fw-bold mb-0">Trực quan hóa cấu hình 2D (PCA)</h5>
                 </div>
                 <p class="card-text text-muted flex-grow-1">
-                    Kỹ thuật Principal Component Analysis giảm đa chiều xuống 2D (PC1, PC2) để trực quan hóa ranh giới các phân khúc laptop.
+                    Kỹ thuật phân tích thành phần chính (PCA) giúp nén không gian cấu hình 10 chiều xuống mặt phẳng 2D, trực quan hóa ranh giới và đặc trưng giữa các nhóm laptop.
                 </p>
                 <a href="/clustering" class="btn btn-outline-primary w-100 mt-2">Xem biểu đồ 2D PCA</a>
             </div>
         </div>
     </div>
 
-    <!-- 5. Laptop Comparison -->
+    <!-- 5. So sánh cấu hình laptop -->
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card shadow-sm h-100 border-0 card-hover">
             <div class="card-body d-flex flex-column p-4">
                 <div class="d-flex align-items-center mb-3">
                     <span class="fs-2 me-3">⚖️</span>
-                    <h5 class="card-title fw-bold mb-0">Laptop Comparison</h5>
+                    <h5 class="card-title fw-bold mb-0">So sánh cấu hình laptop</h5>
                 </div>
                 <p class="card-text text-muted flex-grow-1">
-                    So sánh trực quan 2 mẫu laptop bất kỳ theo các thuộc tính tùy chọn thông qua biểu đồ mạng nhện Radar Chart đa chiều.
+                    So sánh trực quan hai mẫu laptop bất kỳ theo các tiêu chí phần cứng tùy chọn thông qua biểu đồ mạng nhện (Radar Chart) và bảng thông số đối đầu.
                 </p>
-                <a href="/compare" class="btn btn-outline-primary w-100 mt-2">So sánh 2 Laptop</a>
+                <a href="/compare" class="btn btn-outline-primary w-100 mt-2">So sánh laptop</a>
             </div>
         </div>
     </div>
 
-    <!-- 6. Price Prediction -->
+    <!-- 6. Ước tính giá laptop theo cấu hình -->
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card shadow-sm h-100 border-0 card-hover">
             <div class="card-body d-flex flex-column p-4">
                 <div class="d-flex align-items-center mb-3">
                     <span class="fs-2 me-3">🚀</span>
-                    <h5 class="card-title fw-bold mb-0">Price Prediction</h5>
+                    <h5 class="card-title fw-bold mb-0">Ước tính giá laptop theo cấu hình</h5>
                 </div>
                 <p class="card-text text-muted flex-grow-1">
-                    Ước tính giá bán laptop chính xác dựa trên cấu hình phần cứng bằng các mô hình học máy (Linear Regression & Random Forest).
+                    Ước tính giá tham khảo dựa trên thông số kỹ thuật đầu vào bằng mô hình Machine Learning, kèm 5 gợi ý laptop tương đồng trong tầm giá chênh lệch ±1 - 2 triệu VNĐ.
                 </p>
-                <a href="/predict" class="btn btn-primary w-100 mt-2 shadow-sm">Dự đoán Giá Laptop</a>
+                <a href="/predict" class="btn btn-primary w-100 mt-2 shadow-sm">Ước tính giá ngay</a>
             </div>
         </div>
     </div>

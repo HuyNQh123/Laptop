@@ -7,7 +7,8 @@ Hệ thống web toàn diện bằng Python phục vụ việc quản lý, phân
 ## 🚀 Các tính năng chính
 
 1. **Laptop Dataset (`/laptops`)**:
-   - Quản lý và duyệt toàn bộ dữ liệu 250 laptop đã qua quy trình làm sạch (Data Cleaning), chuẩn hóa kiểu dữ liệu và xử lý giá trị khuyết thiếu.
+   - Quản lý và duyệt toàn bộ dữ liệu 225 laptop thực tế đã qua quy trình làm sạch (Data Cleaning), chuẩn hóa kiểu dữ liệu và xử lý giá trị khuyết thiếu.
+   - 100% laptop là sản phẩm thực tế trên thị trường với mã model, thông số chuẩn hãng và điểm benchmark PassMark CPU/GPU.
    - Hỗ trợ tìm kiếm thời gian thực, sắp xếp và phân trang.
 
 2. **Statistical Analysis & Visualization (`/analysis`)**:
@@ -31,6 +32,30 @@ Hệ thống web toàn diện bằng Python phục vụ việc quản lý, phân
 
 ---
 
+## 📊 Quy chuẩn cấu trúc dữ liệu & Đơn vị đo lường
+
+| Tên trường | Đơn vị đo / Định dạng | Ý nghĩa & Tiêu chuẩn xác minh |
+| :--- | :--- | :--- |
+| `name` | Chuỗi ký tự | Tên thương mại và mã phiên bản SKU chính xác của laptop. |
+| `brand` | Chuỗi ký tự | Hãng sản xuất (ASUS, Acer, Lenovo, HP, Dell, MSI, Apple, LG, Gigabyte). |
+| `cpu` | Chuỗi ký tự | Tên đầy đủ của bộ vi xử lý (Intel Core Ultra, Core i-series, AMD Ryzen, Apple Silicon). |
+| `cpu_score` | Điểm số nguyên | Điểm hiệu năng tổng hợp đa nhân theo chuẩn **PassMark CPU Mark** (`cpubenchmark.net`). |
+| `gpu` | Chuỗi ký tự | Card đồ họa tích hợp hoặc rời (NVIDIA RTX, Intel Arc/Iris, AMD Radeon, Apple GPU). |
+| `gpu_score` | Điểm số nguyên | Điểm hiệu năng đồ họa 3D theo chuẩn **PassMark G3D Mark** (`videocardbenchmark.net`). |
+| `ram` | Số nguyên (**GB**) | Dung lượng bộ nhớ RAM (8, 12, 16, 24, 32, 36, 48, 64, 128 GB). |
+| `storage` | Số nguyên (**GB**) | Dung lượng ổ lưu trữ SSD (256, 512, 1024, 2048, 4096 GB). |
+| `screen_size` | Số thực (**Inches**) | Kích thước đường chéo màn hình hiển thị (13.3, 13.6, 14.0, 15.6, 16.0, 17.3, 18.0). |
+| `resolution` | Chuỗi (**Pixels RxC**) | Độ phân giải hiển thị (`1920x1080`, `2560x1600`, `2880x1800`, `3840x2400`...). |
+| `refresh_rate` | Số nguyên (**Hz**) | Tần số quét màn hình (60, 90, 120, 144, 165, 240 Hz). |
+| `weight` | Số thực (**kg**) | Khối lượng máy theo công bố của nhà sản xuất (làm tròn 2 chữ số thập phân). |
+| `battery` | Số thực/nguyên (**Wh**) | Dung lượng pin tính bằng Watt-giờ (Watt-hour). |
+| `operating_system` | Chuỗi ký tự | Hệ điều hành được cài sẵn (Windows 11 Home/Pro, macOS, Ubuntu, No OS). |
+| `rating` | Số thực (Thang **5.0**) | Điểm đánh giá trung bình của người dùng từ hệ thống bán lẻ chính hãng. |
+| `price` | Số thực (**VNĐ**) | Giá niêm yết bán lẻ chính hãng tại thị trường Việt Nam (CellphoneS, FPT Shop...). |
+| `units_sold` | Số lượng (**Máy**) | Số lượng bán ra thực tế được ghi nhận hoặc để trống nếu chưa có số liệu công khai. |
+
+---
+
 ## 🛠️ Công nghệ sử dụng
 
 - **Ngôn ngữ**: Python 3.x
@@ -47,7 +72,8 @@ Hệ thống web toàn diện bằng Python phục vụ việc quản lý, phân
 Laptop/
 │
 ├── data/
-│   ├── laptops.csv              # File dữ liệu laptop gốc
+│   ├── laptops.csv              # File dữ liệu laptop thực tế (225 mẫu)
+│   ├── laptop_sources.csv       # File lưu vết nguồn đối chiếu URL & ngày xác minh
 │   ├── laptops_clustered.csv    # Dữ liệu laptop sau khi gán nhãn K-Means
 │   ├── laptops_pca.csv          # Tọa độ 2D sau khi chạy PCA
 │   └── results2.csv             # Kết quả phân tích thống kê theo hãng

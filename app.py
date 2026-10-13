@@ -124,8 +124,8 @@ def compare():
     available_attributes = ['cpu_score', 'gpu_score', 'ram', 'storage', 'screen_size', 'refresh_rate', 'weight', 'battery', 'rating', 'price']
     
     error = None
-    laptop1_name = None
-    laptop2_name = None
+    laptop1_name = request.args.get('laptop1')
+    laptop2_name = request.args.get('laptop2')
     # Mặc định chọn một vài thuộc tính quan trọng
     selected_attributes = ['cpu_score', 'gpu_score', 'ram', 'storage', 'price']
     comparison_data = None
@@ -142,9 +142,9 @@ def compare():
         elif laptop1_name == laptop2_name:
             error = "Vui lòng chọn hai laptop khác nhau."
         elif not selected_attributes:
-            error = "Vui lòng chọn ít nhất 1 thuộc tính để so sánh."
+            error = "Vui lòng chọn ít nhất 1 tiêu chí để so sánh."
         elif len(selected_attributes) < 3:
-            error = "Cần chọn ít nhất 3 thuộc tính để vẽ Radar Chart."
+            error = "Cần chọn ít nhất 3 tiêu chí để vẽ biểu đồ mạng nhện (Radar Chart)."
         else:
             success = create_radar_chart(df_clean, laptop1_name, laptop2_name, selected_attributes)
             if success:
@@ -170,7 +170,7 @@ def compare():
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    from src.price_prediction import get_trained_model, predict_laptop_price
+    from src.price_prediction import get_trained_model, predict_laptop_price, recommend_similar_laptops
     
     model_payload = get_trained_model()
     model_name = model_payload['model_name']
@@ -178,6 +178,7 @@ def predict():
     
     error = None
     predicted_price = None
+    recommendations = []
     form_data = {}
     
     if request.method == 'POST':
@@ -193,12 +194,24 @@ def predict():
             'rating': request.form.get('rating', '').strip(),
         }
         
+        field_names_vi = {
+            'cpu_score': 'Điểm hiệu năng CPU',
+            'gpu_score': 'Điểm hiệu năng GPU',
+            'ram': 'Dung lượng RAM',
+            'storage': 'Dung lượng ổ cứng',
+            'screen_size': 'Kích thước màn hình',
+            'refresh_rate': 'Tần số quét',
+            'weight': 'Trọng lượng',
+            'battery': 'Dung lượng pin',
+            'rating': 'Điểm đánh giá'
+        }
+        
         # Validation
         try:
             # Kiểm tra xem có trường nào bị bỏ trống không
             for key, val in form_data.items():
                 if not val:
-                    raise ValueError(f"Vui lòng không để trống trường '{key}'.")
+                    raise ValueError(f"Vui lòng không để trống trường '{field_names_vi.get(key, key)}'.")
             
             # Chuyển đổi kiểu dữ liệu sang float
             features = {
@@ -216,7 +229,7 @@ def predict():
             # Kiểm tra giá trị không âm và hợp lý
             for key, val in features.items():
                 if val <= 0:
-                    raise ValueError(f"Giá trị của '{key}' phải lớn hơn 0.")
+                    raise ValueError(f"Giá trị của '{field_names_vi.get(key, key)}' phải lớn hơn 0.")
             
             if features['rating'] > 5.0:
                 raise ValueError("Điểm đánh giá (Rating) tối đa là 5.0.")
@@ -225,8 +238,11 @@ def predict():
             if features['weight'] > 15.0:
                 raise ValueError("Trọng lượng laptop không hợp lý (> 15 kg).")
                 
-            # Dự đoán
+            # Dự đoán giá
             predicted_price = predict_laptop_price(features)
+            
+            # Gợi ý khoảng 5 mẫu laptop có cấu hình tương tự và chênh lệch khoảng 1-2 triệu
+            recommendations = recommend_similar_laptops(features, predicted_price, top_n=5)
             
         except ValueError as e:
             error = str(e)
@@ -237,6 +253,7 @@ def predict():
                            model_info=model_payload,
                            active_key=active_key,
                            predicted_price=predicted_price,
+                           recommendations=recommendations,
                            form_data=form_data,
                            error=error)
 

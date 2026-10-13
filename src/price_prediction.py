@@ -120,6 +120,115 @@ def predict_laptop_price(features_dict):
     predicted_price = model.predict(input_df)[0]
     return max(0.0, float(predicted_price))
 
+_cached_df_clean = None
+
+def get_cleaned_laptops_data():
+    """Lấy dữ liệu laptop đã làm sạch, có lưu cache để tối ưu tốc độ phản hồi web."""
+    global _cached_df_clean
+    if _cached_df_clean is None:
+        df_raw = load_data('data/laptops.csv')
+        if df_raw is not None:
+            _cached_df_clean = clean_data(df_raw)
+    return _cached_df_clean
+
+def recommend_similar_laptops(features_dict, predicted_price, top_n=5, max_price_diff=2_000_000):
+    """
+    Tìm top_n laptop trong dataset có mức giá chênh lệch trong khoảng +/- 1-2 triệu VND
+    so với giá dự đoán, và có cấu hình phần cứng tương đồng nhất với cấu hình người dùng nhập.
+    
+    Thuật toán:
+    1. Tính khoảng cách chênh lệch giá thực tế so với giá dự đoán.
+    2. Chuẩn hóa các thông số phần cứng theo độ lệch chuẩn toàn bộ tập dữ liệu (Z-score).
+    3. Trọng số hóa các thành phần cốt lõi: CPU (2.5), GPU (2.5), RAM (2.0), Ổ cứng (1.5),
+       Màn hình (1.0), Tần số quét (1.0), Trọng lượng (1.0), Dung lượng Pin (1.0).
+    4. Ưu tiên các dòng máy trong dải chênh lệch <= max_price_diff (2,000,000 VND).
+       Nếu số lượng ứng viên < top_n, mở rộng dần dải chênh lệch để luôn có đủ 5 gợi ý.
+    5. Tính tỷ lệ % tương đồng cấu hình (% similarity) và sắp xếp đề xuất theo độ tương đồng.
+    """
+    df = get_cleaned_laptops_data()
+    if df is None or len(df) == 0:
+        return []
+        
+    df = df.copy()
+    
+    # 1. Tính khoảng cách chênh lệch giá
+    df['price_diff'] = df['price'] - predicted_price
+    df['abs_price_diff'] = df['price_diff'].abs()
+    
+    # 2. Trọng số thuộc tính cấu hình
+    weights = {
+        'cpu_score': 2.5,
+        'gpu_score': 2.5,
+        'ram': 2.0,
+        'storage': 1.5,
+        'screen_size': 1.0,
+        'refresh_rate': 1.0,
+        'weight': 1.0,
+        'battery': 1.0
+    }
+    
+    stds = {col: df[col].std() if df[col].std() > 0 else 1.0 for col in weights}
+    weighted_sq_diff = 0
+    total_w = sum(weights.values())
+    for col, w in weights.items():
+        user_val = float(features_dict.get(col, 0))
+        diff_norm = (df[col] - user_val) / stds[col]
+        weighted_sq_diff += w * (diff_norm ** 2)
+        
+    df['config_dist'] = np.sqrt(weighted_sq_diff / total_w)
+    # Quy đổi khoảng cách sang % tương đồng (tiệm cận tự nhiên)
+    df['similarity_pct'] = np.clip(100.0 * np.exp(-0.25 * df['config_dist']), 35.0, 99.5).round(1)
+    
+    # 3. Lọc ứng viên: ưu tiên các mẫu trong dải chênh lệch <= 2,000,000 VND
+    candidates = df[df['abs_price_diff'] <= max_price_diff].copy()
+    
+    # Nếu không đủ top_n mẫu, mở rộng dải giá dần để luôn đảm bảo có đủ gợi ý chất lượng
+    if len(candidates) < top_n:
+        for ext_diff in [3_000_000, 5_000_000, 8_000_000, 15_000_000]:
+            candidates = df[df['abs_price_diff'] <= ext_diff].copy()
+            if len(candidates) >= top_n:
+                break
+                
+    if len(candidates) < top_n:
+        candidates = df.copy()
+        
+    # Xếp hạng ứng viên:
+    # Điểm phạt phụ trội nếu giá nằm ngoài dải 2 triệu để ưu tiên tối đa các mẫu trong dải +/- 2 triệu
+    def rank_score(row):
+        price_penalty = max(0.0, (row['abs_price_diff'] - max_price_diff) / 1_000_000.0)
+        return row['config_dist'] + price_penalty * 2.5
+        
+    candidates['rank_score'] = candidates.apply(rank_score, axis=1)
+    selected = candidates.sort_values(by='rank_score').head(top_n)
+    
+    results = []
+    for _, row in selected.iterrows():
+        diff = float(row['price_diff'])
+        diff_str = f"+{diff:,.0f} đ" if diff >= 0 else f"{diff:,.0f} đ"
+        
+        results.append({
+            'name': row['name'],
+            'brand': row['brand'],
+            'price': float(row['price']),
+            'price_diff': diff,
+            'price_diff_str': diff_str,
+            'abs_price_diff': float(row['abs_price_diff']),
+            'cpu': row['cpu'],
+            'cpu_score': int(row['cpu_score']),
+            'gpu': row['gpu'],
+            'gpu_score': int(row['gpu_score']),
+            'ram': int(row['ram']),
+            'storage': int(row['storage']),
+            'screen_size': float(row['screen_size']),
+            'resolution': str(row.get('resolution', '')),
+            'refresh_rate': int(row['refresh_rate']),
+            'weight': float(row['weight']),
+            'battery': float(row['battery']),
+            'rating': float(row['rating']),
+            'similarity_pct': float(row['similarity_pct'])
+        })
+    return results
+
 if __name__ == '__main__':
     print("--- BẮT ĐẦU TRAINING & ĐÁNH GIÁ MÔ HÌNH DỰ ĐOÁN GIÁ ---")
     results = train_and_evaluate_models()

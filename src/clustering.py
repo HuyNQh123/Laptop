@@ -102,13 +102,13 @@ def get_cluster_summary(df_clustered, valid_cols):
 def generate_cluster_label(row, overall_mean):
     """Đặt tên cluster dựa trên đặc điểm số liệu so với trung bình."""
     if row['gpu_score'] > overall_mean['gpu_score'] * 1.5:
-        return "Gaming / High Performance"
+        return "Gaming / Đồ họa hiệu năng cao"
     elif row['price'] > overall_mean['price'] * 1.5:
-        return "Premium / High-end"
+        return "Cao cấp / Doanh nhân"
     elif row['price'] < overall_mean['price'] * 0.7:
-        return "Budget / Office"
+        return "Phổ thông / Văn phòng cơ bản"
     else:
-        return "Mainstream / Productivity"
+        return "Đa dụng / Năng suất học tập"
 
 def analyze_clusters(summary_df, overall_mean):
     """Trích xuất và định dạng chi tiết từng cluster."""

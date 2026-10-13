@@ -1,82 +1,178 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2 class="mb-4">Compare Laptops</h2>
+{% set attr_labels = {
+    'cpu_score': 'Điểm hiệu năng CPU',
+    'gpu_score': 'Điểm hiệu năng GPU',
+    'ram': 'Dung lượng RAM (GB)',
+    'storage': 'Dung lượng lưu trữ (GB)',
+    'screen_size': 'Kích thước màn hình (inch)',
+    'refresh_rate': 'Tần số quét (Hz)',
+    'weight': 'Trọng lượng (kg)',
+    'battery': 'Dung lượng pin (Wh)',
+    'rating': 'Điểm đánh giá (Rating)',
+    'price': 'Giá bán (VND)'
+} %}
+
+<div class="container mt-2">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-primary">So sánh cấu hình laptop</h2>
+            <p class="text-muted">Chọn hai mẫu laptop và các tiêu chí phần cứng để phân tích trực quan qua biểu đồ mạng nhện đa chiều.</p>
+        </div>
+    </div>
     
     {% if error %}
-    <div class="alert alert-danger" role="alert">
-        {{ error }}
+    <div class="alert alert-danger shadow-sm mb-4" role="alert">
+        <strong>Thông báo:</strong> {{ error }}
     </div>
     {% endif %}
 
-    <form method="POST" action="{{ url_for('compare') }}">
-        <div class="row">
-            <!-- Laptop 1 Selection -->
-            <div class="col-md-6 mb-3">
-                <label for="laptop1" class="form-label fw-bold">Laptop 1</label>
-                <select class="form-select shadow-sm" id="laptop1" name="laptop1" required>
-                    <option value="" disabled {% if not laptop1_name %}selected{% endif %}>Chọn laptop đầu tiên...</option>
-                    {% for name in laptop_names %}
-                        <option value="{{ name }}" {% if name == laptop1_name %}selected{% endif %}>{{ name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            
-            <!-- Laptop 2 Selection -->
-            <div class="col-md-6 mb-3">
-                <label for="laptop2" class="form-label fw-bold">Laptop 2</label>
-                <select class="form-select shadow-sm" id="laptop2" name="laptop2" required>
-                    <option value="" disabled {% if not laptop2_name %}selected{% endif %}>Chọn laptop thứ hai...</option>
-                    {% for name in laptop_names %}
-                        <option value="{{ name }}" {% if name == laptop2_name %}selected{% endif %}>{{ name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+    <div class="card shadow-sm border-0 mb-5">
+        <div class="card-header bg-primary text-white fw-bold">
+            Chọn laptop và tiêu chí so sánh
         </div>
-
-        <!-- Attributes Selection -->
-        <div class="mb-4 mt-3">
-            <label class="form-label fw-bold">Attributes to Compare</label>
-            <div class="row bg-light p-3 rounded border">
-                {% for attr in available_attributes %}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="attributes" value="{{ attr }}" id="attr_{{ attr }}"
-                        {% if attr in selected_attributes %}checked{% endif %}>
-                        <label class="form-check-label" for="attr_{{ attr }}">
-                            {{ attr }}
-                        </label>
+        <div class="card-body p-4">
+            <form method="POST" action="{{ url_for('compare') }}">
+                <div class="row">
+                    <!-- Laptop 1 Selection -->
+                    <div class="col-md-6 mb-3">
+                        <label for="laptop1" class="form-label fw-bold">Laptop thứ nhất</label>
+                        <select class="form-select shadow-sm" id="laptop1" name="laptop1" required>
+                            <option value="" disabled {% if not laptop1_name %}selected{% endif %}>Chọn laptop thứ nhất...</option>
+                            {% for name in laptop_names %}
+                                <option value="{{ name }}" {% if name == laptop1_name %}selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <!-- Laptop 2 Selection -->
+                    <div class="col-md-6 mb-3">
+                        <label for="laptop2" class="form-label fw-bold">Laptop thứ hai</label>
+                        <select class="form-select shadow-sm" id="laptop2" name="laptop2" required>
+                            <option value="" disabled {% if not laptop2_name %}selected{% endif %}>Chọn laptop thứ hai...</option>
+                            {% for name in laptop_names %}
+                                <option value="{{ name }}" {% if name == laptop2_name %}selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary px-4 shadow">Compare</button>
-    </form>
+                <!-- Attributes Selection -->
+                <div class="mb-4 mt-3">
+                    <label class="form-label fw-bold">Tiêu chí so sánh (chọn ít nhất 3 tiêu chí để vẽ biểu đồ):</label>
+                    <div class="row bg-light p-3 rounded border g-2">
+                        {% for attr in available_attributes %}
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="attributes" value="{{ attr }}" id="attr_{{ attr }}"
+                                {% if attr in selected_attributes %}checked{% endif %}>
+                                <label class="form-check-label small fw-semibold" for="attr_{{ attr }}">
+                                    {{ attr_labels.get(attr, attr) }}
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">
+                        📊 Thực hiện so sánh
+                    </button>
+                    <a href="{{ url_for('compare') }}" class="btn btn-outline-secondary px-3 py-2">
+                        Đặt lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
 
     {% if comparison_data %}
-    <div class="mt-5 mb-5">
-        <h3 class="mb-4">Comparison Results</h3>
+    <div class="mt-4 mb-5">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <div>
+                <h3 class="fw-bold text-dark mb-1">Kết quả so sánh chi tiết</h3>
+                <p class="text-muted small mb-0">Đối đầu trực diện giữa <strong>{{ laptop1_name }}</strong> và <strong>{{ laptop2_name }}</strong></p>
+            </div>
+            <a href="#compareForm" class="btn btn-outline-primary btn-sm">🔄 So sánh cặp máy khác</a>
+        </div>
+
+        <!-- BẢNG ĐÁNH GIÁ NHANH: MÁY NÀO CHIẾM ƯU THẾ Ở MẶT NÀO? -->
+        <div class="card shadow-sm border-0 mb-4 bg-white">
+            <div class="card-body p-4">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <span>🏆</span> Đánh giá nhanh: Ưu thế của từng dòng máy
+                </h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded border border-primary-subtle bg-primary-subtle h-100">
+                            <h6 class="fw-bold text-primary mb-2">🔵 {{ laptop1_name }}</h6>
+                            <ul class="mb-0 ps-3 small text-dark">
+                                {% set ns1 = namespace(wins=0) %}
+                                {% for attr, val1, val2 in comparison_data %}
+                                    {% if attr == 'price' and val1 < val2 %}
+                                        {% set ns1.wins = ns1.wins + 1 %}
+                                        <li class="mb-1"><strong>Tiết kiệm giá hơn:</strong> Rẻ hơn khoảng {{ "{:,.0f}".format(val2 - val1) }} đ</li>
+                                    {% elif attr == 'weight' and val1 < val2 %}
+                                        {% set ns1.wins = ns1.wins + 1 %}
+                                        <li class="mb-1"><strong>Cơ động hơn:</strong> Nhẹ hơn {{ "{:.2f}".format(val2 - val1) }} kg</li>
+                                    {% elif attr != 'price' and attr != 'weight' and val1 > val2 %}
+                                        {% set ns1.wins = ns1.wins + 1 %}
+                                        <li class="mb-1"><strong>Vượt trội về {{ attr_labels.get(attr, attr) }}:</strong> Cao hơn máy đối thủ</li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if ns1.wins == 0 %}
+                                    <li class="text-muted">Cấu hình vừa vặn, tập trung vào tính đồng đều.</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="p-3 rounded border border-warning-subtle bg-warning-subtle h-100">
+                            <h6 class="fw-bold text-dark mb-2">🟠 {{ laptop2_name }}</h6>
+                            <ul class="mb-0 ps-3 small text-dark">
+                                {% set ns2 = namespace(wins=0) %}
+                                {% for attr, val1, val2 in comparison_data %}
+                                    {% if attr == 'price' and val2 < val1 %}
+                                        {% set ns2.wins = ns2.wins + 1 %}
+                                        <li class="mb-1"><strong>Tiết kiệm giá hơn:</strong> Rẻ hơn khoảng {{ "{:,.0f}".format(val1 - val2) }} đ</li>
+                                    {% elif attr == 'weight' and val2 < val1 %}
+                                        {% set ns2.wins = ns2.wins + 1 %}
+                                        <li class="mb-1"><strong>Cơ động hơn:</strong> Nhẹ hơn {{ "{:.2f}".format(val1 - val2) }} kg</li>
+                                    {% elif attr != 'price' and attr != 'weight' and val2 > val1 %}
+                                        {% set ns2.wins = ns2.wins + 1 %}
+                                        <li class="mb-1"><strong>Vượt trội về {{ attr_labels.get(attr, attr) }}:</strong> Cao hơn máy đối thủ</li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if ns2.wins == 0 %}
+                                    <li class="text-muted">Cấu hình vừa vặn, tập trung vào tính đồng đều.</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <div class="row">
+        <div class="row align-items-start">
             <!-- Data Table -->
             <div class="col-lg-5 mb-4">
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered shadow-sm">
+                <div class="table-responsive shadow-sm rounded">
+                    <table class="table table-hover table-bordered mb-0 bg-white">
                         <thead class="table-dark">
                             <tr>
-                                <th>Attribute</th>
-                                <th>{{ laptop1_name }}</th>
-                                <th>{{ laptop2_name }}</th>
+                                <th>Tiêu chí</th>
+                                <th class="text-primary">{{ laptop1_name }}</th>
+                                <th class="text-warning">{{ laptop2_name }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for attr, val1, val2 in comparison_data %}
                             <tr>
-                                <td><strong>{{ attr }}</strong></td>
-                                <td>
+                                <td><strong>{{ attr_labels.get(attr, attr) }}</strong></td>
+                                <td class="fw-semibold {% if (attr == 'price' or attr == 'weight') and val1 < val2 %}table-success{% elif attr != 'price' and attr != 'weight' and val1 > val2 %}table-success{% endif %}">
                                     {% if attr == 'price' %}
                                         {{ "{:,.0f}".format(val1) }} VND
                                     {% elif attr in ['ram', 'storage'] %}
@@ -89,11 +185,13 @@
                                         {{ val1 }} kg
                                     {% elif attr == 'battery' %}
                                         {{ val1 }} Wh
+                                    {% elif attr in ['cpu_score', 'gpu_score'] %}
+                                        {{ "{:,.0f}".format(val1) }} điểm
                                     {% else %}
                                         {{ val1 }}
                                     {% endif %}
                                 </td>
-                                <td>
+                                <td class="fw-semibold {% if (attr == 'price' or attr == 'weight') and val2 < val1 %}table-warning{% elif attr != 'price' and attr != 'weight' and val2 > val1 %}table-warning{% endif %}">
                                     {% if attr == 'price' %}
                                         {{ "{:,.0f}".format(val2) }} VND
                                     {% elif attr in ['ram', 'storage'] %}
@@ -106,6 +204,8 @@
                                         {{ val2 }} kg
                                     {% elif attr == 'battery' %}
                                         {{ val2 }} Wh
+                                    {% elif attr in ['cpu_score', 'gpu_score'] %}
+                                        {{ "{:,.0f}".format(val2) }} điểm
                                     {% else %}
                                         {{ val2 }}
                                     {% endif %}
@@ -115,12 +215,22 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-2 text-muted small">
+                    <span class="badge bg-success-subtle text-success border border-success-subtle me-1">Ô xanh lá</span> thể hiện thông số chiếm ưu thế vượt trội hơn.
+                </div>
             </div>
             
             <!-- Radar Chart -->
             <div class="col-lg-7 text-center mb-4">
                 <div class="p-3 border rounded bg-white shadow-sm">
-                    <img src="{{ url_for('static', filename='charts/radar_comparison.png') }}?{{ rand }}" alt="Radar Chart" class="img-fluid" style="max-height: 550px;">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <h6 class="fw-bold text-dark mb-0">Biểu đồ mạng nhện đối đầu (Radar Chart)</h6>
+                        <span class="badge bg-light text-dark border small">Chuẩn hóa Min-Max</span>
+                    </div>
+                    <img src="{{ url_for('static', filename='charts/radar_comparison.png') }}?{{ rand }}" alt="Biểu đồ mạng nhện so sánh laptop" class="img-fluid" style="max-height: 550px;">
+                    <div class="alert alert-light border mt-3 mb-0 small text-start">
+                        <strong>💡 Cách đọc biểu đồ mạng nhện:</strong> Diện tích phủ màu càng vươn xa ra ngoài viền ở góc nào thì máy càng mạnh ở tiêu chí đó. Dữ liệu được đưa về thang đo chuẩn hóa (0% đến 100%) để bạn so sánh cân bằng giữa các thông số có đơn vị khác nhau.
+                    </div>
                 </div>
             </div>
         </div>

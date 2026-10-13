@@ -3,59 +3,104 @@
 {% block content %}
 <div class="row mb-4">
     <div class="col">
-        <h2 class="text-primary">Data Analysis & Visualization</h2>
-        <p class="text-muted">Phân tích thống kê và trực quan hóa dữ liệu.</p>
+        <h2 class="text-primary">Thống kê và phân tích dữ liệu laptop</h2>
+        <p class="text-muted">Báo cáo phân tích thống kê mô tả, tương quan phần cứng và trực quan hóa phân bố giá bán trên thị trường.</p>
     </div>
 </div>
 
 <!-- Overview -->
-<div class="row mb-5 text-center">
+<div class="row mb-4 text-center">
     <div class="col-md-4 mb-3">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h5 class="card-title text-muted">Total Laptops & Brands</h5>
-                <h3 class="card-text text-primary">{{ total_laptops }} Laptops / {{ total_brands }} Brands</h3>
+        <div class="card shadow-sm h-100 border-0 bg-white">
+            <div class="card-body py-4">
+                <span class="fs-4 d-block mb-1">📊</span>
+                <h6 class="card-title text-muted mb-1">Quy mô khảo sát</h6>
+                <h3 class="card-text text-primary fw-bold mb-0">{{ total_laptops }} Laptop <span class="fs-6 text-muted fw-normal">/ {{ total_brands }} Hãng</span></h3>
+                <small class="text-muted">Mẫu dữ liệu thực tế tại Việt Nam</small>
             </div>
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h5 class="card-title text-muted">Price Mean & Median</h5>
-                <h3 class="card-text text-success">{{ "{:,.0f}".format(avg_price) }} / {{ "{:,.0f}".format(med_price) }} VNĐ</h3>
+        <div class="card shadow-sm h-100 border-0 bg-white">
+            <div class="card-body py-4">
+                <span class="fs-4 d-block mb-1">💵</span>
+                <h6 class="card-title text-muted mb-1">Giá trị trung bình & Trung vị</h6>
+                <h3 class="card-text text-success fw-bold mb-0">{{ "{:,.0f}".format(avg_price) }} / {{ "{:,.0f}".format(med_price) }} đ</h3>
+                <small class="text-muted">Trung bình (Mean) / Trung vị (Median)</small>
             </div>
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h5 class="card-title text-muted">Price Standard Deviation</h5>
-                <h3 class="card-text text-danger">{{ "{:,.0f}".format(std_price) }} VNĐ</h3>
+        <div class="card shadow-sm h-100 border-0 bg-white">
+            <div class="card-body py-4">
+                <span class="fs-4 d-block mb-1">📈</span>
+                <h6 class="card-title text-muted mb-1">Giá trung bình toàn thị trường</h6>
+                <h3 class="card-text text-danger fw-bold mb-0">{{ "{:,.0f}".format(avg_price) }} đ</h3>
+                <small class="text-muted">Độ lệch chuẩn: ±{{ "{:,.0f}".format(std_price) }} đ</small>
             </div>
         </div>
     </div>
 </div>
 
+<!-- LỜI KHUYÊN & NHẬN ĐỊNH THỰC TẾ CHO SINH VIÊN -->
+<div class="card shadow-sm border-0 mb-5 bg-light border-start border-4 border-info">
+    <div class="card-body p-4">
+        <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+            <span>🎓</span> Nhận định thị trường hữu ích cho sinh viên khi chọn mua laptop
+        </h5>
+        <div class="row g-3 small">
+            <div class="col-md-4">
+                <div class="p-3 bg-white rounded border h-100">
+                    <strong class="text-primary d-block mb-1">💰 Khoảng giá phổ biến nhất:</strong>
+                    <p class="text-muted mb-0">
+                        Đa số các dòng máy học tập, văn phòng tập trung ở dải giá <strong>15 - 25 triệu VNĐ</strong>. Đây là khoảng ngân sách hợp lý nhất để sinh viên sở hữu máy mượt mà, dùng bền suốt 4 năm đại học.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 bg-white rounded border h-100">
+                    <strong class="text-success d-block mb-1">⚡ Tiêu chí quyết định giá:</strong>
+                    <p class="text-muted mb-0">
+                        <strong>CPU và Card đồ họa (GPU)</strong> là hai linh kiện đẩy giá máy lên nhiều nhất. Nếu chỉ học kinh tế, văn phòng thì chọn chip Core i5 / Ryzen 5 tiết kiệm điện sẽ tối ưu chi phí rất nhiều.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 bg-white rounded border h-100">
+                    <strong class="text-danger d-block mb-1">🎯 Phân khúc cao cấp & Gaming:</strong>
+                    <p class="text-muted mb-0">
+                        Các dòng máy trên <strong>35 triệu VNĐ</strong> hầu hết đều trang bị GPU rời khủng (RTX 4060 trở lên), màn hình tần số quét cao (144Hz - 240Hz) dành riêng cho đồ họa 3D nặng hoặc gaming.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Top & Bottom -->
 <div class="row mb-5">
-    <h3 class="mb-3 text-secondary">Top & Bottom 3 Highlights</h3>
+    <div class="col-12 mb-3">
+        <h3 class="text-secondary">Các giá trị cao nhất và thấp nhất (Top & Bottom Highlights)</h3>
+        <p class="text-muted">So sánh nhanh những mẫu laptop dẫn đầu và mức khởi điểm theo từng tiêu chí cốt lõi.</p>
+    </div>
     
     <!-- Price -->
     <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-header bg-dark text-white">Price (VND)</div>
+        <div class="card shadow-sm h-100 border-0">
+            <div class="card-header bg-dark text-white fw-bold">Giá bán (VND)</div>
             <div class="card-body">
-                <h6 class="text-success fw-bold">Top 3 (Highest)</h6>
-                <ol class="small">
+                <h6 class="text-success fw-bold">Các giá trị cao nhất (Top 3)</h6>
+                <ol class="small ps-3 mb-3">
                     {% for item in top_price %}
-                    <li>{{ item.name }} ({{ item.brand }}) - {{ "{:,.0f}".format(item.price) }}</li>
+                    <li><strong>{{ item.name }}</strong> ({{ item.brand }}) <br><span class="text-success fw-bold">{{ "{:,.0f}".format(item.price) }} đ</span></li>
                     {% endfor %}
                 </ol>
                 <hr>
-                <h6 class="text-danger fw-bold mt-3">Bottom 3 (Lowest)</h6>
-                <ol class="small">
+                <h6 class="text-danger fw-bold mt-3">Các giá trị thấp nhất (Bottom 3)</h6>
+                <ol class="small ps-3 mb-0">
                     {% for item in bottom_price %}
-                    <li>{{ item.name }} ({{ item.brand }}) - {{ "{:,.0f}".format(item.price) }}</li>
+                    <li><strong>{{ item.name }}</strong> ({{ item.brand }}) <br><span class="text-danger fw-bold">{{ "{:,.0f}".format(item.price) }} đ</span></li>
                     {% endfor %}
                 </ol>
             </div>
@@ -64,20 +109,20 @@
     
     <!-- CPU -->
     <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-header bg-dark text-white">CPU Score</div>
+        <div class="card shadow-sm h-100 border-0">
+            <div class="card-header bg-dark text-white fw-bold">Điểm hiệu năng CPU (PassMark)</div>
             <div class="card-body">
-                <h6 class="text-success fw-bold">Top 3 (Highest)</h6>
-                <ol class="small">
+                <h6 class="text-success fw-bold">Các giá trị cao nhất (Top 3)</h6>
+                <ol class="small ps-3 mb-3">
                     {% for item in top_cpu %}
-                    <li>{{ item.name }} - {{ item.cpu_score }}</li>
+                    <li><strong>{{ item.name }}</strong> <br><span class="badge bg-success-subtle text-success border border-success-subtle">{{ "{:,}".format(item.cpu_score) }} điểm</span></li>
                     {% endfor %}
                 </ol>
                 <hr>
-                <h6 class="text-danger fw-bold mt-3">Bottom 3 (Lowest)</h6>
-                <ol class="small">
+                <h6 class="text-danger fw-bold mt-3">Các giá trị thấp nhất (Bottom 3)</h6>
+                <ol class="small ps-3 mb-0">
                     {% for item in bottom_cpu %}
-                    <li>{{ item.name }} - {{ item.cpu_score }}</li>
+                    <li><strong>{{ item.name }}</strong> <br><span class="badge bg-danger-subtle text-danger border border-danger-subtle">{{ "{:,}".format(item.cpu_score) }} điểm</span></li>
                     {% endfor %}
                 </ol>
             </div>
@@ -86,20 +131,20 @@
     
     <!-- GPU -->
     <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-header bg-dark text-white">GPU Score</div>
+        <div class="card shadow-sm h-100 border-0">
+            <div class="card-header bg-dark text-white fw-bold">Điểm hiệu năng GPU (PassMark G3D)</div>
             <div class="card-body">
-                <h6 class="text-success fw-bold">Top 3 (Highest)</h6>
-                <ol class="small">
+                <h6 class="text-success fw-bold">Các giá trị cao nhất (Top 3)</h6>
+                <ol class="small ps-3 mb-3">
                     {% for item in top_gpu %}
-                    <li>{{ item.name }} - {{ item.gpu_score }}</li>
+                    <li><strong>{{ item.name }}</strong> <br><span class="badge bg-success-subtle text-success border border-success-subtle">{{ "{:,}".format(item.gpu_score) }} điểm</span></li>
                     {% endfor %}
                 </ol>
                 <hr>
-                <h6 class="text-danger fw-bold mt-3">Bottom 3 (Lowest)</h6>
-                <ol class="small">
+                <h6 class="text-danger fw-bold mt-3">Các giá trị thấp nhất (Bottom 3)</h6>
+                <ol class="small ps-3 mb-0">
                     {% for item in bottom_gpu %}
-                    <li>{{ item.name }} - {{ item.gpu_score }}</li>
+                    <li><strong>{{ item.name }}</strong> <br><span class="badge bg-danger-subtle text-danger border border-danger-subtle">{{ "{:,}".format(item.gpu_score) }} điểm</span></li>
                     {% endfor %}
                 </ol>
             </div>
@@ -111,17 +156,17 @@
 {% if best_sellers %}
 <div class="row mb-5">
     <div class="col-12">
-        <h3 class="mb-3 text-secondary">🔥 Best Sellers (Top 5)</h3>
+        <h3 class="mb-3 text-secondary">🔥 Laptop bán chạy nhất (Top 5)</h3>
         <div class="card shadow-sm border-warning">
-            <div class="card-body">
+            <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
                         <thead class="table-warning">
                             <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Brand</th>
-                                <th>Units Sold</th>
+                                <th style="width: 60px;">#</th>
+                                <th>Tên laptop</th>
+                                <th>Thương hiệu</th>
+                                <th>Số lượng bán</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -145,26 +190,26 @@
 <!-- Statistics by Brand -->
 <div class="row mb-5">
     <div class="col-12">
-        <h3 class="mb-3 text-secondary">Statistics by Brand</h3>
+        <h3 class="mb-3 text-secondary">Thống kê theo thương hiệu</h3>
         <div class="table-responsive shadow-sm bg-white rounded">
             <table class="table table-hover table-striped align-middle mb-0">
                 <thead class="table-dark">
                     <tr>
-                        <th>Brand</th>
-                        <th>Mean Price</th>
-                        <th>Median Price</th>
-                        <th>Std Price</th>
-                        <th>Mean CPU Score</th>
-                        <th>Mean GPU Score</th>
+                        <th>Thương hiệu</th>
+                        <th>Giá trị trung bình (VND)</th>
+                        <th>Trung vị giá (VND)</th>
+                        <th>Độ lệch chuẩn giá (VND)</th>
+                        <th>Điểm CPU trung bình</th>
+                        <th>Điểm GPU trung bình</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for row in brand_stats %}
                     <tr>
-                        <td class="fw-bold"><span class="badge bg-secondary">{{ row['Brand'] }}</span></td>
-                        <td>{{ "{:,.0f}".format(row['Mean Price']) }}</td>
-                        <td>{{ "{:,.0f}".format(row['Median Price']) }}</td>
-                        <td>{{ "{:,.0f}".format(row['Std Price']) }}</td>
+                        <td class="fw-bold"><span class="badge bg-primary">{{ row['Brand'] }}</span></td>
+                        <td class="fw-semibold text-primary">{{ "{:,.0f}".format(row['Mean Price']) }} đ</td>
+                        <td>{{ "{:,.0f}".format(row['Median Price']) }} đ</td>
+                        <td class="text-muted">{{ "{:,.0f}".format(row['Std Price']) }} đ</td>
                         <td>{{ "{:,.0f}".format(row['Mean CPU']) }}</td>
                         <td>{{ "{:,.0f}".format(row['Mean GPU']) }}</td>
                     </tr>
@@ -177,38 +222,45 @@
 
 <!-- Charts -->
 <div class="row mb-5">
-    <div class="col-12">
-        <h3 class="mb-3 text-secondary">Data Visualization</h3>
+    <div class="col-12 mb-3">
+        <h3 class="text-secondary">Trực quan hóa và biểu đồ phân tích dữ liệu</h3>
+        <p class="text-muted">Các biểu đồ phân bố và biểu đồ phân tán thể hiện mối liên hệ giữa giá bán và các thông số kỹ thuật.</p>
     </div>
     
     <div class="col-md-6 mb-4">
         <div class="card shadow-sm h-100 p-2">
-            <img src="{{ url_for('static', filename='charts/price_histogram.png') }}" class="card-img-top img-fluid" alt="Price Histogram">
+            <div class="card-header bg-white border-0 fw-bold text-dark">Phân bố giá laptop (Price Distribution)</div>
+            <img src="{{ url_for('static', filename='charts/price_histogram.png') }}" class="card-img-top img-fluid" alt="Phân bố giá laptop">
         </div>
     </div>
     <div class="col-md-6 mb-4">
         <div class="card shadow-sm h-100 p-2">
-            <img src="{{ url_for('static', filename='charts/cpu_score_histogram.png') }}" class="card-img-top img-fluid" alt="CPU Score Histogram">
+            <div class="card-header bg-white border-0 fw-bold text-dark">Phân bố điểm hiệu năng CPU (CPU Score Distribution)</div>
+            <img src="{{ url_for('static', filename='charts/cpu_score_histogram.png') }}" class="card-img-top img-fluid" alt="Phân bố điểm hiệu năng CPU">
         </div>
     </div>
     <div class="col-md-6 mb-4">
         <div class="card shadow-sm h-100 p-2">
-            <img src="{{ url_for('static', filename='charts/avg_price_by_brand.png') }}" class="card-img-top img-fluid" alt="Average Price by Brand">
+            <div class="card-header bg-white border-0 fw-bold text-dark">Giá trung bình theo thương hiệu (Average Price by Brand)</div>
+            <img src="{{ url_for('static', filename='charts/avg_price_by_brand.png') }}" class="card-img-top img-fluid" alt="Giá trung bình theo thương hiệu">
         </div>
     </div>
     <div class="col-md-6 mb-4">
         <div class="card shadow-sm h-100 p-2">
-            <img src="{{ url_for('static', filename='charts/cpu_vs_price.png') }}" class="card-img-top img-fluid" alt="CPU Score vs Price">
+            <div class="card-header bg-white border-0 fw-bold text-dark">Tương quan điểm CPU và giá bán (CPU Score vs Price)</div>
+            <img src="{{ url_for('static', filename='charts/cpu_vs_price.png') }}" class="card-img-top img-fluid" alt="Tương quan điểm CPU và giá bán">
         </div>
     </div>
     <div class="col-md-6 mb-4">
         <div class="card shadow-sm h-100 p-2">
-            <img src="{{ url_for('static', filename='charts/gpu_vs_price.png') }}" class="card-img-top img-fluid" alt="GPU Score vs Price">
+            <div class="card-header bg-white border-0 fw-bold text-dark">Tương quan điểm GPU và giá bán (GPU Score vs Price)</div>
+            <img src="{{ url_for('static', filename='charts/gpu_vs_price.png') }}" class="card-img-top img-fluid" alt="Tương quan điểm GPU và giá bán">
         </div>
     </div>
     <div class="col-md-6 mb-4">
         <div class="card shadow-sm h-100 p-2">
-            <img src="{{ url_for('static', filename='charts/ram_vs_price.png') }}" class="card-img-top img-fluid" alt="RAM vs Price">
+            <div class="card-header bg-white border-0 fw-bold text-dark">Tương quan dung lượng RAM và giá bán (RAM vs Price)</div>
+            <img src="{{ url_for('static', filename='charts/ram_vs_price.png') }}" class="card-img-top img-fluid" alt="Tương quan dung lượng RAM và giá bán">
         </div>
     </div>
 </div>

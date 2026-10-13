@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laptop Analysis & Prediction</title>
+    <title>LapInsight – Phân tích và ước tính giá laptop</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -12,31 +12,34 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="/">Laptop System</a>
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
+                <span>💻</span>
+                <span>LapInsight</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto gap-lg-1">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link {% if request.path == '/' %}active fw-bold text-white{% endif %}" href="/">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/laptops">Laptops</a>
+                        <a class="nav-link {% if request.path == '/laptops' %}active fw-bold text-white{% endif %}" href="/laptops">Kho máy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/analysis">Analysis</a>
+                        <a class="nav-link {% if request.path == '/analysis' %}active fw-bold text-white{% endif %}" href="/analysis">Thống kê thị trường</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/clustering">Clustering</a>
+                        <a class="nav-link {% if request.path == '/clustering' %}active fw-bold text-white{% endif %}" href="/clustering">Bản đồ phân khúc</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/compare">Compare</a>
+                        <a class="nav-link {% if request.path == '/compare' %}active fw-bold text-white{% endif %}" href="/compare">So sánh đối đầu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/predict">Price Prediction</a>
+                        <a class="nav-link btn btn-primary text-white btn-sm px-3 ms-lg-2 {% if request.path == '/predict' %}active fw-bold{% endif %}" href="/predict">🚀 Định giá & Tư vấn</a>
                     </li>
                 </ul>
             </div>
@@ -49,7 +52,16 @@
         {% endblock %}
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-white border-top py-4 mt-5">
+        <div class="container text-center text-muted small">
+            <p class="mb-1 fw-bold text-dark">LapInsight – Hệ thống phân tích thông số & Định giá laptop thực tế</p>
+            <p class="mb-0">Dữ liệu thực nghiệm 225 model tại Việt Nam | Hỗ trợ tư vấn cấu hình cho sinh viên và báo cáo khoa học dữ liệu.</p>
+        </div>
+    </footer>
+
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

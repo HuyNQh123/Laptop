@@ -1,160 +1,327 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Header tiêu đề thân thiện với sinh viên -->
 <div class="row mb-4">
     <div class="col">
-        <h2 class="text-primary">K-Means Clustering</h2>
-        <p class="text-muted">Phân nhóm tự động dựa trên mức độ tương đồng của thông số cấu hình và giá.</p>
-    </div>
-</div>
-
-<!-- Overview -->
-<div class="row mb-5 text-center">
-    <div class="col-md-4 mb-3">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h5 class="card-title text-muted">Total Laptops</h5>
-                <h3 class="card-text text-primary">{{ results.total_laptops }}</h3>
-            </div>
+        <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 fs-6">
+                🗺️ Bản đồ thị trường laptop
+            </span>
+            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 fs-6">
+                Phân tích dữ liệu thực tế
+            </span>
         </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h5 class="card-title text-muted">Best K (Clusters)</h5>
-                <h3 class="card-text text-success">{{ results.best_k }}</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h5 class="card-title text-muted">Best Silhouette Score</h5>
-                <h3 class="card-text text-danger">{{ "{:.4f}".format(results.best_score) }}</h3>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- PCA Visualization -->
-{% if results.pca_results %}
-<div class="row mb-5">
-    <div class="col-12">
-        <h3 class="mb-3 text-secondary">1. Giảm chiều dữ liệu & Trực quan hóa (PCA)</h3>
-        <p class="text-muted">Biểu diễn các Cluster trên mặt phẳng 2D. 
-            <strong>Tổng lượng thông tin giữ lại được (Total Variance): <span class="text-success">{{ "{:.1f}".format(results.pca_results.total_variance) }}%</span></strong> 
-            <br><small>(PC1: {{ "{:.1f}".format(results.pca_results.pc1_variance) }}%, PC2: {{ "{:.1f}".format(results.pca_results.pc2_variance) }}%).</small>
+        <h2 class="text-primary fw-bold">Thị trường laptop đang phân khúc thế nào? Bạn thuộc hệ nào?</h2>
+        <p class="text-muted fs-6 mb-0">
+            Dựa trên <strong>{{ results.total_laptops }} mẫu laptop thực tế</strong> tại Việt Nam, máy tính tự động tìm ra các phân khúc laptop tự nhiên dựa trên cấu hình và giá bán, giúp bạn dễ dàng xác định mẫu máy phù hợp nhất với nhu cầu học tập và túi tiền của mình.
         </p>
     </div>
-    <div class="col-12 mb-4">
-        <div class="card shadow-sm p-2 border-primary">
-            <img src="{{ url_for('static', filename='charts/pca_clusters.png') }}" class="card-img-top img-fluid" alt="PCA Clusters">
-        </div>
-    </div>
 </div>
-{% endif %}
 
-<!-- Selecting K -->
-<div class="row mb-5">
-    <div class="col-12">
-        <h3 class="mb-3 text-secondary">2. Tìm số nhóm (K) phù hợp</h3>
-    </div>
-    <div class="col-md-6 mb-4">
-        <div class="card shadow-sm p-2">
-            <img src="{{ url_for('static', filename='charts/elbow_method.png') }}" class="card-img-top img-fluid" alt="Elbow Method">
-            <div class="card-body text-center">
-                <p class="card-text small text-muted">Phương pháp Elbow (Khuỷu tay)</p>
+<!-- LỚP 1: TỔNG QUAN THỊ TRƯỜNG & HỒ SƠ 2 HỆ NGƯỜI DÙNG (Dễ hiểu cho mọi sinh viên) -->
+<div class="row mb-4 g-3 text-center">
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0 bg-white">
+            <div class="card-body py-3">
+                <span class="fs-4 d-block mb-1">💻</span>
+                <h6 class="card-title text-muted mb-1">Quy mô mẫu khảo sát</h6>
+                <h3 class="card-text text-primary fw-bold mb-0">{{ results.total_laptops }} <span class="fs-6 text-muted fw-normal">model</span></h3>
+                <small class="text-muted">Đầy đủ các thương hiệu tại VN</small>
             </div>
         </div>
     </div>
-    <div class="col-md-6 mb-4">
-        <div class="card shadow-sm p-2">
-            <img src="{{ url_for('static', filename='charts/silhouette_score.png') }}" class="card-img-top img-fluid" alt="Silhouette Score">
-            <div class="card-body text-center">
-                <p class="card-text small text-muted">Silhouette Score (K cao nhất là {{ results.best_k }})</p>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0 bg-white">
+            <div class="card-body py-3">
+                <span class="fs-4 d-block mb-1">🎯</span>
+                <h6 class="card-title text-muted mb-1">Số phân khúc chính hình thành</h6>
+                <h3 class="card-text text-success fw-bold mb-0">{{ results.best_k }} <span class="fs-6 text-muted fw-normal">hệ người dùng</span></h3>
+                <small class="text-muted">Phân hóa rõ rệt theo nhu cầu</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0 bg-white">
+            <div class="card-body py-3">
+                <span class="fs-4 d-block mb-1">✨</span>
+                <h6 class="card-title text-muted mb-1">Mức độ phân tách ranh giới</h6>
+                <h3 class="card-text text-danger fw-bold mb-0">Rất rõ ràng</h3>
+                <small class="text-muted">Độ tách biệt đạt {{ "{:.2f}".format(results.best_score * 100) }}%</small>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Cluster Details -->
+<!-- ĐẶC TẢ CHI TIẾT 2 HỆ LAPTOP & NGÀNH HỌC PHÙ HỢP -->
 <div class="row mb-5">
-    <div class="col-12">
-        <h3 class="mb-3 text-secondary">3. Phân tích đặc điểm các Cluster</h3>
+    <div class="col-12 mb-3">
+        <h4 class="fw-bold text-dark d-flex align-items-center gap-2">
+            <span>🏷️</span> Hồ sơ đặc trưng của từng hệ laptop
+        </h4>
+        <p class="text-muted small">Hãy xem đặc điểm của từng nhóm để biết chiếc laptop tương lai của bạn nên thuộc hệ nào:</p>
     </div>
     
     {% for cluster in results.cluster_details %}
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card shadow-sm h-100 border-primary">
-            <div class="card-header bg-primary text-white text-center fw-bold">
-                Cluster {{ cluster.cluster_id }}
-            </div>
-            <div class="card-body">
-                <p class="mb-2"><strong>Label:</strong> <span class="badge bg-warning text-dark">{{ cluster.label }}</span></p>
-                <p class="mb-2"><strong>Count:</strong> {{ cluster.count }} laptops</p>
-                <hr>
-                <ul class="list-unstyled small mb-0">
-                    <li><strong>Avg CPU Score:</strong> {{ "{:,.0f}".format(cluster.avg_cpu) }}</li>
-                    <li><strong>Avg GPU Score:</strong> {{ "{:,.0f}".format(cluster.avg_gpu) }}</li>
-                    <li><strong>Avg RAM:</strong> {{ "{:,.1f}".format(cluster.avg_ram) }} GB</li>
-                    <li><strong>Avg Storage:</strong> {{ "{:,.0f}".format(cluster.avg_storage) }} GB</li>
-                    <li class="text-success fw-bold mt-2"><strong>Avg Price:</strong> <br> {{ "{:,.0f}".format(cluster.avg_price) }} VND</li>
-                </ul>
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm h-100 border-0 {% if cluster.avg_cpu > 20000 %}border-top border-4 border-danger{% else %}border-top border-4 border-primary{% endif %}">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge {% if cluster.avg_cpu > 20000 %}bg-danger{% else %}bg-primary{% endif %} px-3 py-2 fw-bold">
+                        Hệ {{ cluster.cluster_id }}: {{ cluster.label }}
+                    </span>
+                    <span class="badge bg-light text-dark border">
+                        {{ cluster.count }} laptop ({{ "{:.1f}".format(cluster.count / results.total_laptops * 100) }}%)
+                    </span>
+                </div>
+
+                <h5 class="fw-bold mt-2 text-dark">
+                    {% if cluster.avg_cpu > 20000 %}
+                        🔥 Phân khúc Hiệu năng cao & Chuyên nghiệp
+                    {% else %}
+                        🌱 Phân khúc Mỏng nhẹ & Học tập văn phòng
+                    {% endif %}
+                </h5>
+
+                <div class="p-3 my-3 rounded {% if cluster.avg_cpu > 20000 %}bg-danger-subtle text-dark{% else %}bg-primary-subtle text-dark{% endif %} small">
+                    <strong>🎓 Dành cho ai?</strong>
+                    {% if cluster.avg_cpu > 20000 %}
+                        <p class="mb-0 mt-1">
+                            Sinh viên <strong>Công nghệ thông tin</strong> (lập trình, máy ảo, AI), <strong>Thiết kế đồ họa 3D, Kiến trúc</strong>, dựng phim 4K và game thủ cần máy cấu hình mạnh mẽ, tản nhiệt tốt.
+                        </p>
+                    {% else %}
+                        <p class="mb-0 mt-1">
+                            Sinh viên <strong>Kinh tế, Quản trị, Marketing, Ngoại ngữ, Luật</strong>, và người làm việc văn phòng cần máy mỏng nhẹ, pin lâu, mang đi học/thư viện dễ dàng.
+                        </p>
+                    {% endif %}
+                </div>
+
+                <div class="row g-2 small text-muted">
+                    <div class="col-6">
+                        <div class="p-2 border rounded bg-light">
+                            <span>⚡ CPU trung bình:</span><br>
+                            <strong class="text-dark">{{ "{:,.0f}".format(cluster.avg_cpu) }} điểm</strong>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-2 border rounded bg-light">
+                            <span>🎮 GPU đồ họa:</span><br>
+                            <strong class="text-dark">{{ "{:,.0f}".format(cluster.avg_gpu) }} điểm</strong>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-2 border rounded bg-light">
+                            <span>💾 RAM trung bình:</span><br>
+                            <strong class="text-dark">{{ "{:,.1f}".format(cluster.avg_ram) }} GB</strong>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-2 border rounded bg-light">
+                            <span>📦 Ổ cứng SSD:</span><br>
+                            <strong class="text-dark">{{ "{:,.0f}".format(cluster.avg_storage) }} GB</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
+                    <span class="text-muted small">Mức giá trung bình:</span>
+                    <span class="fs-5 fw-bold {% if cluster.avg_cpu > 20000 %}text-danger{% else %}text-primary{% endif %}">
+                        {{ "{:,.0f}".format(cluster.avg_price) }} đ
+                    </span>
+                </div>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
 
-<!-- Laptops in Clusters -->
+<!-- BẢN ĐỒ TRỰC QUAN 2D CÙNG HƯỚNG DẪN ĐỌC BIỂU ĐỒ -->
+{% if results.pca_results %}
 <div class="row mb-5">
     <div class="col-12">
-        <h3 class="mb-3 text-secondary">4. Danh sách Laptop theo Cluster</h3>
-        
-        <!-- Bộ lọc (Filter) theo Cluster -->
-        <div class="row mb-3">
-            <div class="col-md-4">
-                <select id="clusterFilter" class="form-select shadow-sm border-primary">
-                    <option value="">Tất cả cụm (All Clusters)</option>
-                    {% for cluster in results.cluster_details %}
-                    <option value="Cluster {{ cluster.cluster_id }}">Cluster {{ cluster.cluster_id }} ({{ cluster.label }})</option>
-                    {% endfor %}
-                </select>
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white py-3 border-bottom">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                    <div>
+                        <h5 class="fw-bold text-dark mb-1">🗺️ Bản đồ phân bổ vị trí các dòng máy trên thị trường</h5>
+                        <p class="text-muted small mb-0">Biểu đồ 2D thể hiện sự phân hóa rõ nét giữa dòng máy mỏng nhẹ và dòng máy đồ họa/gaming.</p>
+                    </div>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">
+                        Độ giữ trọn thông tin: {{ "{:.1f}".format(results.pca_results.total_variance) }}%
+                    </span>
+                </div>
+            </div>
+            
+            <div class="card-body p-4">
+                <!-- Hướng dẫn cách đọc biểu đồ cho người mới -->
+                <div class="alert alert-info border-info-subtle mb-4">
+                    <h6 class="fw-bold text-dark mb-2">💡 Mẹo đọc biểu đồ này cực dễ:</h6>
+                    <div class="row g-2 small">
+                        <div class="col-md-6">
+                            <div class="p-2 bg-white rounded border">
+                                <strong>➡️ Trục ngang (Từ trái sang phải):</strong> Đo lường <em>Sức mạnh & Tầm giá</em>.
+                                <ul class="mb-0 ps-3 mt-1 text-muted">
+                                    <li>Lệch sang trái: Máy cấu hình tiêu chuẩn, giá mềm, tiết kiệm điện.</li>
+                                    <li>Lệch sang phải: Cấu hình cực khủng (CPU/GPU cao, RAM lớn), giá cao hơn.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2 bg-white rounded border">
+                                <strong>⬆️ Trục dọc (Từ dưới lên trên):</strong> Đo lường <em>Độ cơ động & Kích thước</em>.
+                                <ul class="mb-0 ps-3 mt-1 text-muted">
+                                    <li>Ở phía dưới: Mỏng nhẹ, màn hình gọn (13-14 inch), pin bền bỉ.</li>
+                                    <li>Ở phía trên: Màn hình lớn (15.6-17 inch), thân máy đầm, tản nhiệt dày.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ảnh biểu đồ PCA -->
+                <div class="text-center p-2 bg-light rounded border">
+                    <img src="{{ url_for('static', filename='charts/pca_clusters.png') }}" class="img-fluid rounded" alt="Bản đồ phân cụm laptop 2D">
+                </div>
             </div>
         </div>
+    </div>
+</div>
+{% endif %}
 
-        <div class="table-responsive shadow-sm bg-white rounded p-3">
-            <table id="clusterTable" class="table table-hover table-striped align-middle mb-0 w-100">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Cluster</th>
-                        <th>Name</th>
-                        <th>Brand</th>
-                        <th>CPU Score</th>
-                        <th>GPU Score</th>
-                        <th>RAM</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in results.df_clustered %}
-                    <tr>
-                        <td><span class="badge bg-primary">Cluster {{ item.cluster }}</span></td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.brand }}</td>
-                        <td>{{ item.cpu_score }}</td>
-                        <td>{{ item.gpu_score }}</td>
-                        <td>{{ item.ram }} GB</td>
-                        <td class="text-success fw-bold">{{ "{:,.0f}".format(item.price) }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+<!-- LỚP 2: GÓC NGHIÊN CỨU THUẬT TOÁN (ACCORDION THU GỌN CHO THẦY CÔ & NGƯỜI LÀM BÁO CÁO ML) -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="accordion shadow-sm" id="academicAccordion">
+            <div class="accordion-item border-0">
+                <h2 class="accordion-header" id="headingAcademic">
+                    <button class="accordion-button collapsed bg-light text-dark fw-bold rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAcademic" aria-expanded="false" aria-controls="collapseAcademic">
+                        <span class="me-2">🔬</span>
+                        <span>Góc nghiên cứu thuật toán: Cơ sở toán học & Đánh giá Machine Learning</span>
+                        <span class="badge bg-secondary ms-auto me-3 small">Dành cho báo cáo & bảo vệ đề tài</span>
+                    </button>
+                </h2>
+                <div id="collapseAcademic" class="accordion-collapse collapse" aria-labelledby="headingAcademic" data-bs-parent="#academicAccordion">
+                    <div class="accordion-body p-4 bg-white border-top">
+                        <div class="alert alert-light border small mb-4">
+                            <strong>📌 Mục đích mục này:</strong> Cung cấp đầy đủ bằng chứng thực nghiệm về cơ sở chọn cụm K-Means, hệ số quán tính khuỷu tay (Elbow Inertia), điểm Silhouette Score và các trọng số thành phần chính (PCA Loadings) phục vụ đánh giá đề tài khoa học dữ liệu.
+                        </div>
+
+                        <!-- 1. Thuật toán K-Means & Chuẩn hóa -->
+                        <div class="mb-4">
+                            <h6 class="fw-bold text-primary">1. Quy trình thuật toán K-Means Clustering</h6>
+                            <p class="text-muted small mb-2">
+                                Dữ liệu đầu vào gồm 9 thuộc tính kỹ thuật số (CPU Score, GPU Score, RAM, Storage, Screen Size, Refresh Rate, Weight, Battery, Rating) được đưa về cùng thang đo chuẩn mực thông qua <code>StandardScaler (Z-score: mean=0, std=1)</code> để tránh việc các đặc trưng có giá trị lớn (như CPU Score hay Giá) lấn át các đặc trưng nhỏ (như Trọng lượng kg).
+                            </p>
+                        </div>
+
+                        <!-- 2. Biểu đồ Elbow & Silhouette -->
+                        <div class="mb-4">
+                            <h6 class="fw-bold text-primary">2. Thực nghiệm xác định số cụm tối ưu K = {{ results.best_k }}</h6>
+                            <p class="text-muted small mb-3">
+                                Đánh giá quét các giá trị K từ 2 đến 6 bằng 2 tiêu chuẩn độc lập:
+                            </p>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="card h-100 border p-2">
+                                        <img src="{{ url_for('static', filename='charts/elbow_method.png') }}" class="card-img-top img-fluid" alt="Phương pháp khuỷu tay Elbow Method">
+                                        <div class="card-body text-center p-2">
+                                            <strong class="small d-block text-dark">Phương pháp khuỷu tay (Elbow Inertia)</strong>
+                                            <small class="text-muted">Tại K = {{ results.best_k }}, tốc độ suy giảm tổng bình phương khoảng cách nội cụm (Inertia) bắt đầu chậm lại rõ rệt nhất.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card h-100 border p-2">
+                                        <img src="{{ url_for('static', filename='charts/silhouette_score.png') }}" class="card-img-top img-fluid" alt="Điểm đánh giá Silhouette Score">
+                                        <div class="card-body text-center p-2">
+                                            <strong class="small d-block text-dark">Hệ số tách biệt cụm (Silhouette Score)</strong>
+                                            <small class="text-muted">Đạt cực đại tại K = {{ results.best_k }} với giá trị <strong>{{ "{:.4f}".format(results.best_score) }}</strong>, khẳng định sự gắn kết nội cụm cao và khoảng cách giữa các cụm tách biệt nhất.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Chi tiết giảm chiều PCA -->
+                        {% if results.pca_results %}
+                        <div class="mb-0">
+                            <h6 class="fw-bold text-primary">3. Phân tích thành phần chính PCA (Principal Component Analysis)</h6>
+                            <p class="text-muted small mb-2">
+                                PCA chuyển đổi không gian 9 chiều sang 2 chiều trực giao (PC1 và PC2) bảo toàn tới <strong>{{ "{:.1f}".format(results.pca_results.total_variance) }}%</strong> tổng phương sai thông tin:
+                            </p>
+                            <ul class="small text-muted mb-0 ps-3">
+                                <li><strong>Thành phần chính 1 (PC1 - {{ "{:.1f}".format(results.pca_results.pc1_variance) }}% phương sai):</strong> Đại diện cho tổ hợp tuyến tính đồng biến của CPU (+0.43), GPU (+0.44), RAM (+0.38), Giá (+0.43) và Pin (+0.36) -> Đo lường trực tiếp <em>Mức độ cấu hình phần cứng và tầm giá</em>.</li>
+                                <li><strong>Thành phần chính 2 (PC2 - {{ "{:.1f}".format(results.pca_results.pc2_variance) }}% phương sai):</strong> Đồng biến mạnh với Trọng lượng (+0.56), Kích thước màn hình (+0.51), Tần số quét (+0.45) nhưng nghịch biến với RAM và Đánh giá -> Đo lường <em>Kích thước vật lý và sự cồng kềnh</em>.</li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Thêm thư viện DataTables cho Tìm kiếm, Phân trang và Sắp xếp -->
+<!-- TRA CỨU DANH SÁCH LAPTOP THEO TỪNG NHÓM -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white py-3 border-bottom">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                    <div>
+                        <h5 class="fw-bold text-dark mb-1">📋 Tra cứu mẫu máy thực tế theo phân khúc</h5>
+                        <p class="text-muted small mb-0">Tìm kiếm nhanh hoặc lọc theo hệ người dùng để xem các model tương ứng trên thị trường.</p>
+                    </div>
+                    <div style="min-width: 260px;">
+                        <select id="clusterFilter" class="form-select form-select-sm shadow-sm border-primary">
+                            <option value="">Tất cả các nhóm (Xem toàn bộ)</option>
+                            {% for cluster in results.cluster_details %}
+                            <option value="Nhóm {{ cluster.cluster_id }}">Nhóm {{ cluster.cluster_id }} ({{ cluster.label }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-body p-3">
+                <div class="table-responsive">
+                    <table id="clusterTable" class="table table-hover table-striped align-middle mb-0 w-100">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nhóm</th>
+                                <th>Tên laptop</th>
+                                <th>Hãng</th>
+                                <th>Điểm CPU</th>
+                                <th>Điểm GPU</th>
+                                <th>RAM</th>
+                                <th>Giá tham khảo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in results.df_clustered %}
+                            <tr>
+                                <td>
+                                    <span class="badge {% if item.cluster == 0 and results.cluster_details[0].avg_cpu > 20000 %}bg-danger{% else %}bg-primary{% endif %}">
+                                        Nhóm {{ item.cluster }}
+                                    </span>
+                                </td>
+                                <td class="fw-bold">{{ item.name }}</td>
+                                <td><span class="badge bg-secondary">{{ item.brand }}</span></td>
+                                <td><span class="badge bg-light text-dark border">{{ "{:,}".format(item.cpu_score) }}</span></td>
+                                <td><span class="badge bg-light text-dark border">{{ "{:,}".format(item.gpu_score) }}</span></td>
+                                <td>{{ item.ram }} GB</td>
+                                <td class="text-success fw-bold">{{ "{:,.0f}".format(item.price) }} đ</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DataTables Scripts -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -162,10 +329,9 @@
 
 <script>
     $(document).ready(function() {
-        // Khởi tạo bảng với DataTables
         var table = $('#clusterTable').DataTable({
-            "pageLength": 10, // Hiển thị 10 dòng 1 trang
-            "lengthChange": false, // Ẩn nút đổi số dòng hiển thị cho giao diện gọn
+            "pageLength": 10,
+            "lengthChange": false,
             "language": {
                 "search": "🔍 Tìm kiếm laptop:",
                 "paginate": {
@@ -173,19 +339,16 @@
                     "previous": "Trang trước"
                 },
                 "info": "Đang hiển thị _START_ đến _END_ của tổng số _TOTAL_ laptop",
-                "infoEmpty": "Không tìm thấy laptop nào",
-                "zeroRecords": "Không có dữ liệu phù hợp"
+                "infoEmpty": "Không tìm thấy dữ liệu",
+                "zeroRecords": "Không có laptop nào phù hợp"
             }
         });
 
-        // Bắt sự kiện khi người dùng chọn Filter Cluster
         $('#clusterFilter').on('change', function() {
             var selectedCluster = $(this).val();
-            // Lọc trên cột số 0 (cột chứa chữ Cluster)
-            // Dùng regex: false, smart: true để tìm kiếm chuỗi nguyên mẫu
             table.column(0).search(selectedCluster ? '^' + selectedCluster + '$' : '', true, false).draw();
         });
     });
 </script>
-
 {% endblock %}
+
