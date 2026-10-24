@@ -135,12 +135,13 @@
                                 <th>Mục dữ liệu</th>
                                 <th>Đơn vị cung cấp</th>
                                 <th>Trạng thái</th>
-                                <th class="text-center">Link đối chiếu</th>
+                                <th>Ghi chú kiểm chứng</th>
+                                <th class="text-center">Liên kết</th>
                             </tr>
                         </thead>
                         <tbody id="sourcesTableBody">
                             <tr>
-                                <td colspan="4" class="text-center py-3 text-muted">Đang tải dữ liệu kiểm chứng...</td>
+                                <td colspan="5" class="text-center py-3 text-muted">Đang tải dữ liệu kiểm chứng...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -244,23 +245,40 @@
                     var rowsHtml = '';
                     data.sources.forEach(function(src) {
                         var label = fieldLabels[src.field_name] || src.field_name || 'Thông số khác';
-                        var linkHtml = src.source_url ? 
-                            '<a href="' + src.source_url + '" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success py-0 px-2 small">Mở trang nguồn ↗</a>' : 
-                            '<span class="text-muted small">Nội bộ</span>';
+                        var badgeHtml = '';
+                        var linkHtml = '';
+
+                        if (src.status === 'Đã xác minh' || src.status === 'Verified') {
+                            badgeHtml = '<span class="badge bg-success-subtle text-success border border-success-subtle">✅ Đã xác minh</span>';
+                            linkHtml = src.source_url ? 
+                                '<a href="' + src.source_url + '" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success py-0 px-2 small">Mở trang nguồn ↗</a>' : 
+                                '<span class="text-muted small">Đã xác minh</span>';
+                        } else if (src.status === 'Chưa xác minh được') {
+                            badgeHtml = '<span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">⚠️ Chưa xác minh được</span>';
+                            linkHtml = src.source_url ? 
+                                '<a href="' + src.source_url + '" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary py-0 px-2 small">Xem liên kết hãng ↗</a>' : 
+                                '<span class="text-muted small">Chặn tự động</span>';
+                        } else {
+                            badgeHtml = '<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">ℹ️ Chưa có nguồn xác minh</span>';
+                            linkHtml = '<span class="text-muted small fst-italic">Không có link khả dụng</span>';
+                        }
                         
+                        var noteText = src.note || 'Dữ liệu được chuẩn hóa theo quy chuẩn dự án.';
+
                         rowsHtml += '<tr>' +
                             '<td class="fw-semibold text-dark">' + label + '</td>' +
                             '<td>' + (src.source_name || 'Hệ thống') + '</td>' +
-                            '<td><span class="badge bg-success-subtle text-success border border-success-subtle">✅ ' + (src.status || 'Verified') + '</span></td>' +
+                            '<td>' + badgeHtml + '</td>' +
+                            '<td class="small text-muted">' + noteText + '</td>' +
                             '<td class="text-center">' + linkHtml + '</td>' +
                         '</tr>';
                     });
                     $('#sourcesTableBody').html(rowsHtml);
                 } else {
-                    $('#sourcesTableBody').html('<tr><td colspan="4" class="text-center py-3 text-muted">Chưa có nguồn kiểm chứng liên kết cho máy này.</td></tr>');
+                    $('#sourcesTableBody').html('<tr><td colspan="5" class="text-center py-3 text-muted">Chưa có nguồn kiểm chứng liên kết cho máy này.</td></tr>');
                 }
             }).fail(function() {
-                $('#sourcesTableBody').html('<tr><td colspan="4" class="text-center py-3 text-danger">Không thể tải thông tin nguồn kiểm chứng.</td></tr>');
+                $('#sourcesTableBody').html('<tr><td colspan="5" class="text-center py-3 text-danger">Không thể tải thông tin nguồn kiểm chứng.</td></tr>');
             });
         });
     });
