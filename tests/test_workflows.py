@@ -1,0 +1,157 @@
+"""Exercise real routes/model in an isolated output directory; never overwrite artifacts."""
+import csv
+import hashlib
+import json
+from decimal import Decimal
+from html.parser import HTMLParser
+import os
+from pathlib import Path
+import shutil
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+from PIL import Image
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from src.product_images import unique_object, load_manifest, image_metadata
+
+class ImageManifestTests(unittest.TestCase):
+    def test_complete_unique_mapping_and_verified_assets(self):
+        with (ROOT/'data/laptops.csv').open(encoding='utf-8') as source:
+            rows = list(csv.DictReader(source))
+        manifest = load_manifest()
+        self.assertEqual(set(manifest), {r['name'] for r in rows})
+        self.assertEqual(len(manifest), 225)
+        verified = []
+        for name, entry in manifest.items():
+            metadata = image_metadata(name)
+            if entry['verification_status'] == 'verified':
+                verified.append(entry)
+                self.assertTrue(metadata['has_image'])
+                asset=ROOT/'static'/entry['path']
+                self.assertEqual(hashlib.sha256(asset.read_bytes()).hexdigest(), entry['sha256'])
+                with Image.open(asset) as image:
+                    image.verify()
+                self.assertLess(asset.stat().st_size, 150000)
+                self.assertTrue(entry['source_url'].startswith('https://commons.wikimedia.org/wiki/File:'))
+                self.assertTrue(entry['model_evidence'])
+            else:
+                self.assertFalse(metadata['has_image'])
+                self.assertEqual(metadata['image_path'], 'images/laptop-placeholder.svg')
+        self.assertEqual(len(verified), 2)
+
+    def test_duplicate_or_normalized_duplicate_keys_are_rejected(self):
+        for content in ['{"Laptop":{},"Laptop":{}}','{"Laptop":{}," laptop ":{}}']:
+            with self.assertRaises(ValueError):
+                json.loads(content, object_pairs_hook=unique_object)
+
+    def test_status_not_just_file_existence_controls_visibility(self):
+        manifest=load_manifest()
+        name=next(k for k,v in manifest.items() if v['verification_status']=='verified')
+        entry=dict(manifest[name],verification_status='model_unverified')
+        self.assertFalse(image_metadata(name,{name:entry})['has_image'])
+
+class WorkflowTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        uri=f'sqlite:///file:{(ROOT/"data/laptops.db").as_posix()}?mode=ro&uri=true'
+        with patch('src.config.get_database_uri',return_value=(uri,'sqlite')):
+            from app import app
+        cls.app=app
+        cls.app.config.update(TESTING=True)
+        cls.client=app.test_client()
+        cls.uri=uri
+        with (ROOT/'data/laptops.csv').open(encoding='utf-8') as source:
+            cls.rows=list(csv.DictReader(source))
+        cls.verified_names=[name for name,entry in load_manifest().items() if entry['verification_status']=='verified']
+        cls.input_paths=[*list((ROOT/'data').glob('*.csv')),ROOT/'data/laptops.db',ROOT/'models/laptop_price_model.pkl']
+        cls.hashes={p:hashlib.sha256(p.read_bytes()).hexdigest() for p in cls.input_paths}
+
+    def setUp(self):
+        self.old_cwd=Path.cwd()
+        self.temp=tempfile.TemporaryDirectory()
+        temp=Path(self.temp.name)
+        (temp/'models').mkdir();(temp/'data').mkdir();(temp/'static/charts').mkdir(parents=True)
+        shutil.copyfile(ROOT/'models/laptop_price_model.pkl',temp/'models/laptop_price_model.pkl')
+        shutil.copyfile(ROOT/'data/laptops.csv',temp/'data/laptops.csv')
+        os.chdir(temp)
+        self.database=patch('src.data_cleaning.get_database_uri',return_value=(self.uri,'sqlite'))
+        self.database.start()
+        self.training=patch('src.price_prediction.train_and_evaluate_models',side_effect=AssertionError('UI checks must not retrain'))
+        self.training.start()
+
+    def tearDown(self):
+        self.training.stop();self.database.stop()
+        os.chdir(self.old_cwd);self.temp.cleanup()
+        for path, expected in self.hashes.items():
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),expected,str(path))
+
+    def test_all_page_routes_run_with_real_data(self):
+        for route in ['/', '/laptops', '/compare', '/predict', '/analysis', '/clustering']:
+            with self.subTest(route=route):
+                response=self.client.get(route)
+                self.assertEqual(response.status_code,200)
+                self.assertIn(b'<html lang="vi">',response.data)
+
+    def test_real_comparison_and_invalid_selections(self):
+        form={'laptop1':self.verified_names[0],'laptop2':self.verified_names[1],
+              'attributes':['cpu_score','gpu_score','ram','storage','price']}
+        response=self.client.post('/compare',data=form)
+        self.assertEqual(response.status_code,200)
+        self.assertIn('Thông số và chênh lệch',response.get_data(as_text=True))
+        self.assertEqual(response.get_data(as_text=True).count('CC BY-SA 4.0</a>'),2)
+        self.assertTrue(Path('static/charts/radar_comparison.png').exists())
+        for change in [{'laptop2':form['laptop1']},{'laptop1':'unknown model'},{'attributes':['price']},{'attributes':['name','brand','price']}]:
+            with self.subTest(change=change):
+                html=self.client.post('/compare',data={**form,**change}).get_data(as_text=True)
+                self.assertIn('role="alert"',html)
+
+    def valid_form(self):
+        return dict(cpu_score='18000',gpu_score='12000',ram='16',storage='512',screen_size='15.6',refresh_rate='144',weight='2.1',battery='70',rating='4.5')
+
+    def test_real_prediction_and_recommendations_keep_features(self):
+        from src.price_prediction import FEATURE_COLS
+        self.assertEqual(FEATURE_COLS,['cpu_score','gpu_score','ram','storage','screen_size','refresh_rate','weight','battery','rating'])
+        response=self.client.post('/predict',data=self.valid_form())
+        self.assertEqual(response.status_code,200)
+        html=response.get_data(as_text=True)
+        self.assertIn('Kết quả ước tính',html)
+        self.assertEqual(html.count('class="product-card"'),5)
+        self.assertIn('Chênh lệch',html)
+
+    def test_default_numeric_inputs_follow_native_min_step_constraints(self):
+        class NumberInputs(HTMLParser):
+            def __init__(self): super().__init__(); self.inputs=[]
+            def handle_starttag(self,tag,attrs):
+                attrs=dict(attrs)
+                if tag=='input' and attrs.get('type')=='number': self.inputs.append(attrs)
+        parser=NumberInputs()
+        parser.feed(self.client.get('/predict').get_data(as_text=True))
+        self.assertEqual(len(parser.inputs),9)
+        for field in parser.inputs:
+            value=Decimal(field['value']); minimum=Decimal(field['min'])
+            self.assertGreaterEqual(value,minimum,field['name'])
+            if field['step']!='any':
+                self.assertEqual((value-minimum)%Decimal(field['step']),0,field['name'])
+
+    def test_prediction_validation_and_preserved_form(self):
+        for change in [{'cpu_score':''},{'cpu_score':'abc'},{'gpu_score':'-1'},{'ram':'NaN'},{'storage':'Infinity'},{'rating':'6'},{'screen_size':'31'},{'weight':'16'}]:
+            with self.subTest(change=change):
+                response=self.client.post('/predict',data={**self.valid_form(),**change})
+                self.assertEqual(response.status_code,200)
+                html=response.get_data(as_text=True)
+                self.assertIn('role="alert"',html)
+                self.assertIn('name="refresh_rate" value="144"',html)
+                self.assertNotIn('class="estimated-price"',html)
+
+    def test_verified_image_shared_in_recommendation_cards(self):
+        row=next(r for r in self.rows if r['name']==self.verified_names[0])
+        row={**row,**{key:float(row[key]) for key in ['price','ram','storage','cpu_score','gpu_score','screen_size','refresh_rate','weight','battery','rating']},'price_diff_str':'+0 đ','similarity_pct':99.5}
+        with patch('src.price_prediction.recommend_similar_laptops',return_value=[row]):
+            html=self.client.post('/predict',data=self.valid_form()).get_data(as_text=True)
+        self.assertIn('CC BY-SA 4.0</a>',html)
+        self.assertIn(load_manifest()[row['name']]['path'],html)
+
+if __name__=='__main__': unittest.main()

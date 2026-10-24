@@ -4,13 +4,15 @@
     if (img.dataset.failed) return;
     img.dataset.failed = 'true';
     img.src = img.dataset.fallback;
-    img.alt = 'Chưa có ảnh sản phẩm';
+    img.alt = 'Chưa có ảnh';
     const frame = img.closest('.product-image');
     if (!frame.querySelector('.image-caption')) {
       const caption = document.createElement('span');
-      caption.className = 'image-caption'; caption.textContent = 'Chưa có ảnh sản phẩm';
+      caption.className = 'image-caption'; caption.textContent = 'Chưa có ảnh';
       frame.append(caption);
     }
+    const credit = img.closest('.product-figure')?.querySelector('.image-credit');
+    if (credit) credit.textContent = 'Không tải được ảnh đã xác minh. Chưa có ảnh.';
   }
   document.addEventListener('error', e => { if (e.target.matches?.('[data-product-image]')) fallback(e.target); }, true);
   function checkImages() {

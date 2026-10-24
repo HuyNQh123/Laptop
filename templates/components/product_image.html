@@ -1,0 +1,18 @@
+<figure class="product-figure">
+    <div class="product-image">
+        <img src="{{ url_for('static', filename=laptop.image_path) }}"
+             alt="{{ laptop.image_alt }}" width="800" height="600"
+             loading="lazy" decoding="async" data-product-image
+             data-fallback="{{ url_for('static', filename='images/laptop-placeholder.svg') }}">
+        {% if not laptop.has_image %}<span class="image-caption">Chưa có ảnh</span>{% endif %}
+    </div>
+    {% if laptop.has_image %}
+    <figcaption class="image-credit">
+        Ảnh: <a href="{{ laptop.image_source_url }}" target="_blank" rel="noopener noreferrer">{{ laptop.image_author }}</a>
+        · <a href="{{ laptop.image_license_url }}" target="_blank" rel="noopener noreferrer">{{ laptop.image_license }}</a>
+        {% if laptop.image_changes %}<span>{{ laptop.image_changes }}</span>{% endif %}
+    </figcaption>
+    {% else %}
+    <figcaption class="image-credit image-missing"><details><summary>Tình trạng ảnh</summary><p>{{ laptop.image_note }}</p>{% if laptop.image_source_url %}<a href="{{ laptop.image_source_url }}" target="_blank" rel="noopener noreferrer">Trang nguồn đã kiểm tra ↗</a>{% endif %}</details></figcaption>
+    {% endif %}
+</figure>

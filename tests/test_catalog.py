@@ -61,7 +61,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_missing_and_outside_images_use_placeholder(self):
         self.assertFalse(product_view(self.rows[0])['has_image'])
-        with patch('src.catalog.json.loads', return_value={self.rows[0]['name']: {'path': '../app.py'}}):
+        with patch('src.product_images.load_manifest', return_value={self.rows[0]['name']: {'path': '../app.py', 'verification_status':'verified', 'license':'CC BY-SA 4.0','license_url':'https://creativecommons.org/licenses/by-sa/4.0/','source_url':'https://example.org/photo','model_evidence':'Fixture'}}):
             self.assertEqual(product_view(self.rows[0])['image_path'], 'images/laptop-placeholder.svg')
 
     def test_pages_escape_search_and_preserve_query_in_pagination(self):

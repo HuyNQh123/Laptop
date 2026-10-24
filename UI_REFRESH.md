@@ -1,41 +1,65 @@
-# UI refresh
+# LapInsight interface and image review
 
-Scope: shared Flask/Jinja shell, homepage and laptop catalog. Base: `main` at
-`6207cc6c166d504ae22bd5c3688d2311198ae8a9`. Work branch: `feat/refresh-ui`.
+Branch: `feat/refresh-ui`, based on `main` commit `6207cc6c166d504ae22bd5c3688d2311198ae8a9`.
 
-## Behavior
+The shared shell, homepage, catalog, comparison, prediction, analysis and clustering pages now use
+a light surface, Vietnamese-capable system fonts, one blue accent, thin borders and responsive layouts.
+Promotional copy, emoji, gradients, thick shadows and decorative animation are removed from these pages.
+Existing routes and tools remain available.
 
-- Light background, system fonts supporting Vietnamese, one blue accent, responsive navigation.
-- Catalog cards retain every technical field from the original table (additional fields expand in native details).
-- Existing quick filters and sorting fields remain available; brand, budget, RAM and weight filters combine.
-- Search, filters, numeric sorting and pagination run on GET requests. The UI enhances requests with debounced search and partial replacement, while URLs remain shareable. Back/Forward reload the URL state.
-- Page size choices remain 10/15/25/50/100; default 15. Invalid pages and sort values are clamped/validated.
-- Source links open a native dialog with date, status and notes. Without JavaScript, the API link still opens its JSON response.
-- Local product frames have a fixed 4:3 ratio and `object-fit: contain`. Missing images and failed image loads use a labeled placeholder. See `static/images/laptops/README.md` for adding permitted photographs to the empty manifest.
+## Product images
 
-No ML algorithms, training inputs, database contents or model artifacts are changed.
-No automatic training or analysis pipeline was invoked during UI verification.
+- 225 unique full-name mappings; 2 verified photographs and 223 explicit missing/unverified entries.
+- Pilot: first 10 catalog entries; 0 approved, with concrete source/model/permission reasons recorded.
+- Extended source audit: 175 distinct existing URLs across the full catalog. Source redirects and
+  HTTP failures are recorded without inventing product/image URLs.
+- Both shipped assets have CC BY-SA 4.0 provenance, model/generation evidence, author, source URLs,
+  checksums and modification notes. Together they are 61,206 bytes of optimized WebP.
+- The same component and mapping are used in the catalog, comparison and prediction recommendations.
+- Missing/corrupt/failed images show “Chưa có ảnh”. Unverified candidates are not displayed.
+- See `static/images/laptops/README.md` for full provenance, status counts and the expansion workflow.
 
-## Run
+## Preserved behavior
+
+- Catalog GET search/filter/sort/pagination and all legacy quick filters; query state survives sharing and Back.
+- Two-laptop comparison, selectable criteria, real value differences and optional radar. Its explanation
+  now correctly says outward values are larger, including price/weight, rather than always better.
+- Nine prediction inputs, the existing presets and trained model; recommendations attach image metadata
+  only after prediction/ranking. Their actual price differences are shown without promising a fixed ±2 million range.
+- Statistical highlights, brand summaries and charts; K-Means/PCA details, searchable/sortable/filterable
+  cluster table and pagination. K remains 3; Silhouette is shown as a score, not an accuracy percentage.
+- Comparison rejects unknown models/criteria and prediction rejects non-finite form values.
+
+No ML feature list, training CSV/database, model artifact or algorithm is modified.
+
+## Run/check
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m flask --app app run --host 127.0.0.1 --port 5000
+.\.venv\Scripts\python.exe tools/check_product_images.py
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Tests explicitly select the bundled SQLite database in read-only mode. Normal application startup
-retains the existing MySQL/SQLite selection behavior.
+Tests use read-only SQLite, a temporary output directory and a copy of the existing model.
+They explicitly prohibit training. Generated chart/analysis CSV outputs stay in temporary storage;
+input/model/database hashes are checked after workflows. Browser-generated outputs are excluded/restored
+before the source commit. Virtual environments and local caches are ignored.
 
-## Verification
+## Verification (2026-10-25)
 
-- Seven regression tests pass: combined filters, all legacy quick filters, numeric sort and complete pagination, search and invalid parameters, image fallback/path confinement, HTTP pages/escaped query, source API/assets.
-- HTTP 200 verified for `/`, `/laptops`, `/compare` and local CSS/JS/placeholder assets; unknown source ID returns 404.
-- Browser checked at desktop 1440×1000 and mobile 390×844: home, catalog, native mobile menu, live search, empty results, combined filters, price order, page size, page 2, browser Back, source dialog and close button.
-- Browser search `zenbook` returns 6 entries; `macbook` returns 21. ASUS + budget 30 million + RAM ≥16 GB + weight ≤1.5 kg returns 8 entries.
-- No horizontal page overflow at 390px. Product frame measured 333.6×250.2 pixels (4:3), image fit `contain`.
-- Simulated an existing but invalid WebP asset; browser switched to the placeholder, which loaded successfully. Temporary fixture was removed.
-- No JavaScript console errors observed in normal flows. Existing pandas deprecation warning occurs in the unchanged data-cleaning module during `/compare` smoke test.
+- 16 regression tests: combined/legacy catalog filters, numeric sorting, complete pagination, escaped/invalid
+  queries, source API/404/assets, exact manifest coverage, duplicate keys, image checksum/decoding/size/license,
+  verification gate, all six page routes with real data, actual model prediction and recommendation rendering,
+  prediction errors/form preservation, comparison/errors, native decimal min/step constraints.
+- Desktop 1440×1000 and mobile 390×844 browser checks: catalog filters and verified image, two-photo comparison,
+  preset filling, successful prediction, recommendation photo, analysis, clustering search/sort/filter/pagination.
+- M3 sample input returns 38,260,000 VND; first recommendation is MTL73SA/A with its verified image.
+- Cluster search “Apple” returns 21 rows; selecting cluster 2 returns 13 rows and resets pagination.
+- Shared photo frames use 4:3 with `object-fit: contain`; no page-level horizontal overflow observed at 390px.
+- Broken-file image fallback has been tested; source/author/license links and alt text are present.
+- No JavaScript console errors in normal workflows. The unchanged cleaning module emits a pandas deprecation warning.
 
-Not verified: actual MySQL connection, real iOS/Android hardware or Safari/Firefox, browser JavaScript-disabled mode, ML predictions/training and full analysis/clustering runs. No real product photos have been added.
+Not verified: live MySQL, physical iOS/Android devices, Safari/Firefox, or browser JavaScript-disabled mode.
+Product photo coverage remains deliberately incomplete: 223 entries need verifiable model/permission evidence.

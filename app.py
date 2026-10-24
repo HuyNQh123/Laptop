@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import sys
 import os
 import time
+import math
 
 # Cho phép Python tìm thấy thư mục src
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
@@ -156,6 +157,7 @@ def compare():
     # Mặc định chọn một vài thuộc tính quan trọng
     selected_attributes = ['cpu_score', 'gpu_score', 'ram', 'storage', 'price']
     comparison_data = None
+    selected_laptops = []
     rand_val = int(time.time())
     
     if request.method == 'POST':
@@ -172,6 +174,10 @@ def compare():
             error = "Vui lòng chọn ít nhất 1 tiêu chí để so sánh."
         elif len(selected_attributes) < 3:
             error = "Cần chọn ít nhất 3 tiêu chí để vẽ biểu đồ mạng nhện (Radar Chart)."
+        elif laptop1_name not in laptop_names or laptop2_name not in laptop_names:
+            error = "Không tìm thấy laptop đã chọn trong dữ liệu."
+        elif len(set(selected_attributes)) != len(selected_attributes) or any(attr not in available_attributes for attr in selected_attributes):
+            error = "Tiêu chí so sánh không hợp lệ."
         else:
             success = create_radar_chart(df_clean, laptop1_name, laptop2_name, selected_attributes)
             if success:
@@ -185,7 +191,13 @@ def compare():
             else:
                 error = "Lỗi khi tạo biểu đồ. Vui lòng kiểm tra lại dữ liệu."
                 
-    return render_template('compare.html', 
+    for name in [laptop1_name, laptop2_name]:
+        match = df_clean[df_clean['name'] == name]
+        if not match.empty:
+            selected_laptops.append(product_view(match.iloc[0].to_dict()))
+
+    return render_template('compare.html',
+                           selected_laptops=selected_laptops,
                            laptop_names=laptop_names, 
                            available_attributes=available_attributes,
                            selected_attributes=selected_attributes,
@@ -255,7 +267,7 @@ def predict():
             
             # Kiểm tra giá trị không âm và hợp lý
             for key, val in features.items():
-                if val <= 0:
+                if not math.isfinite(val) or val <= 0:
                     raise ValueError(f"Giá trị của '{field_names_vi.get(key, key)}' phải lớn hơn 0.")
             
             if features['rating'] > 5.0:
@@ -270,6 +282,9 @@ def predict():
             
             # Gợi ý khoảng 5 mẫu laptop có cấu hình tương tự và chênh lệch khoảng 1-2 triệu
             recommendations = recommend_similar_laptops(features, predicted_price, top_n=5)
+            # Attach presentation metadata after prediction; model inputs remain unchanged.
+            catalog_rows = {l.name: l.to_dict() for l in Laptop.query.all()}
+            recommendations = [product_view({**catalog_rows.get(item['name'], {}), **item}) for item in recommendations]
             
         except ValueError as e:
             error = str(e)

@@ -1,10 +1,8 @@
 """Presentation helpers; does not alter the dataset or ML pipeline."""
-import json
 import math
 import unicodedata
-from pathlib import Path
+from src.product_images import image_metadata
 
-ROOT = Path(__file__).resolve().parent.parent
 SORT_FIELDS = {
     'id': 'Thứ tự ban đầu', 'name': 'Tên laptop', 'brand': 'Thương hiệu',
     'cpu': 'CPU', 'cpu_score': 'Điểm CPU', 'gpu': 'GPU', 'gpu_score': 'Điểm GPU',
@@ -24,16 +22,7 @@ def normalize(value):
 
 def product_view(row):
     row = dict(row)
-    manifest = json.loads((ROOT / 'data/laptop_images.json').read_text(encoding='utf-8'))
-    image = manifest.get(row['name'], {})
-    path = image.get('path', '')
-    # Only serve existing local product assets within the images directory.
-    asset = (ROOT / 'static' / path).resolve()
-    image_root = (ROOT / 'static/images/laptops').resolve()
-    valid = bool(path) and asset.is_relative_to(image_root) and asset.is_file()
-    row['image_path'] = path if valid else 'images/laptop-placeholder.svg'
-    row['image_alt'] = image.get('alt', row['name']) if valid else 'Chưa có ảnh sản phẩm: ' + row['name']
-    row['has_image'] = valid
+    row.update(image_metadata(row['name']))
     return row
 
 def catalog_context(rows, args):

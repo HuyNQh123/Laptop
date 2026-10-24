@@ -1,0 +1,25 @@
+{
+  "checked_date": "2026-10-25",
+  "catalog_count": 225,
+  "unique_keys": 225,
+  "pilot_count": 10,
+  "pilot_verified": 0,
+  "verified": 2,
+  "missing": 223,
+  "source_urls_checked": 175,
+  "source_http_counts": {
+    "200": 134,
+    "404": 31,
+    "None": 22,
+    "403": 38
+  },
+  "statuses": {
+    "model_unverified": 118,
+    "rights_unconfirmed": 1,
+    "source_mismatch": 13,
+    "source_unavailable": 91,
+    "verified": 2
+  },
+  "shipped_images": 2,
+  "optimized_total_bytes": 61206
+}
