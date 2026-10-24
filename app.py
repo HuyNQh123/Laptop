@@ -9,6 +9,7 @@ from src.models import db, Laptop, LaptopSource
 from src.data_cleaning import load_data, clean_data
 from src.data_analysis import get_top_bottom, calculate_statistics, create_charts
 from src.radar_chart import create_radar_chart
+from src.catalog import catalog_context, product_view
 
 app = Flask(__name__)
 app.secret_key = 'lapinsight-secret-key-super-secure'
@@ -20,6 +21,10 @@ db_uri, db_type = get_database_uri()
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+
+@app.template_filter('vnd')
+def format_vnd(value):
+    return f'{float(value or 0):,.0f}'.replace(',', '.') + ' ₫'
 
 @app.route('/')
 def index():
@@ -38,14 +43,21 @@ def index():
                            total_laptops=total_laptops,
                            total_brands=total_brands,
                            avg_price=avg_price,
-                           max_price=max_price)
+                           max_price=max_price,
+                           featured_laptops=[product_view(l.to_dict()) for l in Laptop.query.order_by(Laptop.id.asc()).limit(3)],
+                           source_date=db.session.query(db.func.max(LaptopSource.verified_date)).scalar())
 
 @app.route('/laptops')
 def laptops():
     # Lấy danh sách 225 laptop từ Database SQLite
     laptops_list = Laptop.query.order_by(Laptop.id.asc()).all()
     laptops_data = [l.to_dict() for l in laptops_list]
-    return render_template('laptops.html', laptops=laptops_data)
+    context = catalog_context(laptops_data, request.args)
+    def catalog_url(**changes):
+        params = dict(context['state'], page=context['page'])
+        params.update(changes)
+        return url_for('laptops', **{k: v for k, v in params.items() if v != ''})
+    return render_template('laptops.html', **context, catalog_url=catalog_url)
 
 @app.route('/api/laptop-sources/<int:laptop_id>')
 def get_laptop_sources(laptop_id):
