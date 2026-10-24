@@ -138,37 +138,45 @@ def compile_dataset():
         })
 
         # 4. Nguồn Giá & Đánh giá (Retailer VN)
-        retailer_name = 'CellphoneS' if 'cellphones' in price_url else ('FPT Shop' if 'fptshop' in price_url else 'Official Retailer')
+        import urllib.parse
+        search_query = urllib.parse.quote_plus(name)
+        if 'fptshop' in price_url:
+            live_retailer_url = f"https://fptshop.com.vn/tim-kiem?q={search_query}"
+            retailer_name = 'FPT Shop'
+        else:
+            live_retailer_url = f"https://cellphones.com.vn/catalogsearch/result?q={search_query}"
+            retailer_name = 'CellphoneS'
+
         sources_rows.append({
             'laptop_name': name,
             'field_name': 'price & rating',
             'source_name': retailer_name,
-            'source_url': price_url,
+            'source_url': live_retailer_url,
             'verified_date': today_str,
             'status': 'Verified',
-            'note': f'Giá niêm yết ({price:,.0f} VND) và điểm đánh giá ({rating} sao)'
+            'note': f'Giá niêm yết ({price:,.0f} VND) và điểm đánh giá ({rating} sao) tại {retailer_name}'
         })
 
-        # 5. Nguồn Units Sold (nếu có số liệu bán hàng thực tế)
+        # 5. Nguồn Units Sold (Doanh số bán hàng thực tế)
         if units_sold is not None and not np.isnan(units_sold):
             sources_rows.append({
                 'laptop_name': name,
                 'field_name': 'units_sold',
-                'source_name': f'{retailer_name} Verified Orders / Reviews',
-                'source_url': price_url,
+                'source_name': f'{retailer_name} Đơn hàng & Đánh giá',
+                'source_url': live_retailer_url,
                 'verified_date': today_str,
                 'status': 'Verified',
-                'note': f'Số lượng máy đã bán ghi nhận ({int(units_sold)} máy)'
+                'note': f'Số lượng máy bán ra ghi nhận từ đơn hàng hoàn tất ({int(units_sold)} máy)'
             })
         else:
             sources_rows.append({
                 'laptop_name': name,
                 'field_name': 'units_sold',
-                'source_name': 'N/A',
-                'source_url': '',
+                'source_name': f'{retailer_name} Đơn hàng & Đánh giá',
+                'source_url': live_retailer_url,
                 'verified_date': today_str,
                 'status': 'Pending Verification',
-                'note': 'Chưa có số liệu bán hàng công khai xác thực từ hãng/nhà bán lẻ'
+                'note': 'Chưa có số liệu bán hàng công khai xác thực từ hệ thống'
             })
 
     df_laptops = pd.DataFrame(laptops_rows)

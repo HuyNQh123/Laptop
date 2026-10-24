@@ -13,9 +13,11 @@ from src.radar_chart import create_radar_chart
 app = Flask(__name__)
 app.secret_key = 'lapinsight-secret-key-super-secure'
 
-# Cấu hình CSDL SQLite
-db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data', 'laptops.db'))
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+from src.config import get_database_uri
+
+# Cấu hình Cơ sở dữ liệu (MySQL / SQLite dự phòng)
+db_uri, db_type = get_database_uri()
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 

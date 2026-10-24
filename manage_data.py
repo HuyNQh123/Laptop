@@ -12,21 +12,22 @@ if sys.platform.startswith('win'):
     except Exception:
         pass
 
-# Import models
+# Import models & config
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+from src.config import get_database_uri
 from src.models import db, Laptop, LaptopSource
 
 def create_app():
     app = Flask(__name__)
-    db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data', 'laptops.db'))
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+    db_uri, db_type = get_database_uri()
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
-    return app
+    return app, db_type
 
 def cmd_summary():
     """Hiển thị tóm tắt tình trạng dữ liệu trong Database."""
-    app = create_app()
+    app, db_type = create_app()
     with app.app_context():
         total_laptops = Laptop.query.count()
         total_sources = LaptopSource.query.count()
@@ -35,7 +36,7 @@ def cmd_summary():
         max_price = db.session.query(db.func.max(Laptop.price)).scalar() or 0
 
         print("=" * 60)
-        print("📊 TỔNG QUAN CƠ SỞ DỮ LIỆU LAPTOP (SQLITE)")
+        print(f"📊 TỔNG QUAN CƠ SỞ DỮ LIỆU LAPTOP ({db_type.upper()})")
         print("=" * 60)
         print(f"• Tổng số laptop:           {total_laptops} mẫu")
         print(f"• Tổng số nguồn kiểm chứng:  {total_sources} bản ghi (PassMark, CellphoneS...)")
@@ -45,7 +46,7 @@ def cmd_summary():
 
 def cmd_update_price(laptop_name, new_price, source_url=None):
     """Cập nhật giá thị trường của laptop và ghi log nguồn đối chiếu mới."""
-    app = create_app()
+    app, db_type = create_app()
     with app.app_context():
         laptop = Laptop.query.filter(Laptop.name.ilike(f"%{laptop_name}%")).first()
         if not laptop:
@@ -81,8 +82,8 @@ def cmd_update_price(laptop_name, new_price, source_url=None):
         print(f"     Ngày xác minh: {today_str}")
 
 def cmd_export_csv():
-    """Xuất ngược dữ liệu từ SQLite ra file CSV để backup hoặc làm báo cáo."""
-    app = create_app()
+    """Xuất ngược dữ liệu từ Database ra file CSV để backup hoặc làm báo cáo."""
+    app, db_type = create_app()
     with app.app_context():
         laptops = Laptop.query.order_by(Laptop.id.asc()).all()
         data = [l.to_dict() for l in laptops]

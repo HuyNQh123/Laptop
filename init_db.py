@@ -12,31 +12,38 @@ if sys.platform.startswith('win'):
 
 # Đảm bảo import được các module trong src
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+from src.config import get_database_uri, MYSQL_USER, MYSQL_HOST, MYSQL_PORT, MYSQL_DB
 from src.models import db, Laptop, LaptopSource
 from src.data_cleaning import load_data, clean_data
 
 def create_app_for_db():
     app = Flask(__name__)
-    db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data', 'laptops.db'))
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+    db_uri, db_type = get_database_uri()
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
-    return app
+    return app, db_type
 
-def migrate_csv_to_sqlite():
-    app = create_app_for_db()
+def migrate_csv_to_db():
+    app, db_type = create_app_for_db()
     with app.app_context():
-        print("[*] Khoi tao cau truc bang trong SQLite...")
+        if db_type == "mysql":
+            print(f"[*] Ket noi MySQL thanh cong: {MYSQL_USER}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}")
+            print("[*] Khoi tao cau truc bang trong MySQL...")
+        else:
+            print("[*] Su dung SQLite du phong (kiem tra cau hinh MySQL trong file .env)...")
+            print("[*] Khoi tao cau truc bang trong SQLite...")
+
         db.create_all()
 
         # 1. Migrate dữ liệu laptops
         csv_laptops_path = os.path.join('data', 'laptops.csv')
         if os.path.exists(csv_laptops_path):
-            df_raw = load_data(csv_laptops_path)
+            df_raw = load_data(csv_laptops_path, prefer_db=False)
             if df_raw is not None:
                 df_clean = clean_data(df_raw)
                 
-                # Xóa dữ liệu cũ nếu muốn khởi tạo mới
+                # Xóa dữ liệu cũ nếu muốn nạp mới
                 Laptop.query.delete()
                 
                 laptops_to_add = []
@@ -64,11 +71,11 @@ def migrate_csv_to_sqlite():
                 
                 db.session.bulk_save_objects(laptops_to_add)
                 db.session.commit()
-                print(f"[OK] Da nap thanh cong {len(laptops_to_add)} laptop tu '{csv_laptops_path}' vao SQLite!")
+                print(f"[OK] Da nap thanh cong {len(laptops_to_add)} laptop tu '{csv_laptops_path}' vao {db_type.upper()}!")
         else:
             print(f"[WARN] Khong tim thay file '{csv_laptops_path}'.")
 
-        # 2. Migrate dữ liệu laptop_sources nếu có
+        # 2. Migrate dữ liệu laptop_sources
         csv_sources_path = os.path.join('data', 'laptop_sources.csv')
         if os.path.exists(csv_sources_path):
             try:
@@ -90,14 +97,14 @@ def migrate_csv_to_sqlite():
                 
                 db.session.bulk_save_objects(sources_to_add)
                 db.session.commit()
-                print(f"[OK] Da nap thanh cong {len(sources_to_add)} ban ghi nguon kiem chung vao SQLite!")
+                print(f"[OK] Da nap thanh cong {len(sources_to_add)} ban ghi nguon kiem chung vao {db_type.upper()}!")
             except Exception as e:
                 print(f"[ERROR] Loi khi nap laptop_sources: {e}")
 
         # Kiểm tra kết quả
         total_laptops = Laptop.query.count()
         total_sources = LaptopSource.query.count()
-        print(f"[INFO] Tong ket Database: {total_laptops} laptops, {total_sources} nguon doi chieu.")
+        print(f"[INFO] Tong ket {db_type.upper()} Database: {total_laptops} laptops, {total_sources} nguon doi chieu.")
 
 if __name__ == '__main__':
-    migrate_csv_to_sqlite()
+    migrate_csv_to_db()

@@ -60,7 +60,7 @@ Hệ thống web toàn diện bằng Python phục vụ việc quản lý, phân
 
 - **Ngôn ngữ**: Python 3.x
 - **Web Framework**: Flask 3.x
-- **Cơ sở dữ liệu**: SQLite 3, Flask-SQLAlchemy (ORM) với đầy đủ chức năng CRUD
+- **Cơ sở dữ liệu**: MySQL (kết nối qua PyMySQL, SQLAlchemy ORM) với cơ chế dự phòng SQLite
 - **Xử lý dữ liệu & ML**: Pandas, NumPy, Scikit-Learn, Joblib
 - **Trực quan hóa**: Matplotlib, Seaborn
 - **Frontend**: HTML5, CSS3, Bootstrap 5, DataTables, JavaScript
@@ -73,7 +73,7 @@ Hệ thống web toàn diện bằng Python phục vụ việc quản lý, phân
 Laptop/
 │
 ├── data/
-│   ├── laptops.db               # Cơ sở dữ liệu SQLite chính (chứa bảng laptops & laptop_sources)
+│   ├── laptops.db               # Cơ sở dữ liệu SQLite dự phòng (nếu MySQL chưa sẵn sàng)
 │   ├── laptops.csv              # File dữ liệu laptop gốc (225 mẫu)
 │   ├── laptop_sources.csv       # File lưu vết nguồn đối chiếu URL & ngày xác minh
 │   ├── laptops_clustered.csv    # Dữ liệu laptop sau khi gán nhãn K-Means
@@ -84,8 +84,9 @@ Laptop/
 │   └── laptop_price_model.pkl   # Mô hình ML đã train được đóng gói
 │
 ├── src/
+│   ├── config.py                # Cấu hình kết nối MySQL và SQLite dự phòng
 │   ├── models.py                # Định nghĩa ORM Model (Laptop, LaptopSource)
-│   ├── data_cleaning.py         # Module đọc dữ liệu (từ SQLite/CSV) và làm sạch
+│   ├── data_cleaning.py         # Module đọc dữ liệu (từ MySQL/SQLite/CSV) và làm sạch
 │   ├── data_analysis.py         # Module phân tích thống kê & sinh biểu đồ
 │   ├── clustering.py            # Module phân cụm K-Means
 │   ├── pca_analysis.py          # Module giảm chiều PCA & vẽ đồ thị 2D
@@ -106,7 +107,8 @@ Laptop/
 │   ├── compare.html             # Trang so sánh 2 laptop & Radar Chart
 │   └── predict.html             # Trang nhập cấu hình dự đoán giá
 │
-├── init_db.py                   # Script khởi tạo CSDL SQLite & migrate 225 mẫu từ CSV
+├── .env                         # Cấu hình biến môi trường và mật khẩu MySQL
+├── init_db.py                   # Script khởi tạo CSDL MySQL (laptop_db) & migrate dữ liệu
 ├── manage_data.py               # Công cụ CLI quản trị dữ liệu & cập nhật giá thị trường qua code
 ├── generate_dataset.py          # Script sinh dữ liệu laptop mẫu
 ├── app.py                       # File chạy chính của ứng dụng Flask
@@ -138,11 +140,19 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3. Khởi tạo Cơ sở dữ liệu SQLite & Nạp dữ liệu
-Lệnh này sẽ tự động khởi tạo file CSDL `data/laptops.db` và nạp toàn bộ 225 mẫu laptop cùng các nguồn kiểm chứng:
-```powershell
-python init_db.py
-```
+### 3. Cấu hình & Khởi tạo Cơ sở dữ liệu MySQL
+1. Mở file `.env` và xác nhận thông tin kết nối MySQL (mặc định đã cấu hình):
+   ```env
+   MYSQL_HOST=localhost
+   MYSQL_PORT=3306
+   MYSQL_USER=root
+   MYSQL_PASSWORD=huy050506
+   MYSQL_DB=laptop_db
+   ```
+2. Chạy lệnh tự động tạo database `laptop_db` và nạp toàn bộ 225 mẫu laptop cùng các nguồn đối chiếu:
+   ```powershell
+   python init_db.py
+   ```
 
 ### 4. (Tùy chọn) Chạy kiểm thử từng module độc lập
 ```powershell

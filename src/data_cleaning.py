@@ -2,25 +2,32 @@ import pandas as pd
 import numpy as np
 import sqlite3
 import os
+from sqlalchemy import create_engine
+from src.config import get_database_uri
 
-def load_data_from_db(db_path='data/laptops.db'):
-    """Đọc dữ liệu laptop trực tiếp từ SQLite Database."""
+def load_data_from_db():
+    """Đọc dữ liệu laptop trực tiếp từ Database (MySQL hoặc SQLite dự phòng)."""
     try:
-        if not os.path.exists(db_path):
-            return None
-        conn = sqlite3.connect(db_path)
-        df = pd.read_sql_query("SELECT * FROM laptops", conn)
-        conn.close()
+        db_uri, _ = get_database_uri()
+        engine = create_engine(db_uri)
+        df = pd.read_sql_table("laptops", engine)
         return df
-    except Exception as e:
-        print(f"Error reading SQLite: {e}")
+    except Exception:
+        db_path = 'data/laptops.db'
+        if os.path.exists(db_path):
+            try:
+                conn = sqlite3.connect(db_path)
+                df = pd.read_sql_query("SELECT * FROM laptops", conn)
+                conn.close()
+                return df
+            except Exception:
+                pass
         return None
 
 def load_data(filepath='data/laptops.csv', prefer_db=True):
-    """Đọc dữ liệu từ Database SQLite (nếu có) hoặc từ file CSV."""
-    db_path = 'data/laptops.db'
-    if prefer_db and os.path.exists(db_path):
-        df_db = load_data_from_db(db_path)
+    """Đọc dữ liệu từ Database (MySQL/SQLite) hoặc từ file CSV."""
+    if prefer_db:
+        df_db = load_data_from_db()
         if df_db is not None and not df_db.empty:
             return df_db
 
