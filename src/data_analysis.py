@@ -46,7 +46,7 @@ def calculate_statistics(df):
     # Lưu ra file CSV
     os.makedirs('data', exist_ok=True)
     final_stats.to_csv('data/results2.csv', index=False)
-    print("Đã lưu kết quả thống kê vào data/results2.csv")
+    print("[OK] Da luu ket qua thong ke vao data/results2.csv")
     
     return final_stats
 
@@ -109,10 +109,10 @@ def create_charts(df):
     plt.savefig('static/charts/ram_vs_price.png')
     plt.close()
     
-    print("Đã tạo và lưu các biểu đồ vào thư mục static/charts/")
+    print("[OK] Da tao va luu cac bieu do vao thu muc static/charts/")
 
 if __name__ == '__main__':
-    print("Bắt đầu test Data Analysis...")
+    print("[*] Bat dau test Data Analysis...")
     df_raw = load_data('data/laptops.csv')
     if df_raw is not None:
         df_clean = clean_data(df_raw)

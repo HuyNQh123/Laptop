@@ -60,6 +60,7 @@ Hệ thống web toàn diện bằng Python phục vụ việc quản lý, phân
 
 - **Ngôn ngữ**: Python 3.x
 - **Web Framework**: Flask 3.x
+- **Cơ sở dữ liệu**: SQLite 3, Flask-SQLAlchemy (ORM) với đầy đủ chức năng CRUD
 - **Xử lý dữ liệu & ML**: Pandas, NumPy, Scikit-Learn, Joblib
 - **Trực quan hóa**: Matplotlib, Seaborn
 - **Frontend**: HTML5, CSS3, Bootstrap 5, DataTables, JavaScript
@@ -72,7 +73,8 @@ Hệ thống web toàn diện bằng Python phục vụ việc quản lý, phân
 Laptop/
 │
 ├── data/
-│   ├── laptops.csv              # File dữ liệu laptop thực tế (225 mẫu)
+│   ├── laptops.db               # Cơ sở dữ liệu SQLite chính (chứa bảng laptops & laptop_sources)
+│   ├── laptops.csv              # File dữ liệu laptop gốc (225 mẫu)
 │   ├── laptop_sources.csv       # File lưu vết nguồn đối chiếu URL & ngày xác minh
 │   ├── laptops_clustered.csv    # Dữ liệu laptop sau khi gán nhãn K-Means
 │   ├── laptops_pca.csv          # Tọa độ 2D sau khi chạy PCA
@@ -82,7 +84,8 @@ Laptop/
 │   └── laptop_price_model.pkl   # Mô hình ML đã train được đóng gói
 │
 ├── src/
-│   ├── data_cleaning.py         # Module đọc và làm sạch dữ liệu
+│   ├── models.py                # Định nghĩa ORM Model (Laptop, LaptopSource)
+│   ├── data_cleaning.py         # Module đọc dữ liệu (từ SQLite/CSV) và làm sạch
 │   ├── data_analysis.py         # Module phân tích thống kê & sinh biểu đồ
 │   ├── clustering.py            # Module phân cụm K-Means
 │   ├── pca_analysis.py          # Module giảm chiều PCA & vẽ đồ thị 2D
@@ -95,14 +98,16 @@ Laptop/
 │       └── style.css            # File định dạng CSS tùy biến
 │
 ├── templates/
-│   ├── base.html                # Template khung sườn & Navbar chung
+│   ├── base.html                # Template khung sườn, Navbar & Alert Flash Messages
 │   ├── index.html               # Trang chủ giới thiệu hệ thống
-│   ├── laptops.html             # Trang danh sách Dataset
+│   ├── laptops.html             # Trang tra cứu cấu hình & Modal đối chiếu nguồn giá thị trường
 │   ├── analysis.html            # Trang Dashboard phân tích thống kê
 │   ├── clustering.html          # Trang K-Means & PCA
 │   ├── compare.html             # Trang so sánh 2 laptop & Radar Chart
 │   └── predict.html             # Trang nhập cấu hình dự đoán giá
 │
+├── init_db.py                   # Script khởi tạo CSDL SQLite & migrate 225 mẫu từ CSV
+├── manage_data.py               # Công cụ CLI quản trị dữ liệu & cập nhật giá thị trường qua code
 ├── generate_dataset.py          # Script sinh dữ liệu laptop mẫu
 ├── app.py                       # File chạy chính của ứng dụng Flask
 ├── requirements.txt             # Danh sách các thư viện cần thiết
@@ -133,7 +138,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3. (Tùy chọn) Chạy kiểm thử từng module độc lập
+### 3. Khởi tạo Cơ sở dữ liệu SQLite & Nạp dữ liệu
+Lệnh này sẽ tự động khởi tạo file CSDL `data/laptops.db` và nạp toàn bộ 225 mẫu laptop cùng các nguồn kiểm chứng:
+```powershell
+python init_db.py
+```
+
+### 4. (Tùy chọn) Chạy kiểm thử từng module độc lập
 ```powershell
 # Test Data Cleaning
 python -m src.data_cleaning

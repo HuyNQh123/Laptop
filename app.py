@@ -1,30 +1,36 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, flash
 import sys
 import os
 import time
 
 # Cho phép Python tìm thấy thư mục src
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+from src.models import db, Laptop, LaptopSource
 from src.data_cleaning import load_data, clean_data
 from src.data_analysis import get_top_bottom, calculate_statistics, create_charts
 from src.radar_chart import create_radar_chart
 
 app = Flask(__name__)
+app.secret_key = 'lapinsight-secret-key-super-secure'
+
+# Cấu hình CSDL SQLite
+db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data', 'laptops.db'))
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 
 @app.route('/')
 def index():
-    df_raw = load_data('data/laptops.csv')
-    total_laptops = 0
+    # Đọc trực tiếp chỉ số thống kê tổng hợp từ SQLite (rất nhanh)
+    total_laptops = Laptop.query.count()
     total_brands = 0
     avg_price = 0
     max_price = 0
     
-    if df_raw is not None:
-        df_clean = clean_data(df_raw)
-        total_laptops = len(df_clean)
-        total_brands = df_clean['brand'].nunique()
-        avg_price = df_clean['price'].mean()
-        max_price = df_clean['price'].max()
+    if total_laptops > 0:
+        total_brands = db.session.query(Laptop.brand).distinct().count()
+        avg_price = db.session.query(db.func.avg(Laptop.price)).scalar() or 0
+        max_price = db.session.query(db.func.max(Laptop.price)).scalar() or 0
         
     return render_template('index.html', 
                            total_laptops=total_laptops,
@@ -34,15 +40,22 @@ def index():
 
 @app.route('/laptops')
 def laptops():
-    df_raw = load_data('data/laptops.csv')
-    if df_raw is not None:
-        df_clean = clean_data(df_raw)
-        # Chuyển đổi sang list of dicts để template dễ đọc
-        laptops_data = df_clean.to_dict(orient='records')
-    else:
-        laptops_data = []
-        
+    # Lấy danh sách 225 laptop từ Database SQLite
+    laptops_list = Laptop.query.order_by(Laptop.id.asc()).all()
+    laptops_data = [l.to_dict() for l in laptops_list]
     return render_template('laptops.html', laptops=laptops_data)
+
+@app.route('/api/laptop-sources/<int:laptop_id>')
+def get_laptop_sources(laptop_id):
+    """API trả về các nguồn kiểm chứng thực tế (CellphoneS, PassMark, Specs) cho từng laptop."""
+    laptop = db.get_or_404(Laptop, laptop_id)
+    sources = LaptopSource.query.filter_by(laptop_name=laptop.name).all()
+    return {
+        'laptop_name': laptop.name,
+        'brand': laptop.brand,
+        'price': laptop.price,
+        'sources': [s.to_dict() for s in sources]
+    }
 
 @app.route('/analysis')
 def analysis():

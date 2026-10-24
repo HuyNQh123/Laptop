@@ -1,8 +1,29 @@
 import pandas as pd
 import numpy as np
+import sqlite3
+import os
 
-def load_data(filepath='data/laptops.csv'):
-    """Đọc dữ liệu từ file CSV."""
+def load_data_from_db(db_path='data/laptops.db'):
+    """Đọc dữ liệu laptop trực tiếp từ SQLite Database."""
+    try:
+        if not os.path.exists(db_path):
+            return None
+        conn = sqlite3.connect(db_path)
+        df = pd.read_sql_query("SELECT * FROM laptops", conn)
+        conn.close()
+        return df
+    except Exception as e:
+        print(f"Error reading SQLite: {e}")
+        return None
+
+def load_data(filepath='data/laptops.csv', prefer_db=True):
+    """Đọc dữ liệu từ Database SQLite (nếu có) hoặc từ file CSV."""
+    db_path = 'data/laptops.db'
+    if prefer_db and os.path.exists(db_path):
+        df_db = load_data_from_db(db_path)
+        if df_db is not None and not df_db.empty:
+            return df_db
+
     try:
         df = pd.read_csv(filepath)
         return df
@@ -58,14 +79,16 @@ def handle_missing_values(df):
         
     return df
 
-def clean_data(df):
+def clean_data(df, verbose=False):
     """Hàm tổng hợp để chạy toàn bộ quy trình làm sạch dữ liệu."""
-    print("--- BẮT ĐẦU CLEANING ---")
-    print(f"Số dòng ban đầu: {len(df)}")
+    if verbose:
+        print("--- BAT DAU CLEANING ---")
+        print(f"So dong ban dau: {len(df)}")
     
     # 1. Xóa duplicate
     df, removed = remove_duplicates(df)
-    print(f"Đã xóa {removed} dòng duplicate.")
+    if verbose:
+        print(f"Da xoa {removed} dong duplicate.")
     
     # 2. Chuẩn hóa brand
     df = normalize_brand(df)
@@ -73,17 +96,19 @@ def clean_data(df):
     # 3. Chuyển kiểu dữ liệu
     df = convert_numeric_columns(df)
     
-    # 4. In ra missing values trước khi xử lý
-    print("\nMissing values của từng column (Trước khi xử lý):")
-    print(df.isnull().sum())
+    # 4. In ra missing values trước khi xử lý (nếu verbose)
+    if verbose:
+        print("\nMissing values cua tung column (Truoc khi xu ly):")
+        print(df.isnull().sum())
     
     # 5. Xử lý missing values
     df = handle_missing_values(df)
     
-    print("\nSố dòng sau cleaning:", len(df))
-    print("\nData Types:")
-    print(df.dtypes)
-    print("--- HOÀN THÀNH CLEANING ---")
+    if verbose:
+        print("\nSo dong sau cleaning:", len(df))
+        print("\nData Types:")
+        print(df.dtypes)
+        print("--- HOAN THANH CLEANING ---")
     
     return df
 

@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<!-- LỚP 1: TỔNG QUAN THỊ TRƯỜNG & HỒ SƠ 2 HỆ NGƯỜI DÙNG (Dễ hiểu cho mọi sinh viên) -->
+<!-- LỚP 1: TỔNG QUAN THỊ TRƯỜNG & HỒ SƠ 3 HỆ NGƯỜI DÙNG (Dễ hiểu cho mọi sinh viên) -->
 <div class="row mb-4 g-3 text-center">
     <div class="col-md-4">
         <div class="card shadow-sm h-100 border-0 bg-white">
@@ -36,7 +36,7 @@
             <div class="card-body py-3">
                 <span class="fs-4 d-block mb-1">🎯</span>
                 <h6 class="card-title text-muted mb-1">Số phân khúc chính hình thành</h6>
-                <h3 class="card-text text-success fw-bold mb-0">{{ results.best_k }} <span class="fs-6 text-muted fw-normal">hệ người dùng</span></h3>
+                <h3 class="card-text text-success fw-bold mb-0">{{ results.best_k }} <span class="fs-6 text-muted fw-normal">phân khúc</span></h3>
                 <small class="text-muted">Phân hóa rõ rệt theo nhu cầu</small>
             </div>
         </div>
@@ -53,22 +53,22 @@
     </div>
 </div>
 
-<!-- ĐẶC TẢ CHI TIẾT 2 HỆ LAPTOP & NGÀNH HỌC PHÙ HỢP -->
+<!-- ĐẶC TẢ CHI TIẾT 3 HỆ LAPTOP & NGÀNH HỌC PHÙ HỢP -->
 <div class="row mb-5">
     <div class="col-12 mb-3">
         <h4 class="fw-bold text-dark d-flex align-items-center gap-2">
-            <span>🏷️</span> Hồ sơ đặc trưng của từng hệ laptop
+            <span>🏷️</span> Hồ sơ đặc trưng của 3 hệ laptop trên thị trường
         </h4>
         <p class="text-muted small">Hãy xem đặc điểm của từng nhóm để biết chiếc laptop tương lai của bạn nên thuộc hệ nào:</p>
     </div>
     
     {% for cluster in results.cluster_details %}
-    <div class="col-md-6 mb-3">
-        <div class="card shadow-sm h-100 border-0 {% if cluster.avg_cpu > 20000 %}border-top border-4 border-danger{% else %}border-top border-4 border-primary{% endif %}">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100 border-0 border-top border-4 {% if cluster.cluster_id == 0 %}border-primary{% elif cluster.cluster_id == 1 %}border-danger{% else %}border-success{% endif %}">
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="badge {% if cluster.avg_cpu > 20000 %}bg-danger{% else %}bg-primary{% endif %} px-3 py-2 fw-bold">
-                        Hệ {{ cluster.cluster_id }}: {{ cluster.label }}
+                    <span class="badge {% if cluster.cluster_id == 0 %}bg-primary{% elif cluster.cluster_id == 1 %}bg-danger{% else %}bg-success{% endif %} px-3 py-2 fw-bold">
+                        Cụm {{ cluster.cluster_id }}: {{ cluster.label }}
                     </span>
                     <span class="badge bg-light text-dark border">
                         {{ cluster.count }} laptop ({{ "{:.1f}".format(cluster.count / results.total_laptops * 100) }}%)
@@ -76,22 +76,28 @@
                 </div>
 
                 <h5 class="fw-bold mt-2 text-dark">
-                    {% if cluster.avg_cpu > 20000 %}
-                        🔥 Phân khúc Hiệu năng cao & Chuyên nghiệp
+                    {% if cluster.cluster_id == 0 %}
+                        🌱 Phân khúc Học tập & Văn phòng tiêu chuẩn
+                    {% elif cluster.cluster_id == 1 %}
+                        🔥 Phân khúc Hiệu năng cao & Gaming / Đồ họa
                     {% else %}
-                        🌱 Phân khúc Mỏng nhẹ & Học tập văn phòng
+                        ✨ Phân khúc Mỏng nhẹ & Doanh nhân cao cấp
                     {% endif %}
                 </h5>
 
-                <div class="p-3 my-3 rounded {% if cluster.avg_cpu > 20000 %}bg-danger-subtle text-dark{% else %}bg-primary-subtle text-dark{% endif %} small">
+                <div class="p-3 my-3 rounded {% if cluster.cluster_id == 0 %}bg-primary-subtle text-dark{% elif cluster.cluster_id == 1 %}bg-danger-subtle text-dark{% else %}bg-success-subtle text-dark{% endif %} small">
                     <strong>🎓 Dành cho ai?</strong>
-                    {% if cluster.avg_cpu > 20000 %}
+                    {% if cluster.cluster_id == 0 %}
                         <p class="mb-0 mt-1">
-                            Sinh viên <strong>Công nghệ thông tin</strong> (lập trình, máy ảo, AI), <strong>Thiết kế đồ họa 3D, Kiến trúc</strong>, dựng phim 4K và game thủ cần máy cấu hình mạnh mẽ, tản nhiệt tốt.
+                            Sinh viên <strong>Kinh tế, Quản trị, Marketing, Ngoại ngữ, Luật</strong> và nhân viên văn phòng cần máy bền bỉ, giá mềm, học tập và làm việc tài liệu mượt mà.
+                        </p>
+                    {% elif cluster.cluster_id == 1 %}
+                        <p class="mb-0 mt-1">
+                            Sinh viên <strong>Công nghệ thông tin</strong> (lập trình, máy ảo, AI), <strong>Thiết kế đồ họa 3D, Kiến trúc</strong>, dựng phim và game thủ cần sức mạnh đồ họa vượt trội.
                         </p>
                     {% else %}
                         <p class="mb-0 mt-1">
-                            Sinh viên <strong>Kinh tế, Quản trị, Marketing, Ngoại ngữ, Luật</strong>, và người làm việc văn phòng cần máy mỏng nhẹ, pin lâu, mang đi học/thư viện dễ dàng.
+                            <strong>Doanh nhân, Quản lý</strong> và người dùng thường xuyên di chuyển cần máy siêu mỏng nhẹ, pin cả ngày, màn hình sắc nét và thiết kế sang trọng đẳng cấp.
                         </p>
                     {% endif %}
                 </div>
@@ -125,7 +131,7 @@
 
                 <div class="mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
                     <span class="text-muted small">Mức giá trung bình:</span>
-                    <span class="fs-5 fw-bold {% if cluster.avg_cpu > 20000 %}text-danger{% else %}text-primary{% endif %}">
+                    <span class="fs-5 fw-bold {% if cluster.cluster_id == 0 %}text-primary{% elif cluster.cluster_id == 1 %}text-danger{% else %}text-success{% endif %}">
                         {{ "{:,.0f}".format(cluster.avg_price) }} đ
                     </span>
                 </div>
@@ -144,7 +150,7 @@
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                     <div>
                         <h5 class="fw-bold text-dark mb-1">🗺️ Bản đồ phân bổ vị trí các dòng máy trên thị trường</h5>
-                        <p class="text-muted small mb-0">Biểu đồ 2D thể hiện sự phân hóa rõ nét giữa dòng máy mỏng nhẹ và dòng máy đồ họa/gaming.</p>
+                        <p class="text-muted small mb-0">Biểu đồ 2D thể hiện sự phân hóa rõ nét giữa 3 phân khúc laptop trên thị trường.</p>
                     </div>
                     <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">
                         Độ giữ trọn thông tin: {{ "{:.1f}".format(results.pca_results.total_variance) }}%
@@ -210,7 +216,7 @@
                         <div class="mb-4">
                             <h6 class="fw-bold text-primary">1. Quy trình thuật toán K-Means Clustering</h6>
                             <p class="text-muted small mb-2">
-                                Dữ liệu đầu vào gồm 9 thuộc tính kỹ thuật số (CPU Score, GPU Score, RAM, Storage, Screen Size, Refresh Rate, Weight, Battery, Rating) được đưa về cùng thang đo chuẩn mực thông qua <code>StandardScaler (Z-score: mean=0, std=1)</code> để tránh việc các đặc trưng có giá trị lớn (như CPU Score hay Giá) lấn át các đặc trưng nhỏ (như Trọng lượng kg).
+                                Dữ liệu đầu vào gồm các thuộc tính kỹ thuật số được đưa về cùng thang đo chuẩn mực thông qua <code>StandardScaler (Z-score: mean=0, std=1)</code> để tránh việc các đặc trưng có giá trị lớn (như CPU Score hay Giá) lấn át các đặc trưng nhỏ (như Trọng lượng kg).
                             </p>
                         </div>
 
@@ -218,7 +224,7 @@
                         <div class="mb-4">
                             <h6 class="fw-bold text-primary">2. Thực nghiệm xác định số cụm tối ưu K = {{ results.best_k }}</h6>
                             <p class="text-muted small mb-3">
-                                Đánh giá quét các giá trị K từ 2 đến 6 bằng 2 tiêu chuẩn độc lập:
+                                Đánh giá quét các giá trị K từ 2 đến 8 bằng 2 tiêu chuẩn độc lập:
                             </p>
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -226,7 +232,7 @@
                                         <img src="{{ url_for('static', filename='charts/elbow_method.png') }}" class="card-img-top img-fluid" alt="Phương pháp khuỷu tay Elbow Method">
                                         <div class="card-body text-center p-2">
                                             <strong class="small d-block text-dark">Phương pháp khuỷu tay (Elbow Inertia)</strong>
-                                            <small class="text-muted">Tại K = {{ results.best_k }}, tốc độ suy giảm tổng bình phương khoảng cách nội cụm (Inertia) bắt đầu chậm lại rõ rệt nhất.</small>
+                                            <small class="text-muted">Tại K = {{ results.best_k }}, tốc độ suy giảm tổng bình phương khoảng cách nội cụm (Inertia) bắt đầu chậm lại rõ rệt.</small>
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +241,7 @@
                                         <img src="{{ url_for('static', filename='charts/silhouette_score.png') }}" class="card-img-top img-fluid" alt="Điểm đánh giá Silhouette Score">
                                         <div class="card-body text-center p-2">
                                             <strong class="small d-block text-dark">Hệ số tách biệt cụm (Silhouette Score)</strong>
-                                            <small class="text-muted">Đạt cực đại tại K = {{ results.best_k }} với giá trị <strong>{{ "{:.4f}".format(results.best_score) }}</strong>, khẳng định sự gắn kết nội cụm cao và khoảng cách giữa các cụm tách biệt nhất.</small>
+                                            <small class="text-muted">Tại K = {{ results.best_k }} đạt giá trị <strong>{{ "{:.4f}".format(results.best_score) }}</strong>, khẳng định sự gắn kết nội cụm cao và khoảng cách giữa 3 cụm tách biệt rõ ràng.</small>
                                         </div>
                                     </div>
                                 </div>
@@ -247,11 +253,11 @@
                         <div class="mb-0">
                             <h6 class="fw-bold text-primary">3. Phân tích thành phần chính PCA (Principal Component Analysis)</h6>
                             <p class="text-muted small mb-2">
-                                PCA chuyển đổi không gian 9 chiều sang 2 chiều trực giao (PC1 và PC2) bảo toàn tới <strong>{{ "{:.1f}".format(results.pca_results.total_variance) }}%</strong> tổng phương sai thông tin:
+                                PCA chuyển đổi không gian đa chiều sang 2 chiều trực giao (PC1 và PC2) bảo toàn tới <strong>{{ "{:.1f}".format(results.pca_results.total_variance) }}%</strong> tổng phương sai thông tin:
                             </p>
                             <ul class="small text-muted mb-0 ps-3">
-                                <li><strong>Thành phần chính 1 (PC1 - {{ "{:.1f}".format(results.pca_results.pc1_variance) }}% phương sai):</strong> Đại diện cho tổ hợp tuyến tính đồng biến của CPU (+0.43), GPU (+0.44), RAM (+0.38), Giá (+0.43) và Pin (+0.36) -> Đo lường trực tiếp <em>Mức độ cấu hình phần cứng và tầm giá</em>.</li>
-                                <li><strong>Thành phần chính 2 (PC2 - {{ "{:.1f}".format(results.pca_results.pc2_variance) }}% phương sai):</strong> Đồng biến mạnh với Trọng lượng (+0.56), Kích thước màn hình (+0.51), Tần số quét (+0.45) nhưng nghịch biến với RAM và Đánh giá -> Đo lường <em>Kích thước vật lý và sự cồng kềnh</em>.</li>
+                                <li><strong>Thành phần chính 1 (PC1 - {{ "{:.1f}".format(results.pca_results.pc1_variance) }}% phương sai):</strong> Đại diện cho tổ hợp tuyến tính đồng biến của CPU, GPU, RAM, Giá và Pin -> Đo lường trực tiếp <em>Mức độ cấu hình phần cứng và tầm giá</em>.</li>
+                                <li><strong>Thành phần chính 2 (PC2 - {{ "{:.1f}".format(results.pca_results.pc2_variance) }}% phương sai):</strong> Đồng biến mạnh với Trọng lượng, Kích thước màn hình, Tần số quét -> Đo lường <em>Kích thước vật lý và sự cồng kềnh</em>.</li>
                             </ul>
                         </div>
                         {% endif %}
@@ -276,7 +282,7 @@
                         <select id="clusterFilter" class="form-select form-select-sm shadow-sm border-primary">
                             <option value="">Tất cả các nhóm (Xem toàn bộ)</option>
                             {% for cluster in results.cluster_details %}
-                            <option value="Nhóm {{ cluster.cluster_id }}">Nhóm {{ cluster.cluster_id }} ({{ cluster.label }})</option>
+                            <option value="Cụm {{ cluster.cluster_id }}">Cụm {{ cluster.cluster_id }} ({{ cluster.label }})</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -301,8 +307,8 @@
                             {% for item in results.df_clustered %}
                             <tr>
                                 <td>
-                                    <span class="badge {% if item.cluster == 0 and results.cluster_details[0].avg_cpu > 20000 %}bg-danger{% else %}bg-primary{% endif %}">
-                                        Nhóm {{ item.cluster }}
+                                    <span class="badge {% if item.cluster == 0 %}bg-primary{% elif item.cluster == 1 %}bg-danger{% else %}bg-success{% endif %}">
+                                        Cụm {{ item.cluster }}
                                     </span>
                                 </td>
                                 <td class="fw-bold">{{ item.name }}</td>
