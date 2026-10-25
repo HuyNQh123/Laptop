@@ -9,15 +9,20 @@ Existing routes and tools remain available.
 
 ## Product images
 
-- 225 unique full-name mappings; 2 verified photographs and 223 explicit missing/unverified entries.
-- Pilot: first 10 catalog entries; 0 approved, with concrete source/model/permission reasons recorded.
-- Extended source audit: 175 distinct existing URLs across the full catalog. Source redirects and
-  HTTP failures are recorded without inventing product/image URLs.
-- Both shipped assets have CC BY-SA 4.0 provenance, model/generation evidence, author, source URLs,
-  checksums and modification notes. Together they are 61,206 bytes of optimized WebP.
-- The same component and mapping are used in the catalog, comparison and prediction recommendations.
-- Missing/corrupt/failed images show “Chưa có ảnh”. Unverified candidates are not displayed.
-- See `static/images/laptops/README.md` for full provenance, status counts and the expansion workflow.
+- Catalogue packshots replace the two earlier contextual/user photographs. Real manufacturer/retailer
+  product pages are discovered using SKU searches, then opened and compared before selecting a gallery image.
+- The 13-model pilot was checked in the running browser before expanding the same process across all 225 names.
+  Current counts, missing reasons and source attempts are in `data/image_audit_summary.json` and
+  `docs/laptop-image-audit.md`; every name has its own unique mapping in `data/laptop_images.json`.
+- Product match and reuse rights are separate. No open license is invented. Sources with explicit restrictions,
+  including HACOM's separate image policy, are rejected and alternatives sought. `not_declared` does not mean
+  permission is granted. Notices and the exact checked scope are retained with each approved source.
+- The shared component serves local WebP assets in white 4:3 frames with contain, intrinsic size caps, model alt
+  text, lazy loading and broken-image fallback. It is used by catalog, comparison and prediction recommendations.
+- `exact_model` means the product page confirms the catalog SKU; any source/CSV configuration conflict is recorded
+  without editing training data. `same_series_representative` is supported and explicitly labeled, but is not used
+  without evidence of the same exterior. Unknown models/images stay as “Chưa có ảnh”.
+- See `static/images/laptops/README.md` for fields and the repeatable review/import workflow.
 
 ## Preserved behavior
 
@@ -47,19 +52,14 @@ They explicitly prohibit training. Generated chart/analysis CSV outputs stay in 
 input/model/database hashes are checked after workflows. Browser-generated outputs are excluded/restored
 before the source commit. Virtual environments and local caches are ignored.
 
-## Verification (2026-10-25)
+## Verification (2026-10-26)
 
-- 16 regression tests: combined/legacy catalog filters, numeric sorting, complete pagination, escaped/invalid
-  queries, source API/404/assets, exact manifest coverage, duplicate keys, image checksum/decoding/size/license,
-  verification gate, all six page routes with real data, actual model prediction and recommendation rendering,
-  prediction errors/form preservation, comparison/errors, native decimal min/step constraints.
-- Desktop 1440×1000 and mobile 390×844 browser checks: catalog filters and verified image, two-photo comparison,
-  preset filling, successful prediction, recommendation photo, analysis, clustering search/sort/filter/pagination.
-- M3 sample input returns 38,260,000 VND; first recommendation is MTL73SA/A with its verified image.
-- Cluster search “Apple” returns 21 rows; selecting cluster 2 returns 13 rows and resets pagination.
-- Shared photo frames use 4:3 with `object-fit: contain`; no page-level horizontal overflow observed at 390px.
-- Broken-file image fallback has been tested; source/author/license links and alt text are present.
-- No JavaScript console errors in normal workflows. The unchanged cleaning module emits a pandas deprecation warning.
+- 17 regression tests cover routes, real prediction/comparison, form validation, catalog search/filter/sort/pagination,
+  unique mappings, image decoding/hash/size, catalogue visual gate, path confinement and separate rights states.
+- Tests use read-only SQLite, copied model and temporary output directories; input/model/database hashes are checked.
+- Browser checks and screenshots are documented in `docs/laptop-image-qa.md` after the final asset review.
+- Existing pandas deprecation warning remains; no training, algorithm or input feature change is part of this update.
+- Not verified: live MySQL, physical iOS/Android devices, Safari/Firefox, or JavaScript-disabled browser mode.
 
-Not verified: live MySQL, physical iOS/Android devices, Safari/Firefox, or browser JavaScript-disabled mode.
-Product photo coverage remains deliberately incomplete: 223 entries need verifiable model/permission evidence.
+The working branch stays `feat/refresh-ui`. Remote main advanced independently through a8075b8 (sources/statistics
+changes); the existing PR reports conflicts with those commits. This image update does not merge or replace that work.

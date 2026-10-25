@@ -35,12 +35,17 @@ class ImageManifestTests(unittest.TestCase):
                 with Image.open(asset) as image:
                     image.verify()
                 self.assertLess(asset.stat().st_size, 150000)
-                self.assertTrue(entry['source_url'].startswith('https://commons.wikimedia.org/wiki/File:'))
+                self.assertTrue(entry['source_url'].startswith('https://'))
+                self.assertEqual(entry['image_type'],'catalogue')
+                self.assertTrue(entry['visual_checked'])
+                self.assertIn(entry['match_level'],['exact_model','same_series_representative'])
                 self.assertTrue(entry['model_evidence'])
             else:
                 self.assertFalse(metadata['has_image'])
                 self.assertEqual(metadata['image_path'], 'images/laptop-placeholder.svg')
-        self.assertEqual(len(verified), 2)
+        summary=json.loads((ROOT/'data/image_audit_summary.json').read_text(encoding='utf-8'))
+        self.assertEqual(len(verified),summary['verified'])
+        self.assertGreaterEqual(summary['pilot_verified'],10)
 
     def test_duplicate_or_normalized_duplicate_keys_are_rejected(self):
         for content in ['{"Laptop":{},"Laptop":{}}','{"Laptop":{}," laptop ":{}}']:
@@ -52,6 +57,22 @@ class ImageManifestTests(unittest.TestCase):
         name=next(k for k,v in manifest.items() if v['verification_status']=='verified')
         entry=dict(manifest[name],verification_status='model_unverified')
         self.assertFalse(image_metadata(name,{name:entry})['has_image'])
+
+    def test_catalogue_visual_and_rights_checks_are_independent(self):
+        manifest=load_manifest()
+        name=next(k for k,v in manifest.items() if v['verification_status']=='verified')
+        entry=dict(manifest[name],license='',license_url='',rights_status='not_declared')
+        self.assertTrue(image_metadata(name,{name:entry})['has_image'])
+        for change in [{'image_type':'user_photo'},{'visual_checked':False},
+                       {'match_level':'unverified'},{'rights_status':'restricted'},
+                       {'rights_status':'licensed','license':''},
+                       {'match_level':'same_series_representative','representative_evidence':''},
+                       {'path':'../app.py'},{'image_url':'javascript:alert(1)'}]:
+            with self.subTest(change=change):
+                self.assertFalse(image_metadata(name,{name:{**entry,**change}})['has_image'])
+        representative={**entry,'match_level':'same_series_representative',
+                        'representative_evidence':'Test fixture: same exterior, only RAM/SSD differ.'}
+        self.assertTrue(image_metadata(name,{name:representative})['image_representative'])
 
 class WorkflowTests(unittest.TestCase):
     @classmethod
@@ -101,7 +122,9 @@ class WorkflowTests(unittest.TestCase):
         response=self.client.post('/compare',data=form)
         self.assertEqual(response.status_code,200)
         self.assertIn('Thông số và chênh lệch',response.get_data(as_text=True))
-        self.assertEqual(response.get_data(as_text=True).count('CC BY-SA 4.0</a>'),2)
+        self.assertEqual(response.get_data(as_text=True).count('Ảnh sản phẩm:'),2)
+        for name in self.verified_names[:2]:
+            self.assertIn(load_manifest()[name]['path'],response.get_data(as_text=True))
         self.assertTrue(Path('static/charts/radar_comparison.png').exists())
         for change in [{'laptop2':form['laptop1']},{'laptop1':'unknown model'},{'attributes':['price']},{'attributes':['name','brand','price']}]:
             with self.subTest(change=change):
@@ -151,7 +174,7 @@ class WorkflowTests(unittest.TestCase):
         row={**row,**{key:float(row[key]) for key in ['price','ram','storage','cpu_score','gpu_score','screen_size','refresh_rate','weight','battery','rating']},'price_diff_str':'+0 đ','similarity_pct':99.5}
         with patch('src.price_prediction.recommend_similar_laptops',return_value=[row]):
             html=self.client.post('/predict',data=self.valid_form()).get_data(as_text=True)
-        self.assertIn('CC BY-SA 4.0</a>',html)
+        self.assertIn('Ảnh sản phẩm:',html)
         self.assertIn(load_manifest()[row['name']]['path'],html)
 
 if __name__=='__main__': unittest.main()

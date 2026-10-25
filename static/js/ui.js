@@ -4,7 +4,7 @@
     if (img.dataset.failed) return;
     img.dataset.failed = 'true';
     img.src = img.dataset.fallback;
-    img.alt = 'Chưa có ảnh';
+    img.alt = 'Chưa có ảnh: ' + (img.dataset.productName || 'laptop');
     const frame = img.closest('.product-image');
     if (!frame.querySelector('.image-caption')) {
       const caption = document.createElement('span');

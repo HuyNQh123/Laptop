@@ -53,9 +53,21 @@ def image_metadata(name, manifest=None):
     if not isinstance(path, str):
         path = ''
     asset = (ROOT / 'static' / path).resolve()
+    rights = image.get('rights_status')
+    rights_ok = (rights == 'not_declared' and bool(image.get('rights_note'))
+                 or rights == 'licensed' and bool(image.get('license')) and bool(public_url(image.get('license_url')))
+                 or rights == 'permission_granted' and bool(image.get('permission_evidence')))
+    match = image.get('match_level')
+    match_ok = (match == 'exact_model'
+                or match == 'same_series_representative' and bool(image.get('representative_evidence')))
     valid = (image.get('verification_status') == 'verified' and bool(path)
-             and bool(image.get('license')) and bool(public_url(image.get('license_url')))
+             and image.get('image_type') == 'catalogue'
+             and match_ok
+             and image.get('visual_checked') is True and bool(image.get('checked_date'))
+             and rights_ok
+             and bool(public_url(image.get('image_url')))
              and bool(public_url(image.get('source_url'))) and bool(image.get('model_evidence'))
+             and bool(image.get('matched_model')) and bool(image.get('gallery_binding'))
              and asset.is_relative_to(IMAGE_ROOT.resolve()) and asset.is_file()
              and asset.suffix.lower() in ('.webp', '.png', '.jpg', '.jpeg'))
     return {
@@ -63,9 +75,12 @@ def image_metadata(name, manifest=None):
         'image_alt': image.get('alt') or name if valid else 'Chưa có ảnh: ' + name,
         'has_image': valid,
         'image_status': image.get('verification_status', 'not_reviewed'),
-        'image_note': image.get('note', 'Chưa xác minh được ảnh đúng model và quyền sử dụng.'),
+        'image_note': image.get('note', 'Chưa xác minh được ảnh catalogue đúng model.'),
         'image_source_url': public_url(image.get('source_url')),
-        'image_author': image.get('author', '') if valid else '',
+        'image_author': image.get('source_name', '') if valid else '',
+        'image_representative': valid and image.get('match_level') == 'same_series_representative',
+        'image_width': image.get('width') if valid and type(image.get('width')) is int and 0 < image['width'] <= 1000 else 800,
+        'image_height': image.get('height') if valid and type(image.get('height')) is int and 0 < image['height'] <= 1000 else 600,
         'image_license': image.get('license', '') if valid else '',
         'image_license_url': public_url(image.get('license_url')) if valid else '',
         'image_changes': image.get('modifications', '') if valid else '',

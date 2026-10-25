@@ -60,7 +60,8 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(self.context(page='-1')['page'], 1)
 
     def test_missing_and_outside_images_use_placeholder(self):
-        self.assertFalse(product_view(self.rows[0])['has_image'])
+        with patch('src.product_images.load_manifest',return_value={}):
+            self.assertFalse(product_view(self.rows[0])['has_image'])
         with patch('src.product_images.load_manifest', return_value={self.rows[0]['name']: {'path': '../app.py', 'verification_status':'verified', 'license':'CC BY-SA 4.0','license_url':'https://creativecommons.org/licenses/by-sa/4.0/','source_url':'https://example.org/photo','model_evidence':'Fixture'}}):
             self.assertEqual(product_view(self.rows[0])['image_path'], 'images/laptop-placeholder.svg')
 

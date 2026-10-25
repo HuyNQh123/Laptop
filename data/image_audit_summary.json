@@ -1,25 +1,25 @@
 {
-  "checked_date": "2026-10-25",
+  "audit_date": "2026-10-26",
   "catalog_count": 225,
   "unique_keys": 225,
-  "pilot_count": 10,
-  "pilot_verified": 0,
-  "verified": 2,
-  "missing": 223,
-  "source_urls_checked": 175,
-  "source_http_counts": {
-    "200": 134,
-    "404": 31,
-    "None": 22,
-    "403": 38
+  "pilot_count": 13,
+  "pilot_verified": 11,
+  "exact_model": 67,
+  "same_series_representative": 0,
+  "verified": 67,
+  "missing": 158,
+  "missing_reasons": {
+    "not_found": 136,
+    "rights_restricted": 10,
+    "access_blocked": 3,
+    "source_unavailable": 3,
+    "model_mismatch": 6
   },
-  "statuses": {
-    "model_unverified": 118,
-    "rights_unconfirmed": 1,
-    "source_mismatch": 13,
-    "source_unavailable": 91,
-    "verified": 2
-  },
-  "shipped_images": 2,
-  "optimized_total_bytes": 61206
+  "search_reviewed": 225,
+  "product_pages_attempted": 181,
+  "optimized_total_bytes": 1894774,
+  "rights": {
+    "not_declared": 67,
+    "open_license_claimed": 0
+  }
 }
