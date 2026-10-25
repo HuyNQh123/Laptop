@@ -18,6 +18,13 @@ NUM_COLS = [
     'weight', 'battery'
 ]
 
+# Danh sách các cột số dùng cho phân tích phân cụm K-Means và tương thích
+NUMERIC_COLS = [
+    'cpu_score', 'gpu_score', 'ram', 'storage', 
+    'screen_size', 'refresh_rate', 'weight', 'battery', 
+    'rating', 'price', 'units_sold'
+]
+
 # Tên hiển thị tiếng Việt gần gũi, rõ ràng
 COL_LABELS = {
     'price': 'Giá bán (VND)',
