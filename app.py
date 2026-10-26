@@ -7,12 +7,6 @@ import math
 # Cho phép Python tìm thấy thư mục src
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from src.models import db, Laptop, LaptopSource
-from src.data_cleaning import load_data, clean_data
-from src.data_analysis import (
-    NUM_COLS, COL_LABELS, compute_eda,
-    get_top_bottom, calculate_statistics, create_charts
-)
-from src.radar_chart import create_radar_chart
 from src.catalog import catalog_context, product_view
 
 app = Flask(__name__)
@@ -77,6 +71,10 @@ def get_laptop_sources(laptop_id):
 
 @app.route('/analysis')
 def analysis():
+    # Keep scientific imports (including the font cache) off the startup path.
+    from src.data_cleaning import load_data, clean_data
+    from src.data_analysis import NUM_COLS, COL_LABELS, compute_eda
+
     df_raw = load_data('data/laptops.csv')
     if df_raw is None:
         return "Dataset not found", 404
@@ -136,6 +134,8 @@ def clustering():
 
 @app.route('/compare', methods=['GET', 'POST'])
 def compare():
+    from src.data_cleaning import load_data, clean_data
+
     df_raw = load_data('data/laptops.csv')
     if df_raw is None:
         return "Dataset not found", 404
@@ -176,6 +176,8 @@ def compare():
         elif len(set(selected_attributes)) != len(selected_attributes) or any(attr not in available_attributes for attr in selected_attributes):
             error = "Tiêu chí so sánh không hợp lệ."
         else:
+            from src.radar_chart import create_radar_chart
+
             success = create_radar_chart(df_clean, laptop1_name, laptop2_name, selected_attributes)
             if success:
                 # Lấy dữ liệu thật để hiển thị trên bảng

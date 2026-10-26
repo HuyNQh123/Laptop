@@ -202,6 +202,9 @@ class WorkflowTests(unittest.TestCase):
         for name in self.verified_names[:2]:
             self.assertIn(load_manifest()[name]['path'],response.get_data(as_text=True))
         self.assertTrue(Path('static/charts/radar_comparison.png').exists())
+        from PIL import Image
+        with Image.open('static/charts/radar_comparison.png') as chart:
+            chart.verify()
         for change in [{'laptop2':form['laptop1']},{'laptop1':'unknown model'},{'attributes':['price']},{'attributes':['name','brand','price']}]:
             with self.subTest(change=change):
                 html=self.client.post('/compare',data={**form,**change}).get_data(as_text=True)
@@ -209,6 +212,20 @@ class WorkflowTests(unittest.TestCase):
 
     def valid_form(self):
         return dict(cpu_score='18000',gpu_score='12000',ram='16',storage='512',screen_size='15.6',refresh_rate='144',weight='2.1',battery='70',rating='4.5')
+
+    def test_analysis_chart_assets_are_served_as_valid_png(self):
+        from io import BytesIO
+        from PIL import Image
+        self.assertEqual(self.client.get('/analysis').status_code, 200)
+        for filename in ['hist_overall_price.png', 'hist_by_brand_price.png',
+                         'hardware_vs_price_analysis.png']:
+            with self.subTest(filename=filename):
+                response = self.client.get('/static/charts/' + filename)
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.mimetype, 'image/png')
+                with Image.open(BytesIO(response.get_data())) as chart:
+                    chart.verify()
+                response.close()
 
     def test_real_prediction_and_recommendations_keep_features(self):
         from src.price_prediction import FEATURE_COLS
