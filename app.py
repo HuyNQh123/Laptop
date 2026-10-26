@@ -37,7 +37,14 @@ def index():
         avg_price = db.session.query(db.func.avg(Laptop.price)).scalar() or 0
         max_price = db.session.query(db.func.max(Laptop.price)).scalar() or 0
         
-    return render_template('index.html', 
+    hero_names = (
+        'ASUS Zenbook 14 OLED UX3405MA-PP152W',
+        'Apple MacBook Air 13 M1 (2020) 8GB 256GB MGN63SA/A',
+        'ASUS TUF Gaming F15 FX506HF-HN014W',
+    )
+    hero_rows = {l.name: product_view(l.to_dict()) for l in Laptop.query.filter(Laptop.name.in_(hero_names))}
+    return render_template('index.html',
+                           hero_laptops=[hero_rows[n] for n in hero_names if n in hero_rows and hero_rows[n]['has_image']],
                            total_laptops=total_laptops,
                            total_brands=total_brands,
                            avg_price=avg_price,

@@ -17,6 +17,9 @@ gunicorn --config gunicorn.conf.py app:app
 ```
 
 - Health Check Path: `/` (kiểm tra được cả dữ liệu trang chủ).
+- Environment: `DATABASE_BACKEND=sqlite` cho Render demo để dùng đúng
+  `data/laptops.db` được đóng gói từ Git, bao gồm 1.125 nguồn đã audit.
+  Không đặt biến này thì cơ chế cũ vẫn là tự thử MySQL rồi fallback SQLite.
 - Dùng `PORT` Render cung cấp, thường là `10000`. Không cần gán cổng 5001.
 - Không thêm `--preload`, `--daemon`, nhiều worker hoặc tăng `--timeout` để chữa lỗi khởi động.
   Kiểm tra cả `GUNICORN_CMD_ARGS` nếu đã đặt: tham số dòng lệnh có thể ghi đè file cấu hình.
@@ -41,11 +44,12 @@ Bản sửa chỉ nạp các thư viện đó khi mở thống kê, so sánh ho�
 Không huấn luyện mô hình, chạy EDA, phân cụm, vẽ biểu đồ hoặc nạp CSV lúc import
 `app.py`. Phần dự đoán vốn đã import trong route; cơ chế nạp mô hình giữ nguyên.
 
-Import vẫn gọi `get_database_uri()`: thử MySQL (`connect_timeout=2`), gửi
+Import vẫn gọi `get_database_uri()`: với `DATABASE_BACKEND=sqlite` trả ngay URI
+của file SQLite trong repo, không dò MySQL. Với chế độ mặc định `auto`, thử MySQL (`connect_timeout=2`), gửi
 `CREATE DATABASE IF NOT EXISTS`, rồi chọn SQLite nếu lỗi. Đây là I/O lúc khởi động;
 thời gian DNS/đọc phản hồi SQL không được bảo đảm bởi riêng connect timeout.
-Không thay đổi hành vi database trong bản sửa này vì chưa có bằng chứng bước đó
-gây treo trên Render. Không chạy `init_db.py` hoặc tạo lại dữ liệu trong build/start.
+Cơ chế `auto` và kết nối MySQL được giữ nguyên; demo có thể chọn SQLite tường minh
+như trên. Không chạy `init_db.py` hoặc tạo lại dữ liệu trong build/start.
 
 `app.run(debug=True, port=5001)` chỉ chạy khi gọi `python app.py`, không chạy khi
 Gunicorn import `app:app`; thay cổng ở dòng đó không sửa được bind của Gunicorn.

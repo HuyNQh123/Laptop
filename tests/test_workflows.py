@@ -210,6 +210,39 @@ class WorkflowTests(unittest.TestCase):
                 html=self.client.post('/compare',data={**form,**change}).get_data(as_text=True)
                 self.assertIn('role="alert"',html)
 
+    def test_audited_sources_keep_laptop_identity_and_statuses(self):
+        from src.models import Laptop
+        with self.app.app_context():
+            laptop = Laptop.query.filter_by(name='Acer Aspire 3 A314-36M-391A NX.KDMSV.002').one()
+            laptop_id = laptop.id
+        response = self.client.get(f'/api/laptop-sources/{laptop_id}')
+        data = response.get_json()
+        self.assertEqual(data['laptop_name'], 'Acer Aspire 3 A314-36M-391A NX.KDMSV.002')
+        self.assertEqual(len(data['sources']), 5)
+        sources = {s['field_name']: s for s in data['sources']}
+        self.assertEqual(sources['cpu_score']['status'], 'Đã xác minh')
+        self.assertEqual(sources['specs (cpu, gpu, ram, storage, screen, battery, weight, os)']['status'], 'Chưa xác minh được')
+        self.assertEqual(sources['price & rating']['status'], 'Chưa có nguồn xác minh')
+        self.assertIsNone(sources['price & rating']['source_url'])
+        self.assertTrue(all(s['laptop_name'] == data['laptop_name'] for s in data['sources']))
+        self.assertEqual(self.client.get('/api/laptop-sources/999999').status_code, 404)
+
+    def test_home_showcase_uses_existing_verified_local_assets(self):
+        from flask import template_rendered
+        contexts = []
+        def capture(sender, template, context, **extra): contexts.append(context)
+        template_rendered.connect(capture, self.app)
+        try:
+            response = self.client.get('/')
+        finally:
+            template_rendered.disconnect(capture, self.app)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(contexts[0]['hero_laptops']), 3)
+        for row in contexts[0]['hero_laptops']:
+            self.assertTrue(row['has_image'])
+            self.assertTrue((ROOT/'static'/row['image_path']).is_file())
+        self.assertIn('technology-hero', response.get_data(as_text=True))
+
     def valid_form(self):
         return dict(cpu_score='18000',gpu_score='12000',ram='16',storage='512',screen_size='15.6',refresh_rate='144',weight='2.1',battery='70',rating='4.5')
 

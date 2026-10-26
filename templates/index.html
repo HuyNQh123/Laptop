@@ -2,15 +2,28 @@
 {% block title %}Tra cứu cấu hình và giá laptop — LapInsight{% endblock %}
 {% block body_class %}home-page{% endblock %}
 {% block content %}
-<section class="home-hero" aria-labelledby="home-title">
+<section class="home-hero technology-hero" aria-labelledby="home-title">
     <div class="hero-copy">
         <p class="eyebrow">THÔNG SỐ · GIÁ THAM KHẢO · SO SÁNH</p>
         <h1 id="home-title">Tìm laptop phù hợp.<br><span>Bắt đầu từ cấu hình.</span></h1>
         <p class="hero-description">Tra cứu {{ total_laptops }} mẫu máy từ {{ total_brands }} thương hiệu. Lọc theo ngân sách, cấu hình và trọng lượng để thu hẹp lựa chọn.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="{{ url_for('laptops') }}">Khám phá kho laptop <span aria-hidden="true">↗</span></a><a class="btn btn-outline-secondary" href="{{ url_for('compare') }}">So sánh cấu hình</a></div>
         <form action="{{ url_for('laptops') }}" method="get" class="home-search" role="search"><label for="home-q">Tên máy, hãng hoặc bộ xử lý</label><div class="search-row"><input id="home-q" name="q" type="search" placeholder="Ví dụ: ASUS Zenbook, Core i5…" maxlength="200"><button class="btn btn-primary" type="submit">Tìm laptop <span aria-hidden="true">→</span></button></div></form>
         <div class="suggested-links"><span>Lọc nhanh</span><a href="{{ url_for('laptops', quick='budget') }}">Đến 20 triệu</a><a href="{{ url_for('laptops', quick='light') }}">Đến 1,5 kg</a><a href="{{ url_for('laptops', quick='ram16') }}">RAM từ 16 GB</a></div>
     </div>
-    <aside class="hero-guide" aria-label="Cách sử dụng"><span class="guide-number">01 / TRA CỨU</span><h2>Một nơi để đọc<br>đúng thông số.</h2><p>CPU, GPU, màn hình và mức giá được đặt cạnh nhau để bạn dễ đối chiếu.</p><a href="{{ url_for('laptops') }}" class="text-link">Mở toàn bộ kho laptop <span aria-hidden="true">↗</span></a><div class="guide-divider"></div><div class="guide-stats"><div><strong>{{ total_laptops }}</strong><span>Mẫu laptop</span></div><div><strong>{{ total_brands }}</strong><span>Thương hiệu</span></div></div>{% if source_date %}<small>Ngày nguồn mới nhất trong dữ liệu: {{ source_date }}</small>{% endif %}</aside>
+    <aside class="hero-showcase" aria-label="Một số laptop trong kho">
+        <span class="showcase-kicker">KHÁM PHÁ · ĐỐI CHIẾU · LỰA CHỌN</span>
+        {% for laptop in hero_laptops %}
+        <figure class="showcase-item showcase-item-{{ loop.index }}">
+            <a class="showcase-product" href="{{ url_for('compare', laptop1=laptop.name) }}" aria-label="So sánh {{ laptop.name }}">
+                <img src="{{ url_for('static', filename=laptop.image_path) }}" alt="{{ laptop.image_alt }}" width="{{ laptop.image_width }}" height="{{ laptop.image_height }}" decoding="async" {% if loop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} data-product-image data-product-name="{{ laptop.name }}" data-fallback="{{ url_for('static', filename='images/laptop-placeholder.svg') }}">
+                <span>{{ laptop.brand }} <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption><a href="{{ laptop.image_source_url }}" title="Nguồn ảnh: {{ laptop.image_author }}" target="_blank" rel="noopener noreferrer">Nguồn ảnh ↗</a></figcaption>
+        </figure>
+        {% endfor %}
+        {% if source_date %}<small class="showcase-date">Ngày nguồn mới nhất trong dữ liệu: {{ source_date }}</small>{% endif %}
+    </aside>
 </section>
 <section class="home-catalog" aria-labelledby="catalog-title"><div class="section-heading"><div><p class="eyebrow">KHO LAPTOP</p><h2 id="catalog-title">Bắt đầu khám phá</h2><p>Một vài mẫu trong bộ dữ liệu. Dùng bộ lọc để tìm theo nhu cầu của bạn.</p></div><a class="btn btn-outline-primary" href="{{ url_for('laptops') }}">Xem {{ total_laptops }} mẫu <span aria-hidden="true">→</span></a></div><div class="product-grid featured-grid">{% for laptop in featured_laptops %}{% include 'components/laptop_card.html' %}{% else %}<p>Chưa có dữ liệu laptop.</p>{% endfor %}</div></section>
 <section class="tool-links" aria-label="Công cụ hỗ trợ"><a href="{{ url_for('compare') }}"><span class="eyebrow">SO SÁNH</span><h2>Đặt hai cấu hình cạnh nhau <span aria-hidden="true">↗</span></h2><p>Đối chiếu thông số và chênh lệch giá của hai mẫu máy.</p></a><a href="{{ url_for('predict') }}"><span class="eyebrow">ƯỚC TÍNH GIÁ</span><h2>Tham khảo giá theo cấu hình <span aria-hidden="true">↗</span></h2><p>Nhập thông số để nhận ước tính từ mô hình hiện có.</p></a></section>

@@ -37,8 +37,8 @@
     img.dataset.failed = 'true';
     img.src = img.dataset.fallback;
     img.alt = 'Chưa có ảnh: ' + (img.dataset.productName || 'laptop');
-    const frame = img.closest('.product-image');
-    if (!frame.querySelector('.image-caption')) {
+    const frame = img.closest('.product-image, .showcase-product');
+    if (frame && !frame.querySelector('.image-caption')) {
       const caption = document.createElement('span');
       caption.className = 'image-caption'; caption.textContent = 'Chưa có ảnh';
       frame.append(caption);
@@ -56,52 +56,95 @@
   if (!window.HTMLDialogElement) return;
   const dialog = document.createElement('dialog');
   dialog.className = 'source-dialog'; dialog.setAttribute('aria-labelledby', 'source-title');
-  dialog.innerHTML = '<div class="dialog-heading"><h2 id="source-title">Nguồn dữ liệu</h2><button type="button" aria-label="Đóng nguồn dữ liệu">Đóng</button></div><div class="source-body" aria-live="polite"></div>';
+  dialog.innerHTML = '<div class="dialog-heading"><h2 id="source-title">Đối chiếu Nguồn giá &amp; Dữ liệu Thị trường</h2><button type="button" data-close-source aria-label="Đóng nguồn dữ liệu">×</button></div><div class="source-body" aria-live="polite"></div><div class="source-footer"><p>Trạng thái theo hồ sơ kiểm chứng trong dữ liệu; không phải xác nhận giá bán hiện tại.</p><button type="button" data-close-source>Đóng</button></div>';
   document.body.append(dialog);
   let trigger, request, sequence = 0;
   const body = dialog.querySelector('.source-body');
-  dialog.querySelector('button').addEventListener('click', () => dialog.close());
+  dialog.querySelectorAll('[data-close-source]').forEach(button => button.addEventListener('click', () => dialog.close()));
   dialog.addEventListener('close', () => { request?.abort(); sequence++; trigger?.focus(); });
-  const labels = { 'price & rating': 'Giá và đánh giá', cpu_score: 'Điểm CPU', gpu_score: 'Điểm GPU', 'specs (cpu, gpu, ram, storage, screen, battery, weight, os)': 'Thông số phần cứng', units_sold: 'Số lượng bán' };
+  const labels = { 'price & rating': 'Giá niêm yết & Đánh giá', cpu_score: 'Benchmark PassMark CPU', gpu_score: 'Benchmark PassMark GPU', 'specs (cpu, gpu, ram, storage, screen, battery, weight, os)': 'Cấu hình phần cứng chuẩn hãng', units_sold: 'Doanh số & Số lượng bán' };
   function element(tag, text, className) {
     const node = document.createElement(tag); node.textContent = text;
     if (className) node.className = className;
     return node;
   }
-  document.addEventListener('click', async e => {
-    const link = e.target.closest('[data-source-id]');
-    if (!link || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
-    e.preventDefault(); trigger = link; request?.abort(); request = new AbortController();
+  function sourceURL(value) {
+    if (typeof value !== 'string') return null;
+    try {
+      const url = new URL(value);
+      return ['http:', 'https:'].includes(url.protocol) && url.hostname && !url.username && !url.password ? url : null;
+    } catch (_) { return null; }
+  }
+  function renderSources(data) {
+    const summary = element('div', '', 'source-product-summary');
+    const identity = element('div', '');
+    identity.append(element('span', data.brand || 'Laptop', 'source-brand'), element('h3', data.laptop_name));
+    const price = element('div', '', 'source-price');
+    price.append(element('span', 'Giá trong bộ dữ liệu'));
+    price.append(element('strong', Number.isFinite(Number(data.price)) && data.price !== null ? Number(data.price).toLocaleString('vi-VN') + ' ₫' : 'Chưa có giá'));
+    summary.append(identity, price); body.replaceChildren(summary);
+    if (!data.sources.length) {
+      body.append(element('p', 'Chưa có nguồn kiểm chứng liên kết cho máy này.', 'source-notice'));
+      return;
+    }
+    body.append(element('p', 'Danh sách nguồn và ghi chú đối chiếu:', 'source-intro'));
+    body.append(element('p', 'Trượt ngang để xem đủ trạng thái, ghi chú và liên kết →', 'source-scroll-hint'));
+    const scroll = element('div', '', 'source-table-scroll');
+    scroll.tabIndex = 0; scroll.setAttribute('role', 'region'); scroll.setAttribute('aria-label', 'Bảng nguồn kiểm chứng, cuộn ngang để xem đủ cột');
+    const table = element('table', '', 'source-table');
+    const head = element('thead', ''), headRow = element('tr', '');
+    for (const label of ['Mục dữ liệu', 'Đơn vị cung cấp', 'Trạng thái', 'Ghi chú kiểm chứng', 'Liên kết']) {
+      const cell = element('th', label); cell.scope = 'col'; headRow.append(cell);
+    }
+    head.append(headRow); const rows = element('tbody', '');
+    for (const source of data.sources) {
+      const row = element('tr', '');
+      const field = element('th', labels[source.field_name] || source.field_name || 'Thông số khác'); field.scope = 'row';
+      const provider = element('td', source.source_name || 'Chưa rõ đơn vị');
+      const verified = ['Đã xác minh', 'Verified'].includes(source.status);
+      const pending = source.status === 'Chưa xác minh được';
+      const status = element('td', '');
+      status.append(element('span', verified ? 'Đã xác minh' : source.status || 'Chưa có nguồn xác minh', 'source-status ' + (verified ? 'is-verified' : pending ? 'is-pending' : 'is-missing')));
+      const note = element('td', source.note || 'Chưa có ghi chú kiểm chứng.', 'source-note');
+      note.append(element('small', 'Ngày ghi nhận: ' + (source.verified_date || 'Chưa có')));
+      const links = element('td', ''); const url = sourceURL(source.source_url);
+      if (url && (verified || pending)) {
+        const anchor = element('a', verified ? 'Mở trang nguồn ↗' : 'Xem liên kết hãng ↗', 'source-action');
+        anchor.href = url.href; anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; links.append(anchor);
+      } else {
+        links.append(element('span', source.source_url && !url ? 'Liên kết không hợp lệ' : 'Không có liên kết khả dụng', 'source-no-link'));
+      }
+      row.append(field, provider, status, note, links); rows.append(row);
+    }
+    table.append(head, rows); scroll.append(table); body.append(scroll);
+    body.append(element('p', 'Liên kết hãng chưa xác minh chỉ phục vụ đối chiếu, không chứng minh giá hoặc thông số đã được xác nhận.', 'source-disclaimer'));
+  }
+  async function openSources(link) {
+    trigger = link; request?.abort(); request = new AbortController();
     const current = ++sequence;
-    body.textContent = 'Đang tải nguồn của ' + link.dataset.sourceName + '…';
-    dialog.showModal();
+    body.replaceChildren(element('p', 'Đang tải nguồn của ' + link.dataset.sourceName + '…', 'source-notice'));
+    body.setAttribute('aria-busy', 'true');
+    if (!dialog.open) dialog.showModal();
     try {
       const response = await fetch(link.href, { signal: request.signal });
       if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
       if (current !== sequence) return;
-      body.replaceChildren(element('h3', data.laptop_name), element('p', Number(data.price).toLocaleString('vi-VN') + ' ₫ · Giá tham khảo', 'source-summary'));
-      const list = element('ul', '', 'source-list');
-      for (const source of data.sources || []) {
-        const item = element('li', '');
-        item.append(element('strong', labels[source.field_name] || source.field_name || 'Thông số khác'));
-        item.append(element('p', (source.source_name || 'Chưa rõ đơn vị') + ' · Ngày xác minh: ' + (source.verified_date || 'Chưa có') + ' · Trạng thái: ' + (source.status || 'Chưa có')));
-        if (source.note) item.append(element('p', source.note));
-        const verified = ['Đã xác minh', 'Verified'].includes(source.status);
-        const unverified = source.status === 'Chưa xác minh được';
-        try {
-          const url = new URL(source.source_url);
-          if ((verified || unverified) && ['http:', 'https:'].includes(url.protocol)) {
-            const a = element('a', verified ? 'Mở trang nguồn ↗' : 'Xem liên kết hãng (chưa xác minh) ↗');
-            a.href = url.href; a.target = '_blank'; a.rel = 'noopener noreferrer'; item.append(a);
-          }
-        } catch (_) { /* Missing source URLs are displayed as metadata only. */ }
-        if (!verified && !unverified) item.append(element('p', 'Chưa có liên kết nguồn xác minh khả dụng.'));
-        list.append(item);
-      }
-      body.append(list.childElementCount ? list : element('p', 'Chưa có nguồn liên kết cho máy này.'));
+      if (data.laptop_name !== link.dataset.sourceName || !Array.isArray(data.sources) || data.sources.some(source => !source || typeof source !== 'object' || source.laptop_name && source.laptop_name !== data.laptop_name)) throw new Error('Invalid source identity');
+      renderSources(data);
     } catch (error) {
-      if (error.name !== 'AbortError' && current === sequence) body.textContent = 'Không thể tải nguồn dữ liệu. Đóng cửa sổ và thử lại.';
+      if (error.name !== 'AbortError' && current === sequence) {
+        body.replaceChildren(element('p', 'Không thể tải nguồn dữ liệu đúng máy. Vui lòng thử lại.', 'source-notice source-error'));
+        const retry = element('button', 'Thử lại', 'btn btn-outline-primary'); retry.type = 'button';
+        retry.addEventListener('click', () => openSources(link)); body.append(retry);
+      }
+    } finally {
+      if (current === sequence) body.setAttribute('aria-busy', 'false');
     }
+  }
+  document.addEventListener('click', e => {
+    const link = e.target.closest('[data-source-id]');
+    if (!link || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault(); openSources(link);
   });
 })();
