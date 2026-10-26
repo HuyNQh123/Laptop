@@ -1,5 +1,37 @@
 (() => {
   'use strict';
+  // Keep native details click/keyboard behavior; only enhance the desktop nav with hover.
+  const navigation = document.querySelector('.more-navigation');
+  if (navigation) {
+    const summary = navigation.querySelector('summary');
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let hoverOpened = false;
+    const closeNavigation = () => { navigation.open = false; hoverOpened = false; };
+    navigation.addEventListener('pointerenter', e => {
+      if (e.pointerType === 'mouse' && finePointer.matches && !navigation.open) {
+        navigation.open = true; hoverOpened = true;
+      }
+    });
+    navigation.addEventListener('pointerleave', () => {
+      if (hoverOpened && !navigation.contains(document.activeElement)) closeNavigation();
+    });
+    summary.addEventListener('click', e => {
+      // A click after hover pins the menu open instead of immediately toggling it shut.
+      if (hoverOpened) { e.preventDefault(); hoverOpened = false; }
+    });
+    navigation.addEventListener('focusout', e => {
+      if (!navigation.contains(e.relatedTarget) && !navigation.matches(':hover')) closeNavigation();
+    });
+    document.addEventListener('click', e => {
+      if (!navigation.contains(e.target)) closeNavigation();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && navigation.open) {
+        closeNavigation(); summary.focus(); e.preventDefault();
+      }
+    });
+    finePointer.addEventListener('change', () => { if (hoverOpened) closeNavigation(); });
+  }
   function fallback(img) {
     if (img.dataset.failed) return;
     img.dataset.failed = 'true';
