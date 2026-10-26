@@ -1,0 +1,3255 @@
+{
+  "catalog_count": 225,
+  "missing_count": 156,
+  "missing_groups": 141,
+  "groups": [
+    {
+      "group": "Apple MacBook Air 13 M2 (2022) | 13.6 inch",
+      "brand": "Apple",
+      "screen_size": "13.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Apple MacBook Air 13 M2 (2022) 8GB 512GB MLY03SA/A"
+      ],
+      "missing": [
+        {
+          "name": "Apple MacBook Air 13 M2 (2022) 8GB 256GB MLXW3SA/A",
+          "cpu": "Apple M2 (8 Core)",
+          "gpu": "Apple M2 GPU (8-core)",
+          "ram": "8",
+          "storage": "256",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [
+            "Apple MacBook Air 13 M3 (2024) 16GB 512GB MXCV3SA/A"
+          ],
+          "previous_urls": [
+            "https://hacom.vn/laptop-apple-macbook-air-mlxw3sa-a-apple-m2-8c-cpu-8c-gpu-8gb-ram-256gb-ssd-13.6-inch-ips-mac-os-xam-2022"
+          ]
+        },
+        {
+          "name": "Apple MacBook Air 13 M2 (2022) 16GB 512GB Z15S00036",
+          "cpu": "Apple M2 (8 Core)",
+          "gpu": "Apple M2 GPU (10-core)",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Apple MacBook Air 13 M3 (2024) 16GB 512GB MXCV3SA/A"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Apple MacBook Air 15 M3 (2024) | 15.3 inch",
+      "brand": "Apple",
+      "screen_size": "15.3",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Apple MacBook Air 15 M3 (2024) 8GB 256GB MRYM3SA/A"
+      ],
+      "missing": [
+        {
+          "name": "Apple MacBook Air 15 M3 (2024) 16GB 512GB MXD43SA/A",
+          "cpu": "Apple M3 (8 Core)",
+          "gpu": "Apple M3 GPU (10-core)",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        },
+        {
+          "name": "Apple MacBook Air 15 M3 (2024) 24GB 512GB Z1BR0006H",
+          "cpu": "Apple M3 (8 Core)",
+          "gpu": "Apple M3 GPU (10-core)",
+          "ram": "24",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Dell Gaming G15 5530 | 15.6 inch",
+      "brand": "Dell",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Dell Gaming G15 5530 i7 13650HX RTX 4060"
+      ],
+      "missing": [
+        {
+          "name": "Dell Gaming G15 5530 i5 13450HX RTX 3050",
+          "cpu": "Intel Core i5-13450HX",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "access_blocked",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.youtube.com/watch?v=0N9xKX3vK0Q",
+            "https://www.reddit.com/r/u_RoutineOk242/comments/1uk64hf/wts_dell_g15_5530_i513450hx_rtx_3050_6gb_16gb/",
+            "https://heartlandpc.com/products/dell-g15-5511-gaming-laptop-15-6-i7-11800h-16gb-512gb-rtx-3050-windows-11",
+            "https://www.bestbuy.com/product/dell-g15-15-6-gaming-laptop-amd-ryzen-5-7640hs-nvidia-geforce-rtx-3050-16gb-memory-1tb-ssd-dark-shadow-gray/J3K4L6JYTL/sku/6552998/reviews?page=4&pageSize=20&sort=BEST_REVIEW",
+            "https://www.walmart.com/ip/1848932623",
+            "https://www.croma.com/dell-g15-5530-intel-core-i5-13th-gen-gaming-laptop-16gb-512gb-ssd-windows-11-home-6gb-graphics-15-6-inch-120-hz-full-hd-display-nvidia-geforce-rtx-3050-ms-office-2021-dark-shadow-gray-2-8-kg-/p/305032",
+            "https://tecprosolution.in/product/dell-g15-5530-i7-13th-gen-16gb-ram-1tb-ssd-rtx-3050-6gb-gfx/",
+            "https://eshop.dellpoint.cz/e-shop/notebooky-dell/notebooky-pro-zabavu/exa-d-n-g5530-n3-521gr---dell-g155530i5-13450hx156fhd16gb512gb-ssdrtx-3050w11pgray3rnbd.aspx",
+            "https://www.smartprix.com/laptops/dell-15-g15-5535-gaming-laptop-amd-ryzen-ppd1tm0211vz",
+            "https://exceldisc.com/product/dell-g15-5530-gaming-laptop-13th-gen-i5-13450hx-8gb-512gb-ssd-nvidia-geforce-rtx-3050-6gb-15-6-fhd%3Fsrsltid%3DAfmBOopvR6lKALZLTz7cdR8uxybQ54VzfBikfa5IYUwGJhd0YWLqUu8h",
+            "https://www.paiinternational.in/product-details/dell-gaming-g15-5530-intel-core-i5-13th-gen-window",
+            "https://bluestarelectronics.in/index.php?product_id=470&route=product%2Fproduct&tag=Dell+gaming"
+          ]
+        },
+        {
+          "name": "Dell Gaming G15 5530 i7 13650HX RTX 4050",
+          "cpu": "Intel Core i7-13650HX",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "access_blocked",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.thegioididong.com/laptop/dell-gaming-g15-5530-i7-i7h165w11gr4050",
+            "https://www.dell.com/en-us/shopping/gaming-laptops-with-rtx-4050",
+            "https://www.bestbuy.com/site/searchpage.jsp?browsedCategory=pcmcat140500050011&id=pcat17071&qp=graphicscardsv_facet%3DNVIDIA+GeForce+RTX+4050~NVIDIA+GeForce+RTX+4050&st=pcmcat140500050011_categoryid%24abcat0502000",
+            "https://www.croma.com/dell-g15-5530-intel-core-i7-13th-gen-15-6-inch-16gb-512gb-windows-11-ms-office-2021-nvidia-geforce-rtx-4050-full-hd-display-dark-shadow-gray-with-black-thermal-shelf-gn5530n43p5001orb1-/p/273304",
+            "https://www.dellonline.co.za/collections/gaming-laptops/graphics-processor_geforce-rtx-4050",
+            "https://www.dell.com/en-uk/shop/laptop-and-2-in-1-pcs/scr/laptops/appref%3Dnvidia-geforce-rtx-4050-video",
+            "https://www.bestbuy.com/product/alienware-15-3-2k-gaming-laptop-intel-core-7-series-2-240h-2026-16gb-memory-nvidia-geforce-rtx-4050-6gb-512gb-storage-black/J3K4L6QK9F/sku/6678996?extStoreId=190",
+            "https://tienda.peprotec.com/wp-content/uploads/2025/01/LTDELLK9C4D.pdf",
+            "https://raw.githubusercontent.com/deeplyresearched/deeplyresearched/c792607f3fa8ad4cf015e4cd9acd76bfaafa4805/documents/RTX%204050%20Laptop%20Technology%20Analysis.pdf",
+            "https://www.youtube.com/watch?v=YFgnMEkZuAE",
+            "https://www.reddit.com/r/LaptopDealsIndia/comments/1xbpbl0/my_dell_alienware_16_aurora_4050_arrived_today/",
+            "https://www.reddit.com/r/GamingLaptops/comments/1qae47v/intel_panther_lake_with_arc_b390_takes_on_amd/"
+          ]
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Lenovo IdeaPad 1 15AMN7 | 15.6 inch",
+      "brand": "Lenovo",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Lenovo IdeaPad 1 15AMN7 82VG0061VN"
+      ],
+      "missing": [
+        {
+          "name": "Lenovo IdeaPad 1 15AMN7 82VG003EVN",
+          "cpu": "AMD Ryzen 3 7320U",
+          "gpu": "AMD Radeon 610M",
+          "ram": "8",
+          "storage": "256",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        },
+        {
+          "name": "Lenovo IdeaPad 1 15AMN7 82VG003GVN",
+          "cpu": "AMD Ryzen 5 7520U",
+          "gpu": "AMD Radeon 610M",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "ASUS Vivobook 15 OLED A1505VA | 15.6 inch",
+      "brand": "ASUS",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "ASUS Vivobook 15 OLED A1505VA-MA468W"
+      ],
+      "missing": [
+        {
+          "name": "ASUS Vivobook 15 OLED A1505VA-L1357W",
+          "cpu": "Intel Core i5-13500H",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "ASUS Vivobook 15 X1504ZA-NJ582W",
+            "ASUS Vivobook 15 X1504ZA-NJ517W"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "ASUS Vivobook 15 X1504ZA | 15.6 inch",
+      "brand": "ASUS",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "ASUS Vivobook 15 X1504ZA-NJ582W",
+        "ASUS Vivobook 15 X1504ZA-NJ517W"
+      ],
+      "missing": [
+        {
+          "name": "ASUS Vivobook 15 X1504ZA-NJ581W",
+          "cpu": "Intel Core i7-1255U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "ASUS Vivobook 15 OLED A1505VA-MA468W"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "ASUS Vivobook 16 M1605YA | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "ASUS Vivobook 16 M1605YA-MB303W"
+      ],
+      "missing": [
+        {
+          "name": "ASUS Vivobook 16 M1605YA-MB117W",
+          "cpu": "AMD Ryzen 5 7530U",
+          "gpu": "AMD Radeon Vega 7",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Acer Aspire 7 Gaming A715-76G | 15.6 inch",
+      "brand": "Acer",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Acer Aspire 7 Gaming A715-76G-5806 NH.QMFSV.002"
+      ],
+      "missing": [
+        {
+          "name": "Acer Aspire 7 Gaming A715-76G-5132 NH.QGESV.008",
+          "cpu": "Intel Core i5-12450H",
+          "gpu": "NVIDIA GeForce RTX 2050",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Acer Aspire 3 A315-59-381E NX.K6TSV.006"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Apple MacBook Air 13 M3 (2024) | 13.6 inch",
+      "brand": "Apple",
+      "screen_size": "13.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Apple MacBook Air 13 M3 (2024) 16GB 512GB MXCV3SA/A"
+      ],
+      "missing": [
+        {
+          "name": "Apple MacBook Air 13 M3 (2024) 8GB 256GB MRXN3SA/A",
+          "cpu": "Apple M3 (8 Core)",
+          "gpu": "Apple M3 GPU (8-core)",
+          "ram": "8",
+          "storage": "256",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Apple MacBook Air 13 M2 (2022) 8GB 512GB MLY03SA/A"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Apple MacBook Pro 14 M3 (2023) | 14.2 inch",
+      "brand": "Apple",
+      "screen_size": "14.2",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Apple MacBook Pro 14 M3 (2023) 8GB 512GB MTL73SA/A"
+      ],
+      "missing": [
+        {
+          "name": "Apple MacBook Pro 14 M3 (2023) 16GB 512GB Z1C80001Y",
+          "cpu": "Apple M3 (8 Core)",
+          "gpu": "Apple M3 GPU (10-core)",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Apple MacBook Pro 14 M3 Pro (2023) 18GB 512GB MRX33SA/A",
+            "Apple MacBook Pro 14 M3 Max (2023) 36GB 1TB MRX53SA/A"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Apple MacBook Pro 14 M3 Pro (2023) | 14.2 inch",
+      "brand": "Apple",
+      "screen_size": "14.2",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Apple MacBook Pro 14 M3 Pro (2023) 18GB 512GB MRX33SA/A"
+      ],
+      "missing": [
+        {
+          "name": "Apple MacBook Pro 14 M3 Pro (2023) 36GB 1TB Z1AU0009U",
+          "cpu": "Apple M3 Pro (12 Core)",
+          "gpu": "Apple M3 Pro GPU (18-core)",
+          "ram": "36",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Apple MacBook Pro 14 M3 (2023) 8GB 512GB MTL73SA/A",
+            "Apple MacBook Pro 14 M3 Max (2023) 36GB 1TB MRX53SA/A"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Dell Inspiron 14 5430 | 14 inch",
+      "brand": "Dell",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Dell Inspiron 14 5430 71015633"
+      ],
+      "missing": [
+        {
+          "name": "Dell Inspiron 14 5430 71015634",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Dell Inspiron 15 3530 | 15.6 inch",
+      "brand": "Dell",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Dell Inspiron 15 3530 71011775"
+      ],
+      "missing": [
+        {
+          "name": "Dell Inspiron 15 3530 71011772",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "8",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Dell Inspiron 15 3520 71003262",
+            "Dell Inspiron 15 3520 71003264"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "Dell XPS 15 9530 | 15.6 inch",
+      "brand": "Dell",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "Dell XPS 15 9530 71015716"
+      ],
+      "missing": [
+        {
+          "name": "Dell XPS 15 9530 71015715",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "HP ProBook 450 G10 | 15.6 inch",
+      "brand": "HP",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [
+        "HP ProBook 450 G10 873D1PA"
+      ],
+      "missing": [
+        {
+          "name": "HP ProBook 450 G10 873D4PA",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "requires_manual_body_generation_color_evidence"
+    },
+    {
+      "group": "ASUS Vivobook Pro 15 OLED N6506MV | 15.6 inch",
+      "brand": "ASUS",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS Vivobook Pro 15 OLED N6506MV-MA025W",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "24",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        },
+        {
+          "name": "ASUS Vivobook Pro 15 OLED N6506MV-MA089W",
+          "cpu": "Intel Core Ultra 9 185H",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "model_mismatch",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://geizhals.de/?active=2&cmp=3015902&cmp=3127128&cmp=3199031",
+            "https://device.report/m/bb2c119599b0c3c76c4b19722f2140f00ac181f59b6543ba3d0cf3cd2a1202bb",
+            "https://www.notebookinfo.de/produkt/asus-vivobook-pro-15-oled-n6506mv-ma089w-46450"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS Vivobook S 15 S5506MA | 15.6 inch",
+      "brand": "ASUS",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS Vivobook S 15 S5506MA-MA022W",
+          "cpu": "Intel Core Ultra 5 125H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        },
+        {
+          "name": "ASUS Vivobook S 15 S5506MA-MA023W",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Nitro V 15 ANV15-51 | 15.6 inch",
+      "brand": "Acer",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Nitro V 15 ANV15-51-57B2 NH.QNASV.001",
+          "cpu": "Intel Core i5-13420H",
+          "gpu": "NVIDIA GeForce RTX 2050",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "model_mismatch",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.acer.com/vn-vi/laptops/nitro/nitro-v-15/pdp/NH.QNASV.001",
+            "https://hopthanhthinh.vn/vi/laptop-acer-gaming-nitro-v-anv15-51-58an-nh.qnasv.001.html"
+          ]
+        },
+        {
+          "name": "Acer Nitro V 15 ANV15-51-58H9 NH.QNASV.003",
+          "cpu": "Intel Core i5-13420H",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Predator Helios 16 PH16-71 | 16 inch",
+      "brand": "Acer",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Predator Helios 16 PH16-71-948L NH.QJSSV.002",
+          "cpu": "Intel Core i9-13900HX",
+          "gpu": "NVIDIA GeForce RTX 4080 Laptop",
+          "ram": "32",
+          "storage": "2048",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        },
+        {
+          "name": "Acer Predator Helios 16 PH16-71-72BF NH.QJRSV.002",
+          "cpu": "Intel Core i7-13700HX",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Apple MacBook Pro 16 M3 Max (2023) | 16.2 inch",
+      "brand": "Apple",
+      "screen_size": "16.2",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Apple MacBook Pro 16 M3 Max (2023) 36GB 1TB MUW63SA/A",
+          "cpu": "Apple M3 Max (14 Core)",
+          "gpu": "Apple M3 Max GPU (30-core)",
+          "ram": "36",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        },
+        {
+          "name": "Apple MacBook Pro 16 M3 Max (2023) 48GB 1TB MUW73SA/A",
+          "cpu": "Apple M3 Max (16 Core)",
+          "gpu": "Apple M3 Max GPU (40-core)",
+          "ram": "48",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Apple MacBook Pro 16 M3 Pro (2023) | 16.2 inch",
+      "brand": "Apple",
+      "screen_size": "16.2",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Apple MacBook Pro 16 M3 Pro (2023) 18GB 512GB MRW13SA/A",
+          "cpu": "Apple M3 Pro (12 Core)",
+          "gpu": "Apple M3 Pro GPU (18-core)",
+          "ram": "18",
+          "storage": "512",
+          "previous_reason": "source_unavailable",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://hc.com.vn/ords/product/apple-macbook-pro-16-inch-m3-pro-mrw13sa-a"
+          ]
+        },
+        {
+          "name": "Apple MacBook Pro 16 M3 Pro (2023) 36GB 512GB MRW23SA/A",
+          "cpu": "Apple M3 Pro (12 Core)",
+          "gpu": "Apple M3 Pro GPU (18-core)",
+          "ram": "36",
+          "storage": "512",
+          "previous_reason": "model_mismatch",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.ankhang.vn/macbook-pro-16-m3-pro-mrw23sa-a.html?show_version=mobile"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell Inspiron 14 5440 | 14 inch",
+      "brand": "Dell",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell Inspiron 14 5440 71034827",
+          "cpu": "Intel Core Ultra 5 125H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Dell Inspiron 14 5430 71015633"
+          ],
+          "previous_urls": []
+        },
+        {
+          "name": "Dell Inspiron 14 5440 71034828",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Dell Inspiron 14 5430 71015633"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell Latitude 3440 | 14 inch",
+      "brand": "Dell",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell Latitude 3440 71015637",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        },
+        {
+          "name": "Dell Latitude 3440 71015636",
+          "cpu": "Intel Core i3-1315U",
+          "gpu": "Intel UHD Graphics",
+          "ram": "8",
+          "storage": "256",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP 15s-fq5228TU | 15.6 inch",
+      "brand": "HP",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP 15s-fq5228TU 8U236PA",
+          "cpu": "Intel Core i5-1235U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "HP 15s-fq5229TU 8U237PA"
+          ],
+          "previous_urls": []
+        },
+        {
+          "name": "HP 15s-fq5228TU 8U235PA",
+          "cpu": "Intel Core i5-1235U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "8",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "HP 15s-fq5229TU 8U237PA"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo LOQ 15IAX9 | 15.6 inch",
+      "brand": "Lenovo",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo LOQ 15IAX9 83GS001RVN",
+          "cpu": "Intel Core i5-12450H",
+          "gpu": "NVIDIA GeForce RTX 2050",
+          "ram": "12",
+          "storage": "512",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://stcom.vn/san-pham/laptop-lenovo-loq-15iax9-83gs001rvn-9592.html",
+            "https://hacom.vn/laptop-lenovo-gaming-loq-15iax9-83gs001rvn-i5-12450hx-12gb-ram-512gb-ssd-15.6-fhd-144hz-rtx-3050-6g-win11-xam",
+            "https://trungtinpc.vn/p/laptop-lenovo-loq-15iax9-83gs001rvn-intel-core-i5-12450hx-rtx-3050-12gb-512gb-15-6-inch-fhd-win-11-xam-v840",
+            "https://alpha.vn/may-tinh-laptop-lenovo-loq-gaming-15iax9-83gs001rvn-i5-12450hx-12gb-512gb-ssd-rtx-3050-6gb-156-inch-fhd-144hz-win11-2y",
+            "https://gearvn.com/products/laptop-gaming-lenovo-loq-15iax9-83gs001rvn",
+            "https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/gaming-series/loq-15iax9/83gs/83gs001rvn",
+            "https://hanoinew.vn/laptop-lenovo-loq-15iax9-83gs001rvn-intel-core-i5-12450hx-12gb-512gb-rtx-3050-156-inch-fhd-win-11"
+          ]
+        },
+        {
+          "name": "Lenovo LOQ 15IAX9 83GS001UVN",
+          "cpu": "Intel Core i5-12450H",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "12",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo LOQ 15IRX9 | 15.6 inch",
+      "brand": "Lenovo",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo LOQ 15IRX9 83DV003UVN",
+          "cpu": "Intel Core i7-13650HX",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        },
+        {
+          "name": "Lenovo LOQ 15IRX9 83DV003TVN",
+          "cpu": "Intel Core i5-13450HX",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ExpertBook B1 B1402CBA | 14 inch",
+      "brand": "ASUS",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ExpertBook B1 B1402CBA-NK3154W",
+          "cpu": "Intel Core i3-1215U",
+          "gpu": "Intel UHD Graphics",
+          "ram": "8",
+          "storage": "256",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ExpertBook B2 B2402CBA | 14 inch",
+      "brand": "ASUS",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ExpertBook B2 B2402CBA-KI0631W",
+          "cpu": "Intel Core i5-1240P",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "8",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ExpertBook B5 B5402CBA | 14 inch",
+      "brand": "ASUS",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ExpertBook B5 B5402CBA-KI0244W",
+          "cpu": "Intel Core i5-1240P",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ProArt P16 H7606WI | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ProArt P16 H7606WI-ME048W",
+          "cpu": "AMD Ryzen 9 8945HS",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "64",
+          "storage": "2048",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ROG Flow X13 GV302XA | 13.4 inch",
+      "brand": "ASUS",
+      "screen_size": "13.4",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ROG Flow X13 GV302XA-MU009W",
+          "cpu": "AMD Ryzen 9 7940HS",
+          "gpu": "AMD Radeon 780M",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ROG Strix G16 G614JIR | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ROG Strix G16 G614JIR-N4011W",
+          "cpu": "Intel Core i9-14900HX",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ROG Strix G16 G614JV | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ROG Strix G16 G614JV-N3090W",
+          "cpu": "Intel Core i7-13650HX",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ROG Strix SCAR 16 G634JYR | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ROG Strix SCAR 16 G634JYR-RA067W",
+          "cpu": "Intel Core i9-14900HX",
+          "gpu": "NVIDIA GeForce RTX 4090 Laptop",
+          "ram": "64",
+          "storage": "2048",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ROG Zephyrus G14 GA403UI | 14 inch",
+      "brand": "ASUS",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ROG Zephyrus G14 GA403UI-QS038W",
+          "cpu": "AMD Ryzen 9 8945HS",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS ROG Zephyrus G16 GU605MI | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS ROG Zephyrus G16 GU605MI-QR038W",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "access_blocked",
+          "cross_model_candidates": [
+            "ASUS ROG Zephyrus M16 GU604VI-NM048W"
+          ],
+          "previous_urls": [
+            "https://azerty.nl/product/asus-rog-zephyrus-g16-gu605mi-qr038w-gaming-laptop/6454017",
+            "https://www.coolblue.nl/en/product/943420/asus-rog-zephyrus-oled-g16-gu605mi-qr038w.html",
+            "https://tweakers.net/pricewatch/2048314/asus-rog-zephyrus-g16-gu605mi-qr038w.html",
+            "https://www.mediamarkt.nl/nl/product/_asus-rog-zephyrus-g16-gu605mi-qr038w-16-inch-intel-core-ultra-7-16-gb-1-tb-geforce-rtx-4070-16-inch-intelr-coretm-ultra-7-16-gb-1-tb-geforce-rtxtm-4070-137208731.html",
+            "https://www.reddit.com/r/ASUSROG/comments/1h2jfiu/are_ram_upgrades_possible_asus_rog_zephyrus_g16/"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS TUF Gaming A15 FA506NC | 15.6 inch",
+      "brand": "ASUS",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS TUF Gaming A15 FA506NC-HN012W",
+          "cpu": "AMD Ryzen 5 7535HS",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "ASUS TUF Gaming A15 FA507NV-LP046W",
+            "ASUS TUF Gaming F15 FX506HF-HN014W",
+            "ASUS TUF Gaming F15 FX506HF-HN017W",
+            "ASUS TUF Gaming A15 FA507NU-LP034W"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS TUF Gaming A16 FA617NSR | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS TUF Gaming A16 FA617NSR-RL058W",
+          "cpu": "AMD Ryzen 7 7435HS",
+          "gpu": "AMD Radeon RX 7600S",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS TUF Gaming A17 FA707NU | 17.3 inch",
+      "brand": "ASUS",
+      "screen_size": "17.3",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS TUF Gaming A17 FA707NU-HX034W",
+          "cpu": "AMD Ryzen 7 7735HS",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS TUF Gaming F15 FX507ZC4 | 15.6 inch",
+      "brand": "ASUS",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS TUF Gaming F15 FX507ZC4-HN095W",
+          "cpu": "Intel Core i5-12500H",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [
+            "ASUS TUF Gaming A15 FA507NV-LP046W",
+            "ASUS TUF Gaming F15 FX506HF-HN014W",
+            "ASUS TUF Gaming F15 FX506HF-HN017W",
+            "ASUS TUF Gaming A15 FA507NU-LP034W"
+          ],
+          "previous_urls": [
+            "https://hacom.vn/laptop-asus-gaming-tuf-fx507zc4-hn095w"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS TUF Gaming F16 FX607JU | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS TUF Gaming F16 FX607JU-N3133W",
+          "cpu": "Intel Core i7-13650HX",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS Vivobook 14X K3405VC | 14 inch",
+      "brand": "ASUS",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS Vivobook 14X K3405VC-KM083W",
+          "cpu": "Intel Core i5-13500H",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "ASUS Vivobook 14 X1404ZA-NK386W",
+            "ASUS Vivobook 14 A1405VA-KM095W"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS Vivobook 16X K3605VC | 16 inch",
+      "brand": "ASUS",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS Vivobook 16X K3605VC-MB083W",
+          "cpu": "Intel Core i5-13500H",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "ASUS Vivobook 16 M1605YA-MB303W"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS Vivobook S 14 OLED M5406UA | 14 inch",
+      "brand": "ASUS",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS Vivobook S 14 OLED M5406UA-PP046W",
+          "cpu": "AMD Ryzen 7 8845HS",
+          "gpu": "AMD Radeon 780M",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS Zenbook 14 OLED UM3406HA | 14 inch",
+      "brand": "ASUS",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS Zenbook 14 OLED UM3406HA-KD083W",
+          "cpu": "AMD Ryzen 7 8845HS",
+          "gpu": "AMD Radeon 780M",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "ASUS Zenbook 14 OLED UX3405MA-PP152W",
+            "ASUS Zenbook 14 OLED UX3405MA-PP151W",
+            "ASUS Zenbook 14 OLED UX3402VA-KM085W"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS Zenbook Duo UX8406MA | 14 inch",
+      "brand": "ASUS",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS Zenbook Duo UX8406MA-PZ141W",
+          "cpu": "Intel Core Ultra 9 185H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "ASUS Zenbook S 13 OLED UX5304MA | 13.3 inch",
+      "brand": "ASUS",
+      "screen_size": "13.3",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "ASUS Zenbook S 13 OLED UX5304MA-NQ047W",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Aspire 5 A514-56P | 14 inch",
+      "brand": "Acer",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Aspire 5 A514-56P-5026 NX.KHRSV.002",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Acer Aspire 3 A314-36M-391A NX.KDMSV.002"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Aspire 5 A515-58M | 15.6 inch",
+      "brand": "Acer",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Aspire 5 A515-58M-79R7 NX.KHHSV.002",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Acer Aspire 3 A315-59-381E NX.K6TSV.006",
+            "Acer Aspire 7 Gaming A715-76G-5806 NH.QMFSV.002"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Aspire Lite AL14-51M | 14 inch",
+      "brand": "Acer",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Aspire Lite AL14-51M-59G4 NX.KTWSV.001",
+          "cpu": "Intel Core i5-1235U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "model_mismatch",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.thegioididong.com/laptop/acer-aspire-lite-14-51m-36pn-i3-nxktwsv001"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Nitro 16 Phoenix AN16-41 | 16 inch",
+      "brand": "Acer",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Nitro 16 Phoenix AN16-41-R5M4 NH.QLKSV.001",
+          "cpu": "AMD Ryzen 7 7840HS",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Nitro 5 Tiger AN515-58 | 15.6 inch",
+      "brand": "Acer",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Nitro 5 Tiger AN515-58-577Z NH.QFHSV.00C",
+          "cpu": "Intel Core i5-12500H",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Predator Helios Neo 16 PHN16-71 | 16 inch",
+      "brand": "Acer",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Predator Helios Neo 16 PHN16-71-779X NH.QLUSV.007",
+          "cpu": "Intel Core i7-13700HX",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Predator Helios Neo 16 PHN16-72 | 16 inch",
+      "brand": "Acer",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Predator Helios Neo 16 PHN16-72-78F1 NH.QNNSV.004",
+          "cpu": "Intel Core i7-14700HX",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Swift 14 SF14-71T | 14 inch",
+      "brand": "Acer",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Swift 14 SF14-71T-71FE NX.K54SV.001",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Swift 3 SF314-512 | 14 inch",
+      "brand": "Acer",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Swift 3 SF314-512-56SR NX.K0FSV.001",
+          "cpu": "Intel Core i5-1240P",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Swift Go 14 SFG14-41 | 14 inch",
+      "brand": "Acer",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Swift Go 14 SFG14-41-R5G1 NX.KG1SV.002",
+          "cpu": "AMD Ryzen 5 7530U",
+          "gpu": "AMD Radeon Vega 7",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Swift Go 14 SFG14-71 | 14 inch",
+      "brand": "Acer",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Swift Go 14 SFG14-71-59W6 NX.KF5SV.004",
+          "cpu": "Intel Core i5-13500H",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Swift Go 14 SFG14-73 | 14 inch",
+      "brand": "Acer",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Swift Go 14 SFG14-73-718T NX.KSLSV.001",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Swift Go 16 SFG16-71 | 16 inch",
+      "brand": "Acer",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Swift Go 16 SFG16-71-7440 NX.KFTSV.002",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Acer Swift X SFX14-41G | 14 inch",
+      "brand": "Acer",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Acer Swift X SFX14-41G-R1S6 NX.AU5SV.00B",
+          "cpu": "AMD Ryzen 5 5600U",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Apple MacBook Air 15 M2 (2023) | 15.3 inch",
+      "brand": "Apple",
+      "screen_size": "15.3",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Apple MacBook Air 15 M2 (2023) 8GB 256GB MQKP3SA/A",
+          "cpu": "Apple M2 (8 Core)",
+          "gpu": "Apple M2 GPU (10-core)",
+          "ram": "8",
+          "storage": "256",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [
+            "Apple MacBook Air 15 M3 (2024) 8GB 256GB MRYM3SA/A"
+          ],
+          "previous_urls": [
+            "https://www.viendongdl.com/laptop-apple-macbook-air-15-inch-m2-8gb-256gb-sac-35w-mqkp3sa-a.html",
+            "https://hugotech.vn/macbook-air-m2-15-inch-2022-mqkp3sa-a-xam/"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Apple MacBook Pro 14 M2 Pro (2023) | 14.2 inch",
+      "brand": "Apple",
+      "screen_size": "14.2",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Apple MacBook Pro 14 M2 Pro (2023) 16GB 512GB MPHE3SA/A",
+          "cpu": "Apple M2 Pro (10 Core)",
+          "gpu": "Apple M2 Pro GPU (16-core)",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [
+            "Apple MacBook Pro 14 M3 (2023) 8GB 512GB MTL73SA/A",
+            "Apple MacBook Pro 14 M3 Pro (2023) 18GB 512GB MRX33SA/A",
+            "Apple MacBook Pro 14 M3 Max (2023) 36GB 1TB MRX53SA/A"
+          ],
+          "previous_urls": [
+            "https://hacom.vn/laptop-apple-macbook-pro-14-mphe3sa-a-apple-m2-pro-10c-cpu-16c-gpu-16gb-ram-512gb-ssd-14.2-inch-mac-os-xam-2023"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell Gaming G16 7630 | 16 inch",
+      "brand": "Dell",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell Gaming G16 7630 71015718",
+          "cpu": "Intel Core i9-13900HX",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell Inspiron 16 5630 | 16 inch",
+      "brand": "Dell",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell Inspiron 16 5630 71011408",
+          "cpu": "Intel Core i5-1340P",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell Inspiron 16 Plus 7630 | 16 inch",
+      "brand": "Dell",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell Inspiron 16 Plus 7630 71011409",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell Latitude 3540 | 15.6 inch",
+      "brand": "Dell",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell Latitude 3540 71015639",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell Latitude 5440 | 14 inch",
+      "brand": "Dell",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell Latitude 5440 71015638",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell Precision 3581 | 15.6 inch",
+      "brand": "Dell",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell Precision 3581 71015640",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "NVIDIA RTX A1000 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell XPS 13 9340 | 13.4 inch",
+      "brand": "Dell",
+      "screen_size": "13.4",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell XPS 13 9340 71034448",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Dell XPS 13 Plus 9320 71013325"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell XPS 14 9440 | 14.5 inch",
+      "brand": "Dell",
+      "screen_size": "14.5",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell XPS 14 9440 71034449",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Dell XPS 16 9640 | 16.3 inch",
+      "brand": "Dell",
+      "screen_size": "16.3",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Dell XPS 16 9640 71034450",
+          "cpu": "Intel Core Ultra 9 185H",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Gigabyte AORUS 15 BKF | 15.6 inch",
+      "brand": "Gigabyte",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Gigabyte AORUS 15 BKF-73VN754SH",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://hacom.vn/laptop-gigabyte-aorus-15-bkf-73vn754sh-i7-13700h-16gb-ddr5-ram-1tb-ssd-rtx4060-8g-15.6-inch-qhd-165hz-win-11-den",
+            "https://dmart.vn/laptop-gigabyte-gaming-aorus-15-bkf-73vn754sh-i7-13700h-16gb-1tb-ssd-rtx-4060-8gb-156inch-2k-165hz-win11-black-2y"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Gigabyte AORUS 16X AKG | 16 inch",
+      "brand": "Gigabyte",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Gigabyte AORUS 16X AKG-53VN854SH",
+          "cpu": "Intel Core i7-14650HX",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Gigabyte AORUS 17 BSF | 17.3 inch",
+      "brand": "Gigabyte",
+      "screen_size": "17.3",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Gigabyte AORUS 17 BSF-73VN654SH",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Gigabyte G5 KF | 15.6 inch",
+      "brand": "Gigabyte",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Gigabyte G5 KF-E3VN333SH",
+          "cpu": "Intel Core i5-12500H",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [
+            "Gigabyte G5 MF-F2VN333SH"
+          ],
+          "previous_urls": [
+            "https://laptopworld.vn/gigabyte-g5-kf-e3vn333sh.html",
+            "https://www.youtube.com/watch?v=r0LmeXMauIg",
+            "https://titekvn.com/products/laptop-gigabyte-g5-kf-e3vn333sh-cpu-i5-12500h-ram-8gb-ddr4-ssd-512gb-pcle-vga-rtx-4060-8gb-15-6-fhd-ips-144hz-win11",
+            "https://cellphones.com.vn/laptop-gigabyte-g5-kf-e3vn333sh.html?product_id=62650",
+            "https://hoanghapc.vn/laptop-gaming-gigabyte-g5-kf-e3vn333sh",
+            "https://thuananpc.com.vn/product/laptop-gigabyte-g5-kf-e3vn333sh.html",
+            "https://hanoinew.vn/laptop-gigabyte-g5-kf-e3vn333sh-core-i5-12500h-8gb-512gb-rtx-4060-8gb-156-inch-fhd-144hz-win-11",
+            "https://www.ankhang.vn/laptop-gigabyte-g5-kf-e3vn333sh-2023.html",
+            "https://itcctv.vn/product/view/laptop-gigabyte-g5-kf-e3vn333sh-i5-12500h8gb-ram512gb-ssdrtx4060-8g156-inch-fhd-144hzwin-11den",
+            "https://thegioimaytinh.net.vn/products/laptop-gigabyte-g5-kf-e3vn333sh-intel-core-i5-12500h-rtx-4060-8gb-ram-8gb-ddr4-ssd-512gb-15-6-inch-144hz-fhd",
+            "https://hacom.vn/laptop-gigabyte-g5-kf-e3vn333sh-i5-12500h-8gb-ram-512gb-ssd-rtx4060-8g-15.6-inch-fhd-144hz-win-11-den-79597",
+            "https://mtcomputer.vn/san-pham/laptop-gigabyte-g5-kf-e3vn333sh-core-i5-12500h-8gb-512gb-rtx-4060-8gb-15-6-inch-fhd-144hz-win-11-den/"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP 14s-em0086AU | 14 inch",
+      "brand": "HP",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP 14s-em0086AU 8R447PA",
+          "cpu": "AMD Ryzen 5 7520U",
+          "gpu": "AMD Radeon 610M",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "HP 240 G9 6L1Y2PA",
+            "HP 240 G9 6L1Y5PA"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Elite Dragonfly G4 | 13.5 inch",
+      "brand": "HP",
+      "screen_size": "13.5",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Elite Dragonfly G4 873K5PA",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP EliteBook 840 G10 | 14 inch",
+      "brand": "HP",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP EliteBook 840 G10 873J2PA",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Envy 16-h1023TX | 16 inch",
+      "brand": "HP",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Envy 16-h1023TX 8C5N6PA",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Envy x360 14-fa0045AU | 14 inch",
+      "brand": "HP",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Envy x360 14-fa0045AU A19AFPA",
+          "cpu": "AMD Ryzen 7 8845HS",
+          "gpu": "AMD Radeon 780M",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP OMEN 16-wf0055TX | 16.1 inch",
+      "brand": "HP",
+      "screen_size": "16.1",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP OMEN 16-wf0055TX 81S89PA",
+          "cpu": "Intel Core i7-13700HX",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP OMEN 16-xf0071AX | 16.1 inch",
+      "brand": "HP",
+      "screen_size": "16.1",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP OMEN 16-xf0071AX 8W947PA",
+          "cpu": "AMD Ryzen 7 7840HS",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP OMEN Transcend 14-fb0089TX | 14 inch",
+      "brand": "HP",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP OMEN Transcend 14-fb0089TX 9Z861PA",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Pavilion 14-dv2075TU | 14 inch",
+      "brand": "HP",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Pavilion 14-dv2075TU 7C0P2PA",
+          "cpu": "Intel Core i5-1235U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "model_mismatch",
+          "cross_model_candidates": [
+            "HP Pavilion 14-dv2074TU 7C0P3PA"
+          ],
+          "previous_urls": [
+            "https://www.thegioididong.com/laptop/hp-pavilion-14-dv2073tu-i5-7c0p2pa",
+            "https://www.chinhnhan.vn/laptop-hp-pavilion-14-dv2073tu-i5-1235u-16gb-512gb-ssd-14inch-fhd-win-11-7c0p2pa",
+            "https://vitinhnguyenkim.vn/laptop-hp-pavilion-14-dv2073tu-i5-1235u-16gb-512gb-ssd-14inch-fhd-win-11-7c0p2pa",
+            "https://www.dienmayxanh.com/laptop/hp-pavilion-14-dv2073tu-i5-7c0p2pa",
+            "https://phongvu.vn/hp-pavilion-14-dv2073tu--s221101770",
+            "https://support.hp.com/us-en/drivers/hp-pavilion-14-laptop-pc-14-dv2000/model/2101006211?sku=7C0P2PA"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Pavilion 15-eg3093TU | 15.6 inch",
+      "brand": "HP",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Pavilion 15-eg3093TU 8U232PA",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Pavilion 15-eg3095TU | 15.6 inch",
+      "brand": "HP",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Pavilion 15-eg3095TU 8U234PA",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "8",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Pavilion 15-eg3097TU | 15.6 inch",
+      "brand": "HP",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Pavilion 15-eg3097TU 8U235PA",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Pavilion Plus 14-ew0014TU | 14 inch",
+      "brand": "HP",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Pavilion Plus 14-ew0014TU 8C593PA",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP ProBook 440 G10 | 14 inch",
+      "brand": "HP",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP ProBook 440 G10 873A7PA",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Spectre x360 14-eu0051TU | 14 inch",
+      "brand": "HP",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Spectre x360 14-eu0051TU 9Y355PA",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Victus 15-fa1089TX | 15.6 inch",
+      "brand": "HP",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Victus 15-fa1089TX 896X7PA",
+          "cpu": "Intel Core i5-12450H",
+          "gpu": "NVIDIA GeForce RTX 2050",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Victus 15-fa1139TX | 15.6 inch",
+      "brand": "HP",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Victus 15-fa1139TX 9E394PA",
+          "cpu": "Intel Core i5-12450H",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Victus 15-fb1022AX | 15.6 inch",
+      "brand": "HP",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Victus 15-fb1022AX 94F90PA",
+          "cpu": "AMD Ryzen 5 7535HS",
+          "gpu": "NVIDIA GeForce RTX 2050",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "HP Victus 16-r1014TX | 16.1 inch",
+      "brand": "HP",
+      "screen_size": "16.1",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "HP Victus 16-r1014TX 9I344PA",
+          "cpu": "Intel Core i5-14500HX",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "HP Victus 16-r0129TX 8C5N4PA",
+            "HP Victus 16-s0078AX 8C5N7PA"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "LG Gram 14 2023 14Z90R | 14 inch",
+      "brand": "LG",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "LG Gram 14 2023 14Z90R-G.AH75A5",
+          "cpu": "Intel Core i7-1360P",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.lg.com/vn/tro-giup/ho-tro-san-pham/cs-14Z90R-G.AH75A5/",
+            "https://tanphat.com.vn/laptop-lg-gram-2023-14z90r-g.ah75a5.html",
+            "https://philong.com.vn/laptop-lg-gram-2023-14z90r-g.ah75a5.html",
+            "https://cellphones.com.vn/laptop-lg-gram-2023-14z90r-g-ah75a5.html"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "LG Gram 14 2024 14Z90S | 14 inch",
+      "brand": "LG",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "LG Gram 14 2024 14Z90S-G.AH55A5",
+          "cpu": "Intel Core Ultra 5 125H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.lg.com/vn/laptop-lg-gram/14z90s-g-ah55a5/",
+            "https://mega.com.vn/laptop-lg-gram-2024-14z90s-gah55a5",
+            "https://thinkpro.vn/laptop/laptop-lg-gram-2024-14z90s-gah55a5",
+            "https://hoanghamobile.com/laptop/laptop-lg-gram-2024-14z90s-g-ah55a5",
+            "https://cellphones.com.vn/laptop-lg-gram-2024-14z90s-g-ah55a5.html",
+            "https://gearvn.com/products/laptop-lg-gram-2024-14z90s-g-ah55a5",
+            "https://bhgear.vn/san-pham/laptop-lg-gram-2024-14z90s-g-ah55a5-intel-core-ultra-5-125h-16gb-512gb-intel-arc-14-inch-wuxga-win-11-den/",
+            "https://trianhtech.vn/laptop-lg-gram-2024-14z90s-g-ah55a5-intel-core-ultra-5-125h-16gb-512gb-intel-arc-14-inch-wuxga-win-11-den",
+            "https://sieuthicholon.com/laptop-lg-gram-2024-14z90s-g-nti276366327.html",
+            "https://hacom.vn/laptop-lg-gram-14z90s-g.ah55a5-ultra-5-125h-16gb-ram-512gb-ssd-14.0-inch-wuxga-win-11-home-plus-den-2024",
+            "https://hangchinhhieu.vn/products/laptop-lg-gram-2024-14z90s-g-ah55a5",
+            "https://philong.com.vn/laptop-lg-gram-2024-14z90s-g.ah55a5.html"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "LG Gram 16 2023 16Z90R | 16 inch",
+      "brand": "LG",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "LG Gram 16 2023 16Z90R-G.AH76A5",
+          "cpu": "Intel Core i7-1360P",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://cellphones.com.vn/laptop-lg-gram-2023-16z90r-g-ah76a5.html",
+            "https://www.lg.com/vn/laptop-lg-gram/16z90r-g-ah76a5/",
+            "https://www.hungphuc.vn/laptop-lg/laptop-lg-gram-2023-16z90rgah76a5/",
+            "https://tanhungphatit.vn/products/laptop-lg-gram-2023-16z90r-g-ah76a5-core-i7-1360p-16gb-512gb-intel-iris-xe-16-inch-wqxga-win-11-grey",
+            "https://dienmayhoangduc.vn/laptop-lg-gram-2023-i7-1360p-16gb-512gb-win11-16z90r-g-ah76a5",
+            "https://sp-one.vn/product/laptop-lg-gram-2023-16z90r-gah76a5/",
+            "https://hkc.vn/san-pham/laptop-lg-gram-2023-16z90r-g-ah76a5-i7-1360p-16gb-512gb-intel-iris-xe-graphics-16-wqxga-99-dci-p3-win-11/",
+            "https://vienmaytinh.com/products/laptop-lg-gram-2023-16z90r-g-ah76a5-1",
+            "https://hangchinhhieu.vn/products/laptop-lg-gram-2023-16z90r-g-ah76a5",
+            "https://www.dienmayxanh.com/laptop/lg-gram-2023-i7-16z90rgah76a5"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "LG Gram 16 2024 16Z90S | 16 inch",
+      "brand": "LG",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "LG Gram 16 2024 16Z90S-G.AH75A5",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "LG Gram 17 2023 17Z90R | 17 inch",
+      "brand": "LG",
+      "screen_size": "17.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "LG Gram 17 2023 17Z90R-G.AH78A5",
+          "cpu": "Intel Core i7-1360P",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://hacom.vn/laptop-lg-gram-17z90r-g.ah78a5-i7-1360p-16gb-ram-1tb-ssd-17.0-inch-wqxga-win-11-den-2023",
+            "https://kinglap.vn/laptop-lg-gram-2023-17z90r-g-ah78a5/",
+            "https://www.lg.com/vn/laptop-lg-gram/17z90r-g-ah78a5/",
+            "https://cellphones.com.vn/laptop-lg-gram-2023-17z90r-g-ah78a5.html",
+            "https://www.anphatpc.com.vn/laptop-lg-gram-2023-17z90r-g.ah78a5-intel-core-i7-1360p.html",
+            "https://www.youtube.com/watch?v=gwVCe4B4gjE"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "LG Gram Pro 16 2024 16Z90SP | 16 inch",
+      "brand": "LG",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "LG Gram Pro 16 2024 16Z90SP-G.AH78A5",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo IdeaPad Slim 3 14IRH8 | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo IdeaPad Slim 3 14IRH8 83EL0020VN",
+          "cpu": "Intel Core i5-13420H",
+          "gpu": "Intel UHD Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Lenovo IdeaPad Slim 3 14IAH8 83EQ0005VN",
+            "Lenovo IdeaPad Slim 5 Light 14ABR8 82XS0006VN"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo IdeaPad Slim 3 15ABR8 | 15.6 inch",
+      "brand": "Lenovo",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo IdeaPad Slim 3 15ABR8 82XM001LVN",
+          "cpu": "AMD Ryzen 7 7730U",
+          "gpu": "AMD Radeon Vega 8",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo IdeaPad Slim 3 15IAH8 | 15.6 inch",
+      "brand": "Lenovo",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo IdeaPad Slim 3 15IAH8 83ER000EVN",
+          "cpu": "Intel Core i5-12450H",
+          "gpu": "Intel UHD Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "source_unavailable",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.thegioididong.com/laptop/lenovo-ideapad-slim-3-15iah8-i5-83er00evn",
+            "https://chinhnhan.vn/nb-lenovo-ideapad-slim-3-15iah8-156inch-fhd-core-i5-12450h-16gb-lpddr5-not-upgradable-ssd-512gb-win-11-xam-83er000evn-warranty-02-year"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo IdeaPad Slim 5 14IMH9 | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo IdeaPad Slim 5 14IMH9 83DA001SVN",
+          "cpu": "Intel Core Ultra 5 125H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Lenovo IdeaPad Slim 3 14IAH8 83EQ0005VN",
+            "Lenovo IdeaPad Slim 5 Light 14ABR8 82XS0006VN"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo LOQ 15AHP9 | 15.6 inch",
+      "brand": "Lenovo",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo LOQ 15AHP9 83DX003CVN",
+          "cpu": "AMD Ryzen 7 8845HS",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo LOQ 15APH8 | 15.6 inch",
+      "brand": "Lenovo",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo LOQ 15APH8 82XT0049VN",
+          "cpu": "AMD Ryzen 5 7640HS",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo Legion 7 16IRX9 | 16 inch",
+      "brand": "Lenovo",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo Legion 7 16IRX9 83FD003AVN",
+          "cpu": "Intel Core i9-14900HX",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Lenovo Legion 5 16IRX9 83DG004YVN"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo Legion Pro 7 16IRX9 | 16 inch",
+      "brand": "Lenovo",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo Legion Pro 7 16IRX9 83DE001RVN",
+          "cpu": "Intel Core i9-14900HX",
+          "gpu": "NVIDIA GeForce RTX 4090 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "Lenovo Legion Pro 5 16IRX9 83DF0046VN"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo Legion Slim 5 16AHP9 | 16 inch",
+      "brand": "Lenovo",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo Legion Slim 5 16AHP9 83DH003HVN",
+          "cpu": "AMD Ryzen 7 8845HS",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkBook 14 G6 IRL | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkBook 14 G6 IRL 21KG0064VN",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkBook 14 G6+ IMH | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkBook 14 G6+ IMH 21KW003KVN",
+          "cpu": "Intel Core Ultra 5 125H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkBook 16 G6 ABP | 16 inch",
+      "brand": "Lenovo",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkBook 16 G6 ABP 21KK005DVN",
+          "cpu": "AMD Ryzen 7 7730U",
+          "gpu": "AMD Radeon Vega 8",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkBook 16 G6 IRL | 16 inch",
+      "brand": "Lenovo",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkBook 16 G6 IRL 21KH0065VN",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad E14 Gen 5 | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad E14 Gen 5 21JK0067VN",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad E16 Gen 1 | 16 inch",
+      "brand": "Lenovo",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad E16 Gen 1 21JN0069VN",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad L14 Gen 4 | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad L14 Gen 4 21H10034VN",
+          "cpu": "Intel Core i5-1335U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad L15 Gen 4 | 15.6 inch",
+      "brand": "Lenovo",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad L15 Gen 4 21H30035VN",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad P16s Gen 2 | 16 inch",
+      "brand": "Lenovo",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad P16s Gen 2 21HK003EVN",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "NVIDIA RTX A1000 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad T14 Gen 4 | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad T14 Gen 4 21HD0050VN",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad T14s Gen 4 | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad T14s Gen 4 21F6005BVN",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad X1 Carbon Gen 11 | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad X1 Carbon Gen 11 21HM000EVN",
+          "cpu": "Intel Core i7-1355U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo ThinkPad X1 Carbon Gen 12 | 14 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo ThinkPad X1 Carbon Gen 12 21KC0050VN",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "Lenovo Yoga Pro 7 14AHP9 | 14.5 inch",
+      "brand": "Lenovo",
+      "screen_size": "14.5",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "Lenovo Yoga Pro 7 14AHP9 83E3001QVN",
+          "cpu": "AMD Ryzen 7 8845HS",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Bravo 15 C7UDX | 15.6 inch",
+      "brand": "MSI",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Bravo 15 C7UDX-407VN",
+          "cpu": "AMD Ryzen 5 7535HS",
+          "gpu": "NVIDIA GeForce RTX 3050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Bravo 15 C7VFK | 15.6 inch",
+      "brand": "MSI",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Bravo 15 C7VFK-275VN",
+          "cpu": "AMD Ryzen 7 7735HS",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://www.chogiakiem.com/mua-ban-laptop/can-ban-laptop-msi-gaming-bravo-15-c7vfk-275vn-1173660.html",
+            "https://itcctv.vn/product/view/laptop-gaming-msi-bravo-15-c7vfk-275vn-ryzen-7-7735hs-rtx-4060-8gb-ram-16gb-ddr5-ssd-512gb-156-inch-ips-144hz-fhd",
+            "https://techsys.vn/laptop-gaming-msi-bravo-15-c7vfk-275vn-amd-ryzen-5-7535hs-16gb-512gb-rtx-4060-8gb-156-inch-fhd-w11h-den",
+            "https://hoanghamobile.com/laptop/msi-bravo-15-c7vfk-275vn",
+            "https://www.chotot.com/mua-ban-laptop-quan-ninh-kieu-can-tho/128742215.htm",
+            "https://maiphuong.vn/products/laptop-msi-bravo-15-c7vfk-275vn-r7-7735hs-16gb-512gb-ssd-rtx4060-8gb-15-6-fhd-144hz-win11-den",
+            "https://storage-asset.msi.com/excelSku/vn/nb/Bravo%2015%20C7VFK%20-%20275VN.pdf",
+            "https://cellphones.com.vn/laptop-msi-gaming-bravo-15-c7vfk-275vn.html?product_id=72814",
+            "https://laptopworld.vn/laptop-msi-bravo-15-c7vfk-275vn",
+            "https://vodien.vn/msi-bravo-15-c7vfk-275vn-ryzen-7-7735hs-16gb-512gb-8gb-rtx4060-144hzfhd-win11-0166836/",
+            "https://hacom.vn/laptop-msi-gaming-bravo-15-c7vfk-275vn-r7-7735hs-16gb-ram-512gb-ssd-rtx4060-8gb-15.6-inch-fhd-144hz-win-11-den-2023",
+            "https://3mat.com.vn/laptop-msi-bravo-15-c7vfk-275vn-cpu-r7-7735hs-ram-16gb-ddr5-ssd-512gb-pcie-vga-rtx-4060-8gb-15-6-fhd-ips-144hz-win11-prooffice2021-proplus/"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Crosshair 16 HX D14VFKG | 16 inch",
+      "brand": "MSI",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Crosshair 16 HX D14VFKG-044VN",
+          "cpu": "Intel Core i7-14700HX",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Cyborg 15 A13VF | 15.6 inch",
+      "brand": "MSI",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Cyborg 15 A13VF-862VN",
+          "cpu": "Intel Core i7-13620H",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "MSI Cyborg 15 A12VE-412VN"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Katana 15 B13VEK | 15.6 inch",
+      "brand": "MSI",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Katana 15 B13VEK-2083VN",
+          "cpu": "Intel Core i7-13620H",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "MSI Katana 15 B13VFK-676VN"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Katana A15 AI B8VF | 15.6 inch",
+      "brand": "MSI",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Katana A15 AI B8VF-400VN",
+          "cpu": "AMD Ryzen 7 8845HS",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "MSI Katana 15 B13VFK-676VN"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Modern 14 C12M | 14 inch",
+      "brand": "MSI",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Modern 14 C12M-047VN",
+          "cpu": "Intel Core i7-1255U",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [
+            "MSI Modern 14 C12MO-660VN",
+            "MSI Modern 14 C13M-608VN",
+            "MSI Modern 14 C11M-011VN"
+          ],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Prestige 13 Evo A13M | 13.3 inch",
+      "brand": "MSI",
+      "screen_size": "13.3",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Prestige 13 Evo A13M-081VN",
+          "cpu": "Intel Core i7-1360P",
+          "gpu": "Intel Iris Xe Graphics",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "rights_restricted",
+          "cross_model_candidates": [],
+          "previous_urls": [
+            "https://hacom.vn/laptop-msi-prestige-13evo-a13m-081vn-i7-1360p-16gb-ram-1tb-ssd-13.3-inch-fhd-win11-bac-vo-nhom-79723",
+            "https://duonglong.vn/laptop-msi-prestige-13evo-a13m-081vn"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Prestige 16 AI Evo B1MG | 16 inch",
+      "brand": "MSI",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Prestige 16 AI Evo B1MG-007VN",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "Intel Arc Graphics",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Pulse 16 AI C1VGKG | 16 inch",
+      "brand": "MSI",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Pulse 16 AI C1VGKG-018VN",
+          "cpu": "Intel Core Ultra 7 155H",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Raider GE68 HX 13VG | 16 inch",
+      "brand": "MSI",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Raider GE68 HX 13VG-095VN",
+          "cpu": "Intel Core i9-13950HX",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "2048",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Stealth 14 Studio A13VE | 14 inch",
+      "brand": "MSI",
+      "screen_size": "14.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Stealth 14 Studio A13VE-041VN",
+          "cpu": "Intel Core i7-13700H",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Stealth 16 Studio A13VG | 16 inch",
+      "brand": "MSI",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Stealth 16 Studio A13VG-080VN",
+          "cpu": "Intel Core i9-13900H",
+          "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+          "ram": "32",
+          "storage": "2048",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Sword 16 HX B14VFK | 16 inch",
+      "brand": "MSI",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Sword 16 HX B14VFK-045VN",
+          "cpu": "Intel Core i7-14700HX",
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop",
+          "ram": "16",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Thin GF63 12VE | 15.6 inch",
+      "brand": "MSI",
+      "screen_size": "15.6",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Thin GF63 12VE-460VN",
+          "cpu": "Intel Core i5-12450H",
+          "gpu": "NVIDIA GeForce RTX 4050 Laptop",
+          "ram": "16",
+          "storage": "512",
+          "previous_reason": "source_unavailable",
+          "cross_model_candidates": [
+            "MSI Thin 15 B12UCX-1419VN",
+            "MSI Thin 15 B13UC-1411VN"
+          ],
+          "previous_urls": [
+            "https://hoanghamobile.com/laptop/laptop-gaming-msi-gf63-thin-12ve-460vn-chinh-hang",
+            "https://www.thegioididong.com/tra-gop/tai-chinh/laptop/msi-gf63-thin-12ve-i5-460vn?gtype=online2gia&productCode=0220042002740",
+            "https://www.vitinhchicuong.vn/san-pham/chi-tiet/6841/laptop-thin-gf63-12ve-460vn",
+            "https://vnashop.vn/laptop-msi-gf63-thin-12ve-460vn-i5-12450h-ram-8gb-512gb-ssd-windows-11",
+            "https://quynhoncomputer.com.vn/san-pham/msi-gf63-thin-12ve-460vn-i5-12450h-ram-8gb-512gb-ssd-rtx-4050-6gb-windows-11/",
+            "https://xgear.net/products/laptop-gaming-msi-gf63-thin-12ve-460vn",
+            "https://laptopxachtay.com.vn/may-tinh-xach-tay/msi-gaming-gf63-12ve-460vn-i5-12450h-16gb-ddr5-512gb-ssd-vga-gtx4050-6g-15-6-fhd-ips-144hz-w11-id41257.html",
+            "https://laptopworld.vn/laptop-msi-thin-gf63-12ve-460vn",
+            "https://www.youtube.com/watch?v=jdAaGWUmwCM"
+          ]
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Titan 18 HX A14VIG | 18 inch",
+      "brand": "MSI",
+      "screen_size": "18.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Titan 18 HX A14VIG-072VN",
+          "cpu": "Intel Core i9-14900HX",
+          "gpu": "NVIDIA GeForce RTX 4090 Laptop",
+          "ram": "128",
+          "storage": "4096",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    },
+    {
+      "group": "MSI Vector 16 HX A13VHG | 16 inch",
+      "brand": "MSI",
+      "screen_size": "16.0",
+      "color_in_dataset": "not_recorded",
+      "existing_image_models": [],
+      "missing": [
+        {
+          "name": "MSI Vector 16 HX A13VHG-489VN",
+          "cpu": "Intel Core i9-13980HX",
+          "gpu": "NVIDIA GeForce RTX 4080 Laptop",
+          "ram": "32",
+          "storage": "1024",
+          "previous_reason": "not_found",
+          "cross_model_candidates": [],
+          "previous_urls": []
+        }
+      ],
+      "reuse_decision": "no_verified_image_in_same_conservative_family"
+    }
+  ]
+}

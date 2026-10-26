@@ -5,12 +5,14 @@ Danh sách 225 laptop, 225 khóa tên duy nhất. Nhóm thử 13 mẫu đã đư
 | Kết quả | Số laptop |
 | --- | ---: |
 | Ảnh đúng mã model trên trang nguồn | 67 |
-| Ảnh đại diện cùng dòng đã xác nhận | 0 |
-| Chưa có ảnh | 158 |
+| Ảnh đại diện cùng dòng đã xác nhận | 2 |
+| Chưa có ảnh | 156 |
 
 Đã tìm nguồn mới cho toàn bộ 225 tên, tìm lại các mã còn thiếu bằng SKU ngắn, và thử mở 181 trang sản phẩm (có thể lặp URL giữa cấu hình). Không kết luận mã chưa xác minh là không có ảnh trên mạng.
 
-Ảnh WebP: 1,894,774 byte; tối đa 1000×1000 px, thu nhỏ theo tỷ lệ, không upscale/crop/AI. Hai ảnh chụp có bối cảnh cũ đã được thay bằng ảnh catalogue cho đúng MLY03SA/A và MTL73SA/A.
+Ảnh WebP: 1,887,472 byte; tối đa 1000×1000 px, thu nhỏ theo tỷ lệ, không upscale/crop/AI. Hai ảnh chụp có bối cảnh cũ đã được thay bằng ảnh catalogue cho đúng MLY03SA/A và MTL73SA/A.
+
+Có 66 tệp ảnh duy nhất phục vụ 69 máy. Xem lượt đối chiếu cùng ngoại hình tại [targeted-image-pass.md](targeted-image-pass.md).
 
 ## Quyền sử dụng
 
@@ -26,12 +28,19 @@ Giữ nguyên CSV, cơ sở dữ liệu, giá và đặc trưng ML. Một số S
 - ASUS Vivobook Go 14 E1404FA-NK177W: Mã SKU trên trang khớp tên dữ liệu, nhưng cấu hình CPU/RAM hoặc SSD trên trang khác CSV. Ảnh lấy theo SKU và ngoại hình; không sửa dữ liệu hay đặc trưng ML.
 - HP Victus 16-s0078AX 8C5N7PA: Mã SKU trên trang khớp tên dữ liệu, nhưng cấu hình CPU/RAM hoặc SSD trên trang khác CSV. Ảnh lấy theo SKU và ngoại hình; không sửa dữ liệu hay đặc trưng ML.
 
+## Ảnh đại diện dùng chung
+
+| Laptop | Model ảnh nguồn | Tệp dùng chung | Bằng chứng |
+| --- | --- | --- | --- |
+| Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE | Apple MacBook Air 13 M1 (2020) 8GB 256GB MGN63SA/A | images/laptops/346564c20846a678.webp | Apple Support M1 2020 xác nhận màn hình 13.3 inch, cùng kích thước vỏ và tùy chọn RAM 8/16GB. Trang Tân Hưng Phát ghi đúng Z124000DE, 16GB/256GB, M1 8CPU/7GPU, màu Xám; nguồn MGN63 đang có ghi Space Grey. Đã xem lại ảnh catalogue nguồn, cùng thân nhôm hình nêm M1, không dùng ảnh Air M2/M3 hay Pro. |
+| ASUS TUF Gaming F15 FX506HF-HN017W | ASUS TUF Gaming F15 FX506HF-HN014W | images/laptops/616dfc4fb10503be.webp | ASUS techspec xác nhận FX506HF thuộc TUF F15 FX506, 15.6 inch. SP-One URL kết thúc HN014W nhưng tiêu đề và cấu hình thực tế là HN017W, RAM 16GB, i5-11400H/RTX2050, Graphite Black. Nguồn Laptopnew của HN014W ghi RAM 8GB và màu Xám Đen (Grey). Đối chiếu cùng FX506HF/thế hệ/kích thước, chỉ khác RAM; đã xem lại ảnh nguyên máy nền trắng. |
+
 ## Nguyên nhân còn thiếu
 
 | Nguyên nhân chính | Số laptop |
 | --- | ---: |
-| Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | 136 |
-| Sai hoặc mâu thuẫn model | 6 |
+| Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | 135 |
+| Sai hoặc mâu thuẫn model | 5 |
 | Bị chặn truy cập (403/429) | 3 |
 | Lỗi tải/giải mã ảnh hoặc ảnh quá nhỏ | 0 |
 | Lỗi truy cập nguồn (SSL/timeout/404) | 3 |
@@ -108,7 +117,6 @@ Mỗi máy có một nguyên nhân chính; toàn bộ lần thử, chuyển hư�
 | Acer Nitro 16 Phoenix AN16-41-R5M4 NH.QLKSV.001 | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
 | Acer Predator Helios Neo 16 PHN16-71-779X NH.QLUSV.007 | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
 | Acer Predator Helios 16 PH16-71-948L NH.QJSSV.002 | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
-| Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE | Sai hoặc mâu thuẫn model | Trang tìm được chuyển hướng hoặc không xác nhận đúng mã model; không lấy ảnh sản phẩm khác. |
 | Apple MacBook Air 13 M2 (2022) 8GB 256GB MLXW3SA/A | Nguồn có hạn chế quyền sử dụng | Nguồn ảnh đã đối chiếu có hạn chế sử dụng rõ ràng; chưa xác minh được ảnh đạt chuẩn từ nguồn thay thế. Giữ Chưa có ảnh. |
 | Apple MacBook Air 13 M2 (2022) 16GB 512GB Z15S00036 | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
 | Apple MacBook Air 15 M2 (2023) 8GB 256GB MQKP3SA/A | Nguồn có hạn chế quyền sử dụng | Ảnh đúng SKU từ HugoTech bị loại vì trang ghi All rights reserved. Chưa có ảnh từ nguồn thay thế phù hợp. |
@@ -130,7 +138,6 @@ Mỗi máy có một nguyên nhân chính; toàn bộ lần thử, chuyển hư�
 | ASUS Vivobook 15 X1504ZA-NJ581W | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
 | ASUS Vivobook S 15 S5506MA-MA022W | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
 | ASUS Vivobook S 15 S5506MA-MA023W | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
-| ASUS TUF Gaming F15 FX506HF-HN017W | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Các ảnh tải được là ảnh bối cảnh người dùng, ảnh có nhãn quảng cáo hoặc ảnh ghép nhiều máy; chưa tìm được ảnh catalogue đủ chuẩn. |
 | Lenovo IdeaPad 1 15AMN7 82VG003EVN | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
 | Lenovo IdeaPad 1 15AMN7 82VG003GVN | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |
 | Lenovo IdeaPad Slim 3 14IRH8 83EL0020VN | Chưa tìm được nguồn/ảnh catalogue đủ chuẩn | Lượt tìm mới chưa tìm được trang/ảnh catalogue xác nhận đúng mã model; tiếp tục hiển thị Chưa có ảnh. |

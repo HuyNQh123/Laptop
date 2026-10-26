@@ -1,0 +1,493 @@
+{
+  "date": "2026-10-26",
+  "baseline_commit": "11ce613ad26f89fb891b05296f47b2dbe99f7fb6",
+  "before": {
+    "verified": 67,
+    "missing": 158,
+    "exact_model": 67,
+    "representative": 0,
+    "unique_files": 67
+  },
+  "after": {
+    "verified": 69,
+    "missing": 156,
+    "exact_model": 67,
+    "representative": 2,
+    "unique_files": 66
+  },
+  "scope": {
+    "all_missing_scanned": 158,
+    "reuse_families_reviewed": 17,
+    "new_source_groups": 3,
+    "max_new_source_groups": 20,
+    "max_sources_per_group": 3,
+    "budget_definition": "A source is a website/publisher, not each spec/legal URL on that same website. Cached prior evidence is not re-fetched."
+  },
+  "recommendation_sample": {
+    "method": "9 deterministic price quantiles; simulation, not usage telemetry",
+    "profiles": [
+      {
+        "profile": "Lenovo IdeaPad 1 15AMN7 82VG0061VN",
+        "recommendations": [
+          "Lenovo IdeaPad 1 15AMN7 82VG0061VN",
+          "Lenovo IdeaPad 1 15AMN7 82VG003EVN",
+          "Acer Aspire 3 A315-59-381E NX.K6TSV.006",
+          "MSI Modern 14 C11M-011VN",
+          "ASUS Vivobook Go 14 E1404FA-NK177W"
+        ]
+      },
+      {
+        "profile": "Dell Inspiron 15 3520 71003264",
+        "recommendations": [
+          "Dell Inspiron 15 3520 71003264",
+          "Dell Vostro 15 3530 80GG9",
+          "Dell Vostro 15 3520 5M2TT2",
+          "Dell Inspiron 15 3530 71011772",
+          "HP 15s-fq5228TU 8U236PA"
+        ]
+      },
+      {
+        "profile": "ASUS TUF Gaming A15 FA506NC-HN012W",
+        "recommendations": [
+          "ASUS TUF Gaming A15 FA506NC-HN012W",
+          "MSI Bravo 15 C7UDX-407VN",
+          "Lenovo IdeaPad Gaming 3 15ARH7 82SB007KVN",
+          "Acer Aspire 7 Gaming A715-76G-5806 NH.QMFSV.002",
+          "HP Victus 15-fb1022AX 94F90PA"
+        ]
+      },
+      {
+        "profile": "MSI Cyborg 15 A12VE-412VN",
+        "recommendations": [
+          "MSI Cyborg 15 A12VE-412VN",
+          "Gigabyte G5 MF-F2VN333SH",
+          "MSI Thin GF63 12VE-460VN",
+          "Gigabyte G5 KF-E3VN333SH",
+          "Lenovo LOQ 15IAX9 83GS001UVN"
+        ]
+      },
+      {
+        "profile": "Lenovo LOQ 15IRX9 83DV003TVN",
+        "recommendations": [
+          "Lenovo LOQ 15IRX9 83DV003TVN",
+          "MSI Katana 15 B13VEK-2083VN",
+          "MSI Bravo 15 C7VFK-275VN",
+          "Gigabyte G6 KF-H3VN853SH",
+          "MSI Cyborg 15 A13VF-862VN"
+        ]
+      },
+      {
+        "profile": "LG Gram 14 2024 14Z90S-G.AH55A5",
+        "recommendations": [
+          "Acer Swift Go 14 SFG14-73-718T NX.KSLSV.001",
+          "ASUS ExpertBook B5 B5402CBA-KI0244W",
+          "ASUS Zenbook 14 OLED UX3405MA-PP152W",
+          "ASUS Zenbook 14 OLED UM3406HA-KD083W",
+          "HP Pavilion Plus 14-ew0014TU 8C593PA"
+        ]
+      },
+      {
+        "profile": "LG Gram 17 2023 17Z90R-G.AH78A5",
+        "recommendations": [
+          "LG Gram 17 2023 17Z90R-G.AH78A5",
+          "LG Gram 16 2024 16Z90S-G.AH75A5",
+          "MSI Prestige 16 AI Evo B1MG-007VN",
+          "Apple MacBook Pro 14 M3 (2023) 8GB 512GB MTL73SA/A",
+          "Lenovo ThinkPad T14s Gen 4 21F6005BVN"
+        ]
+      },
+      {
+        "profile": "ASUS ROG Strix G16 G614JIR-N4011W",
+        "recommendations": [
+          "Lenovo Legion 7 16IRX9 83FD003AVN",
+          "Dell Alienware m16 R2 i7 155H RTX 4070",
+          "Dell XPS 15 9530 71015716",
+          "Apple MacBook Pro 16 M3 Pro (2023) 18GB 512GB MRW13SA/A",
+          "Apple MacBook Pro 14 M3 Pro (2023) 36GB 1TB Z1AU0009U"
+        ]
+      },
+      {
+        "profile": "MSI Titan 18 HX A14VIG-072VN",
+        "recommendations": [
+          "MSI Titan 18 HX A14VIG-072VN",
+          "Dell Alienware m18 R2 i9 14900HX RTX 4090",
+          "ASUS ROG Strix SCAR 16 G634JYR-RA067W",
+          "Apple MacBook Pro 16 M3 Max (2023) 48GB 1TB MUW73SA/A",
+          "Lenovo Legion Pro 7 16IRX9 83DE001RVN"
+        ]
+      }
+    ],
+    "counts": {
+      "Lenovo IdeaPad 1 15AMN7 82VG0061VN": 1,
+      "Lenovo IdeaPad 1 15AMN7 82VG003EVN": 1,
+      "Acer Aspire 3 A315-59-381E NX.K6TSV.006": 1,
+      "MSI Modern 14 C11M-011VN": 1,
+      "ASUS Vivobook Go 14 E1404FA-NK177W": 1,
+      "Dell Inspiron 15 3520 71003264": 1,
+      "Dell Vostro 15 3530 80GG9": 1,
+      "Dell Vostro 15 3520 5M2TT2": 1,
+      "Dell Inspiron 15 3530 71011772": 1,
+      "HP 15s-fq5228TU 8U236PA": 1,
+      "ASUS TUF Gaming A15 FA506NC-HN012W": 1,
+      "MSI Bravo 15 C7UDX-407VN": 1,
+      "Lenovo IdeaPad Gaming 3 15ARH7 82SB007KVN": 1,
+      "Acer Aspire 7 Gaming A715-76G-5806 NH.QMFSV.002": 1,
+      "HP Victus 15-fb1022AX 94F90PA": 1,
+      "MSI Cyborg 15 A12VE-412VN": 1,
+      "Gigabyte G5 MF-F2VN333SH": 1,
+      "MSI Thin GF63 12VE-460VN": 1,
+      "Gigabyte G5 KF-E3VN333SH": 1,
+      "Lenovo LOQ 15IAX9 83GS001UVN": 1,
+      "Lenovo LOQ 15IRX9 83DV003TVN": 1,
+      "MSI Katana 15 B13VEK-2083VN": 1,
+      "MSI Bravo 15 C7VFK-275VN": 1,
+      "Gigabyte G6 KF-H3VN853SH": 1,
+      "MSI Cyborg 15 A13VF-862VN": 1,
+      "Acer Swift Go 14 SFG14-73-718T NX.KSLSV.001": 1,
+      "ASUS ExpertBook B5 B5402CBA-KI0244W": 1,
+      "ASUS Zenbook 14 OLED UX3405MA-PP152W": 1,
+      "ASUS Zenbook 14 OLED UM3406HA-KD083W": 1,
+      "HP Pavilion Plus 14-ew0014TU 8C593PA": 1,
+      "LG Gram 17 2023 17Z90R-G.AH78A5": 1,
+      "LG Gram 16 2024 16Z90S-G.AH75A5": 1,
+      "MSI Prestige 16 AI Evo B1MG-007VN": 1,
+      "Apple MacBook Pro 14 M3 (2023) 8GB 512GB MTL73SA/A": 1,
+      "Lenovo ThinkPad T14s Gen 4 21F6005BVN": 1,
+      "Lenovo Legion 7 16IRX9 83FD003AVN": 1,
+      "Dell Alienware m16 R2 i7 155H RTX 4070": 1,
+      "Dell XPS 15 9530 71015716": 1,
+      "Apple MacBook Pro 16 M3 Pro (2023) 18GB 512GB MRW13SA/A": 1,
+      "Apple MacBook Pro 14 M3 Pro (2023) 36GB 1TB Z1AU0009U": 1,
+      "MSI Titan 18 HX A14VIG-072VN": 1,
+      "Dell Alienware m18 R2 i9 14900HX RTX 4090": 1,
+      "ASUS ROG Strix SCAR 16 G634JYR-RA067W": 1,
+      "Apple MacBook Pro 16 M3 Max (2023) 48GB 1TB MUW73SA/A": 1,
+      "Lenovo Legion Pro 7 16IRX9 83DE001RVN": 1
+    }
+  },
+  "reuse_review": [
+    {
+      "group": "Apple MacBook Air 13 M2 (2022) | 13.6 inch",
+      "missing_before": [
+        "Apple MacBook Air 13 M2 (2022) 8GB 256GB MLXW3SA/A",
+        "Apple MacBook Air 13 M2 (2022) 16GB 512GB Z15S00036"
+      ],
+      "source_models": [
+        "Apple MacBook Air 13 M2 (2022) 8GB 512GB MLY03SA/A"
+      ],
+      "decision": "not_confirmed",
+      "reason": "Không ghép MLY03 Silver sang MLXW3 Space Grey; Z15S chưa đủ đối chiếu màu/SKU. Không đổi ảnh Silver đã có."
+    },
+    {
+      "group": "Apple MacBook Air 15 M3 (2024) | 15.3 inch",
+      "missing_before": [
+        "Apple MacBook Air 15 M3 (2024) 16GB 512GB MXD43SA/A",
+        "Apple MacBook Air 15 M3 (2024) 24GB 512GB Z1BR0006H"
+      ],
+      "source_models": [
+        "Apple MacBook Air 15 M3 (2024) 8GB 256GB MRYM3SA/A"
+      ],
+      "decision": "not_confirmed",
+      "reason": "MRYM3 Space Grey; MXD43 có nguồn chỉ Midnight, BTO Z1BR chưa xác nhận màu. Không ghép theo tên Air 15 M3."
+    },
+    {
+      "group": "Dell Gaming G15 5530 | 15.6 inch",
+      "missing_before": [
+        "Dell Gaming G15 5530 i5 13450HX RTX 3050",
+        "Dell Gaming G15 5530 i7 13650HX RTX 4050"
+      ],
+      "source_models": [
+        "Dell Gaming G15 5530 i7 13650HX RTX 4060"
+      ],
+      "decision": "not_confirmed",
+      "reason": "CPU/GPU và lựa chọn màu/đèn bàn phím khác; trang Dell MY đã bỏ sản phẩm, không lấy ảnh Alienware liên quan."
+    },
+    {
+      "group": "Lenovo IdeaPad 1 15AMN7 | 15.6 inch",
+      "missing_before": [
+        "Lenovo IdeaPad 1 15AMN7 82VG003EVN",
+        "Lenovo IdeaPad 1 15AMN7 82VG003GVN"
+      ],
+      "source_models": [
+        "Lenovo IdeaPad 1 15AMN7 82VG0061VN"
+      ],
+      "decision": "not_confirmed",
+      "reason": "PSREF liệt kê Cloud Grey/Abyss Blue/Sand và nhiều CPU. Chưa đối chiếu được màu của hai MTM 82VG003E/GVN."
+    },
+    {
+      "group": "ASUS TUF Gaming F15 FX506HF | 15.6 inch",
+      "missing_before": [
+        "ASUS TUF Gaming F15 FX506HF-HN017W"
+      ],
+      "source_models": [
+        "ASUS TUF Gaming F15 FX506HF-HN014W"
+      ],
+      "decision": "shared",
+      "reason": "Đã xác nhận cùng FX506HF, 15.6 inch, Graphite Black, i5-11400H/RTX2050; khác RAM 8/16GB. Dùng lại ảnh HN014W."
+    },
+    {
+      "group": "ASUS Vivobook 15 OLED A1505VA | 15.6 inch",
+      "missing_before": [
+        "ASUS Vivobook 15 OLED A1505VA-L1357W"
+      ],
+      "source_models": [
+        "ASUS Vivobook 15 OLED A1505VA-MA468W"
+      ],
+      "decision": "not_confirmed",
+      "reason": "A1505VA khác CPU; trang ASUS tìm được A1505ZA thế hệ 12 không khớp VA thế hệ 13. Không dùng trang khác thế hệ làm bằng chứng."
+    },
+    {
+      "group": "ASUS Vivobook 15 X1504ZA | 15.6 inch",
+      "missing_before": [
+        "ASUS Vivobook 15 X1504ZA-NJ581W"
+      ],
+      "source_models": [
+        "ASUS Vivobook 15 X1504ZA-NJ582W",
+        "ASUS Vivobook 15 X1504ZA-NJ517W"
+      ],
+      "decision": "not_confirmed",
+      "reason": "Cùng X1504ZA nhưng có nhiều màu; chưa xác nhận màu NJ581W với ảnh NJ517W/NJ582W. Không suy diễn màu theo tiền tố SKU."
+    },
+    {
+      "group": "ASUS Vivobook 16 M1605YA | 16 inch",
+      "missing_before": [
+        "ASUS Vivobook 16 M1605YA-MB117W"
+      ],
+      "source_models": [
+        "ASUS Vivobook 16 M1605YA-MB303W"
+      ],
+      "decision": "not_confirmed",
+      "reason": "M1605YA có Indie Black/Cool Silver; MB117W chưa có bằng chứng màu/ngoại hình theo SKU. Giữ placeholder."
+    },
+    {
+      "group": "Acer Aspire 7 Gaming A715-76G | 15.6 inch",
+      "missing_before": [
+        "Acer Aspire 7 Gaming A715-76G-5132 NH.QGESV.008"
+      ],
+      "source_models": [
+        "Acer Aspire 7 Gaming A715-76G-5806 NH.QMFSV.002"
+      ],
+      "decision": "not_confirmed",
+      "reason": "A715-76G hai mã NH.QGESV/NH.QMFSV và GPU2050/3050 khác; chưa có bằng chứng đủ về thân/màu theo hai mã."
+    },
+    {
+      "group": "Apple MacBook Air 13 M1 (2020) | 13.3 inch",
+      "missing_before": [
+        "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE"
+      ],
+      "source_models": [
+        "Apple MacBook Air 13 M1 (2020) 8GB 256GB MGN63SA/A"
+      ],
+      "decision": "shared",
+      "reason": "Đã xác nhận M1 2020, 13.3 inch, Space Grey, 8CPU/7GPU, cùng SSD256GB, khác RAM8/16GB. Dùng lại ảnh MGN63."
+    },
+    {
+      "group": "Apple MacBook Air 13 M3 (2024) | 13.6 inch",
+      "missing_before": [
+        "Apple MacBook Air 13 M3 (2024) 8GB 256GB MRXN3SA/A"
+      ],
+      "source_models": [
+        "Apple MacBook Air 13 M3 (2024) 16GB 512GB MXCV3SA/A"
+      ],
+      "decision": "not_confirmed",
+      "reason": "MRXN3 là Space Grey theo trang nhà bán hàng; MXCV3 là Midnight theo ảnh/nguồn đã có. Không ghép dù cùng 13.6 inch/M3."
+    },
+    {
+      "group": "Apple MacBook Pro 14 M3 (2023) | 14.2 inch",
+      "missing_before": [
+        "Apple MacBook Pro 14 M3 (2023) 16GB 512GB Z1C80001Y"
+      ],
+      "source_models": [
+        "Apple MacBook Pro 14 M3 (2023) 8GB 512GB MTL73SA/A"
+      ],
+      "decision": "not_confirmed",
+      "reason": "Z1C80001Y BTO chưa xác nhận được cấu hình/màu với MTL73; không coi cùng tên Pro14 M3 là bằng chứng đủ."
+    },
+    {
+      "group": "Apple MacBook Pro 14 M3 Pro (2023) | 14.2 inch",
+      "missing_before": [
+        "Apple MacBook Pro 14 M3 Pro (2023) 36GB 1TB Z1AU0009U"
+      ],
+      "source_models": [
+        "Apple MacBook Pro 14 M3 Pro (2023) 18GB 512GB MRX33SA/A"
+      ],
+      "decision": "not_confirmed",
+      "reason": "Z1AU0009U chưa xác nhận màu/BTO; khác bin CPU/GPU với MRX33. Không ghép từ Pro14 M3 thường hoặc Pro16."
+    },
+    {
+      "group": "Dell Inspiron 14 5430 | 14 inch",
+      "missing_before": [
+        "Dell Inspiron 14 5430 71015634"
+      ],
+      "source_models": [
+        "Dell Inspiron 14 5430 71015633"
+      ],
+      "decision": "not_confirmed",
+      "reason": "5430 có nhiều CPU/màu; chưa đối chiếu được mã71015634 với ảnh71015633. Không ghép chỉ từ tên Inspiron14."
+    },
+    {
+      "group": "Dell Inspiron 15 3530 | 15.6 inch",
+      "missing_before": [
+        "Dell Inspiron 15 3530 71011772"
+      ],
+      "source_models": [
+        "Dell Inspiron 15 3530 71011775"
+      ],
+      "decision": "not_confirmed",
+      "reason": "Dell thông số 3530 có hai thân plastic/aluminum, khác kích thước/USB-C. Chưa xác nhận đủ hai mã71011772/775 dùng cùng thân/màu."
+    },
+    {
+      "group": "Dell XPS 15 9530 | 15.6 inch",
+      "missing_before": [
+        "Dell XPS 15 9530 71015715"
+      ],
+      "source_models": [
+        "Dell XPS 15 9530 71015716"
+      ],
+      "decision": "not_confirmed",
+      "reason": "XPS9530 có GPU4050/4060; thiếu bằng chứng ngoại hình/màu theo mã71015715, nên không tự ghép ảnh71015716."
+    },
+    {
+      "group": "HP ProBook 450 G10 | 15.6 inch",
+      "missing_before": [
+        "HP ProBook 450 G10 873D4PA"
+      ],
+      "source_models": [
+        "HP ProBook 450 G10 873D1PA"
+      ],
+      "decision": "not_confirmed",
+      "reason": "ProBook450 G10 có Pike Silver plastic/aluminum và tùy chọn camera; chưa xác nhận thân của873D4PA so với873D1PA."
+    }
+  ],
+  "new_source_review": [
+    {
+      "group": "ASUS Zenbook 14 OLED UM3406HA | 14 inch",
+      "priority": "Mẫu thứ ba trên trang chủ đang thiếu ảnh; tách khỏi UX3405MA/UM3406KA.",
+      "members": [
+        "ASUS Zenbook 14 OLED UM3406HA-KD083W"
+      ],
+      "sources": [
+        {
+          "url": "https://www.asus.com/laptops/for-home/zenbook/asus-zenbook-14-oled-um3406/techspec/",
+          "status": "opened",
+          "matched_model": "UM3406HA / Jade Black / 14 inch",
+          "image_url": "https://dlcdnwebimgs.asus.com/gain/f2cbaa0d-2aa6-49f4-b304-090bab133450//w184",
+          "image_status": "observed model thumbnail, too small for catalogue; not visually approved",
+          "rights_status": "restricted_without_written_agreement",
+          "rights_policy": "https://www.asus.com/terms_of_use_notice_privacy_policy/official-site/",
+          "note": "Trang chung gồm HA/KA/GA; không dùng ảnh KA/GA. CPU hãng8840HS khác CSV8845HS; không sửa dữ liệu."
+        },
+        {
+          "url": "https://business.currys.co.uk/catalogue/computing/laptops/windows-laptop/asus-zenbook-14-oled-um3406ha-ql020w-ai-ready-14-amd-ryzen-7-8840hs-16-gb-ram-1-tb-ssd/P306304P",
+          "status": "opened",
+          "matched_model": "UM3406HA-QL020W",
+          "rights_status": "not_declared",
+          "image_status": "Product unavailable; no usable image confirmed",
+          "note": "Khác hậu tố KD083W; chưa đủ kiểm chứng cấu hình/màu."
+        },
+        {
+          "url": "https://www.laptopmart.ae/products/asus-zenbook-14-oled-um3406",
+          "status": "http_404",
+          "rights_status": "not_reviewed",
+          "image_status": "not_available"
+        }
+      ],
+      "decision": "missing",
+      "reason": "Ảnh hãng thumbnail nhỏ và quyền cần thỏa thuận; nguồn thay thế chưa xác nhận/404."
+    },
+    {
+      "group": "ASUS Vivobook S 15 S5506MA | 15.6 inch",
+      "priority": "Hai cấu hình Ultra5/Ultra7 trong cùng mã S5506MA; ưu tiên hiệu quả theo nhóm.",
+      "members": [
+        "ASUS Vivobook S 15 S5506MA-MA022W",
+        "ASUS Vivobook S 15 S5506MA-MA023W"
+      ],
+      "sources": [
+        {
+          "url": "https://www.asus.com/us/laptops/for-home/vivobook/asus-vivobook-s-15-oled-s5506/",
+          "status": "opened",
+          "matched_model": "S5506 / Mist Blue",
+          "image_url": "https://dlcdnwebimgs.asus.com/gain/2de68c29-56e1-4a9b-a84e-d85fd170d60c/w800",
+          "image_status": "Observed gallery image with front-view alt; not downloaded or visually approved for shipping",
+          "rights_status": "restricted_without_written_agreement",
+          "rights_policy": "https://www.asus.com/terms_of_use_notice_privacy_policy/official-site/",
+          "note": "Có cả banner nhiều máy ở trang; chỉ lưu ứng viên gallery, chưa xác nhận màu MA022W/MA023W."
+        },
+        {
+          "url": "https://business.currys.co.uk/catalogue/computing/laptops/windows-laptop/asus-vivobook-s-15-oled-s5506ma-15-6-laptop-intel-core-ultra-7-1-tb-ssd-blue/N661372W",
+          "status": "opened",
+          "matched_model": "S5506MA-MA005W / Blue",
+          "rights_status": "not_declared",
+          "image_status": "candidate_only",
+          "note": "Màu Blue được nêu; chưa đối chiếu được với hậu tố022/023 trong dữ liệu."
+        },
+        {
+          "url": "https://www.expert-technomarkt.de/Notebooks/Asus-Vivobook-S15-S5506MA-MA005W-Quad-HD-Notebook-39%2C6-cm-15.6-Zoll-2880-x-1620-Pixel-16-GB-Ram-1-TB-SSD-Windows-11-Home-Intel-Core-i7-max.-4%2C8-GHz-Silber-Silber.17040248024.html",
+          "status": "redirect_to_category",
+          "resolved_url": "https://www.expert-technomarkt.de/Notebooks/",
+          "rights_status": "not_reviewed",
+          "image_status": "rejected",
+          "note": "Không lấy ảnh sản phẩm liên quan ở trang danh mục."
+        }
+      ],
+      "decision": "missing",
+      "reason": "Hãng cần thỏa thuận quyền ảnh; màu/SKU nguồn thay thế chưa đủ đối chiếu, nguồn thứ ba chuyển danh mục."
+    },
+    {
+      "group": "Lenovo LOQ 15IAX9 | 15.6 inch",
+      "priority": "Hai cấu hình 83GS001RVN/UVN, cùng model/thế hệ và kích thước; không dùng ảnh LOQ15IAX9E/IRX9.",
+      "members": [
+        "Lenovo LOQ 15IAX9 83GS001RVN",
+        "Lenovo LOQ 15IAX9 83GS001UVN"
+      ],
+      "sources": [
+        {
+          "url": "https://www.lenovo.com/us/en/p/laptops/loq-laptops/loq-15-series/lenovo-loq-15iax9/len101q0006",
+          "status": "opened_partial",
+          "matched_model": "15IAX9",
+          "rights_status": "requires_scope_review",
+          "rights_policy": "https://www.lenovo.com/us/en/legal/",
+          "image_status": "No isolated catalogue gallery confirmed in current page response",
+          "note": "PSREF xác nhận Luna Grey/15.6; điều khoản không cấp giấy phép bản quyền, chưa xác nhận quyền tái phân phối ảnh."
+        },
+        {
+          "url": "https://cellphones.com.vn/laptop-lenovo-loq-15iax9-83gs001rvn.html",
+          "status": "opened",
+          "matched_model": "83GS001RVN / Luna Grey",
+          "rights_status": "not_declared",
+          "image_url": "https://cdn2.cellphones.com.vn/358x/media/wysiwyg/placehoder.png",
+          "image_status": "rejected_placeholder",
+          "note": "Ảnh chính hiện là placeholder; không lấy ảnh bài đánh giá. Trang ghi12450HX/RTX3050/12GB, CSV ghi12450H/RTX2050; giữ nguyên dữ liệu."
+        }
+      ],
+      "decision": "missing",
+      "reason": "Trang hãng chưa có gallery packshot kiểm chứng/quyền; nguồn bán hàng trả placeholder và có mâu thuẫn cấu hình."
+    }
+  ],
+  "policies": [
+    {
+      "url": "https://www.asus.com/terms_of_use_notice_privacy_policy/official-site/",
+      "status": "No image rights granted without written agreement; new ASUS assets not imported."
+    },
+    {
+      "url": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "status": "Apple-owned/licensed photographs require written permission; no Apple-hosted photo imported. Existing retailer assets keep their prior not_declared state; ownership was not established by this general policy."
+    },
+    {
+      "url": "https://www.lenovo.com/us/en/legal/",
+      "status": "No copyright licence inferred; candidate assets pending scope/rights review."
+    }
+  ],
+  "notes": [
+    "Không gửi yêu cầu xin phép bên thứ ba. Không hotlink hoặc nhập ảnh nguồn có hạn chế để lấp placeholder.",
+    "Không đổi trạng thái hiển thị/rights của 67 ảnh hiện có. Đúng ngoại hình và quyền sử dụng được ghi riêng.",
+    "17 nhóm tái sử dụng được xem ở cấp mã/thế hệ/kích thước/màu; các nhóm chưa đủ căn cứ dừng ở ứng viên."
+  ],
+  "asset_deduplication": {
+    "previous_path": "images/laptops/1b87a08c850cc09a.webp",
+    "shared_path": "images/laptops/2c64441c79dece64.webp",
+    "sha256": "3bd03588a58ba36252c650342c6ae25253a1a64763c24a87ac22a92e4dee9a26",
+    "checked_date": "2026-10-26",
+    "reason": "Hai tệp đã tồn tại giống byte-for-byte. Giữ nguyên bằng chứng model/nguồn độc lập và trạng thái exact_model; chỉ gộp lưu trữ, không ghép ảnh mới theo tên model."
+  }
+}

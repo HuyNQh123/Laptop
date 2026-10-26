@@ -79,6 +79,7 @@ def image_metadata(name, manifest=None):
         'image_source_url': public_url(image.get('source_url')),
         'image_author': image.get('source_name', '') if valid else '',
         'image_representative': valid and image.get('match_level') == 'same_series_representative',
+        'image_source_model': image.get('representative_source_key', '') if valid else '',
         'image_width': image.get('width') if valid and type(image.get('width')) is int and 0 < image['width'] <= 1000 else 800,
         'image_height': image.get('height') if valid and type(image.get('height')) is int and 0 < image['height'] <= 1000 else 600,
         'image_license': image.get('license', '') if valid else '',

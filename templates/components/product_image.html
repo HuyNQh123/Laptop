@@ -11,7 +11,7 @@
     {% if laptop.has_image %}
     <figcaption class="image-credit">
         Ảnh sản phẩm: <a href="{{ laptop.image_source_url }}" target="_blank" rel="noopener noreferrer">{{ laptop.image_author }}</a>
-        {% if laptop.image_representative %}<span>Ảnh đại diện cùng dòng máy.</span>{% endif %}
+        {% if laptop.image_representative %}<span title="Ảnh của {{ laptop.image_source_model }}">Ảnh đại diện cùng dòng</span>{% endif %}
         {% if laptop.image_license and laptop.image_license_url %} · <a href="{{ laptop.image_license_url }}" target="_blank" rel="noopener noreferrer">{{ laptop.image_license }}</a>{% endif %}
     </figcaption>
     {% else %}

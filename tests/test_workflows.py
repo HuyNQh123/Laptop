@@ -52,6 +52,26 @@ class ImageManifestTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 json.loads(content, object_pairs_hook=unique_object)
 
+    def test_shared_assets_have_matching_exterior_evidence_and_separate_rights(self):
+        manifest=load_manifest()
+        representatives={name:entry for name,entry in manifest.items()
+                         if entry.get('match_level')=='same_series_representative'}
+        self.assertEqual(len(representatives),2)
+        for name,entry in representatives.items():
+            source=manifest[entry['representative_source_key']]
+            self.assertEqual(entry['path'],source['path'])
+            self.assertEqual(entry['sha256'],source['sha256'])
+            self.assertEqual(entry['rights_status'],source['rights_status'])
+            self.assertEqual(entry['representative_comparison']['source_color'],entry['representative_comparison']['target_color'])
+            self.assertGreaterEqual(len(entry['representative_comparison']['evidence_urls']),2)
+            self.assertIn(name,source['shared_with'])
+            self.assertIn(entry['representative_source_key'],image_metadata(name)['image_alt'])
+        assets={e['path'] for e in manifest.values() if e['verification_status']=='verified'}
+        summary=json.loads((ROOT/'data/image_audit_summary.json').read_text(encoding='utf8'))
+        self.assertEqual(len(assets),summary['unique_image_files'])
+        self.assertGreaterEqual(summary['verified']-len(assets),len(representatives))
+        self.assertEqual(len(assets),len({e['sha256'] for e in manifest.values() if e['verification_status']=='verified'}))
+
     def test_status_not_just_file_existence_controls_visibility(self):
         manifest=load_manifest()
         name=next(k for k,v in manifest.items() if v['verification_status']=='verified')
@@ -232,5 +252,21 @@ class WorkflowTests(unittest.TestCase):
             html=self.client.post('/predict',data=self.valid_form()).get_data(as_text=True)
         self.assertIn('Ảnh sản phẩm:',html)
         self.assertIn(load_manifest()[row['name']]['path'],html)
+
+    def test_representative_badge_and_source_identity_in_all_product_views(self):
+        name=next(n for n,e in load_manifest().items() if e['match_level']=='same_series_representative')
+        source=load_manifest()[name]['representative_source_key']
+        from urllib.parse import urlencode
+        html=self.client.get('/laptops?'+urlencode({'q':name})).get_data(as_text=True)
+        self.assertIn('Ảnh đại diện cùng dòng',html)
+        self.assertIn(source,html)
+        html=self.client.post('/compare',data={'laptop1':name,'laptop2':source,'attributes':['ram','storage','price']}).get_data(as_text=True)
+        self.assertIn('Ảnh đại diện cùng dòng',html)
+        row=next(r for r in self.rows if r['name']==name)
+        row={**row,**{key:float(row[key]) for key in ['price','ram','storage','cpu_score','gpu_score','screen_size','refresh_rate','weight','battery','rating']},'price_diff_str':'+0 đ','similarity_pct':99.5}
+        with patch('src.price_prediction.recommend_similar_laptops',return_value=[row]):
+            html=self.client.post('/predict',data=self.valid_form()).get_data(as_text=True)
+        self.assertIn('Ảnh đại diện cùng dòng',html)
+        self.assertIn(load_manifest()[name]['path'],html)
 
 if __name__=='__main__': unittest.main()

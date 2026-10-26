@@ -3426,15 +3426,18 @@
       "Copyright © CÔNG TY CỔ PHẦN DỊCH VỤ THƯƠNG MẠI MINH AN GROUP. \n    Giấy phép kinh doanh: 0108588845 - do sở KH & ĐT TP. Hà Nội cấp ngày 16/01/2019, đăng ký thay đổi lần 2 ngày 12/05/2022."
     ],
     "rights_checked_scope": "Nội dung công khai trên trang sản phẩm; không suy diễn quyền từ việc HTTP 200.",
-    "source_rejections": []
+    "source_rejections": [],
+    "shared_with": [
+      "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE"
+    ]
   },
   "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE": {
     "laptop_key": "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE",
     "laptop_name": "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE",
-    "path": "",
-    "verification_status": "missing",
-    "missing_reason": "model_mismatch",
-    "note": "Trang tìm được chuyển hướng hoặc không xác nhận đúng mã model; không lấy ảnh sản phẩm khác.",
+    "path": "images/laptops/346564c20846a678.webp",
+    "verification_status": "verified",
+    "missing_reason": "",
+    "note": "Ảnh đại diện cùng dòng; chỉ khác RAM. Model ảnh nguồn: Apple MacBook Air 13 M1 (2020) 8GB 256GB MGN63SA/A. Quyền sử dụng giữ nguyên trạng thái của nguồn ảnh, chưa được xác nhận cấp phép.",
     "checked_date": "2026-10-26",
     "search_query": "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE mua laptop chính hãng",
     "discovered_product_urls": [
@@ -3451,17 +3454,84 @@
       }
     ],
     "pilot": false,
-    "match_level": "unverified",
-    "image_type": "",
-    "visual_checked": false,
-    "source_url": "https://www.thegioididong.com/laptop/apple-macbook-air-m1-2020-z124000de?itm_content=Listing_Product_1425599",
-    "image_url": "",
-    "model_evidence": "",
-    "rights_status": "not_reviewed",
-    "rights_note": "",
+    "match_level": "same_series_representative",
+    "image_type": "catalogue",
+    "visual_checked": true,
+    "source_url": "https://minhancomputer.com/laptop-apple-macbook-air-m1-mgn63sa-a.html",
+    "image_url": "https://minhancomputercdn.com/media/product/9104_apple_macbook_air_m1_mgn63sa_a_3.jpg",
+    "model_evidence": "Đã xem ảnh: một laptop mở máy, toàn bộ thân và màn hình trong khung; nền trắng, không có bối cảnh, banner hay sản phẩm ghép. Đối chiếu mã model trên tiêu đề trang và ảnh thuộc gallery của sản phẩm.",
+    "rights_status": "not_declared",
+    "rights_note": "Trang sản phẩm được kiểm tra không công bố giấy phép mở cho ảnh. Lưu nguồn để đối chiếu; không khẳng định ảnh thuộc phạm vi công cộng hoặc được cấp giấy phép mở.",
     "license": "",
     "license_url": "",
-    "source_rejections": []
+    "resolved_source_url": "https://minhancomputer.com/laptop-apple-macbook-air-m1-mgn63sa-a.html",
+    "source_title": "Laptop Apple Macbook Air M1 MGN63SA/A | Hàng Mới Về",
+    "source_name": "minhancomputer.com",
+    "matched_model": "Laptop Apple Macbook Air M1 MGN63SA/A (8CPU and 7GPU | RAM 8GB | SSD 256GB | 13.3 inch | Space Grey)",
+    "gallery_binding": "product gallery:   /   / product-detail-page container  / product-info-top bg-white d-flex flex-wrap  / product-info-left  / product-info-image js-big-image /  ",
+    "width": 1000,
+    "height": 667,
+    "original_width": 1440,
+    "original_height": 960,
+    "original_sha256": "aa7dfd6284d1999194e753c9de7b5cbb1df69de5dff09e60c9854ff9714c614e",
+    "sha256": "153d0ccb994341e23ff1594c883cf8e5791a42288d511600a083be331e2be60a",
+    "alt": "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE — ảnh đại diện cùng dòng từ Apple MacBook Air 13 M1 (2020) 8GB 256GB MGN63SA/A",
+    "modifications": "Thu nhỏ theo tỷ lệ, chuyển WebP; giữ nguyên ảnh sản phẩm.",
+    "rights_notices": [
+      "Copyright © CÔNG TY CỔ PHẦN DỊCH VỤ THƯƠNG MẠI MINH AN GROUP. \n    Giấy phép kinh doanh: 0108588845 - do sở KH & ĐT TP. Hà Nội cấp ngày 16/01/2019, đăng ký thay đổi lần 2 ngày 12/05/2022."
+    ],
+    "rights_checked_scope": "Nội dung công khai trên trang sản phẩm; không suy diễn quyền từ việc HTTP 200.",
+    "source_rejections": [],
+    "representative_source_key": "Apple MacBook Air 13 M1 (2020) 8GB 256GB MGN63SA/A",
+    "representative_comparison": {
+      "body_model": "MacBook Air M1 2020, thân nhôm hình nêm",
+      "generation": "M1, 2020",
+      "screen_size": "13.3 inch",
+      "source_color": "Space Grey",
+      "target_color": "Space Grey",
+      "differences": "RAM 8GB → 16GB; cùng SSD 256GB, M1 8CPU/7GPU.",
+      "evidence_urls": [
+        "https://support.apple.com/en-gb/111883",
+        "https://tanhungphatit.vn/products/macbook-air-13-3-inch-z124000de-xam-apple-m1"
+      ],
+      "checked_date": "2026-10-26"
+    },
+    "representative_evidence": "Apple Support M1 2020 xác nhận màn hình 13.3 inch, cùng kích thước vỏ và tùy chọn RAM 8/16GB. Trang Tân Hưng Phát ghi đúng Z124000DE, 16GB/256GB, M1 8CPU/7GPU, màu Xám; nguồn MGN63 đang có ghi Space Grey. Đã xem lại ảnh catalogue nguồn, cùng thân nhôm hình nêm M1, không dùng ảnh Air M2/M3 hay Pro.",
+    "previous_missing_review": {
+      "laptop_key": "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE",
+      "laptop_name": "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE",
+      "path": "",
+      "verification_status": "missing",
+      "missing_reason": "model_mismatch",
+      "note": "Trang tìm được chuyển hướng hoặc không xác nhận đúng mã model; không lấy ảnh sản phẩm khác.",
+      "checked_date": "2026-10-26",
+      "search_query": "Apple MacBook Air 13 M1 (2020) 16GB 256GB Z124000DE mua laptop chính hãng",
+      "discovered_product_urls": [
+        "https://www.thegioididong.com/laptop/apple-macbook-air-m1-2020-z124000de?itm_content=Listing_Product_1425599"
+      ],
+      "attempts": [
+        {
+          "source_url": "https://www.thegioididong.com/laptop/apple-macbook-air-m1-2020-z124000de?itm_content=Listing_Product_1425599",
+          "resolved_url": "https://www.thegioididong.com/laptop/apple-macbook-air-m1-2020-z124000de?itm_content=Listing_Product_1425599",
+          "title": "MacBook Air M1 2020 16GB 256GB | Chính hãng, mua trả chậm 0% lãi suất",
+          "h1": "Apple MacBook Air M1 2020 16GB/256GB/7-core GPU",
+          "http_status": 200,
+          "reason": "model_mismatch"
+        }
+      ],
+      "pilot": false,
+      "match_level": "unverified",
+      "image_type": "",
+      "visual_checked": false,
+      "source_url": "https://www.thegioididong.com/laptop/apple-macbook-air-m1-2020-z124000de?itm_content=Listing_Product_1425599",
+      "image_url": "",
+      "model_evidence": "",
+      "rights_status": "not_reviewed",
+      "rights_note": "",
+      "license": "",
+      "license_url": "",
+      "source_rejections": []
+    }
   },
   "Apple MacBook Air 13 M2 (2022) 8GB 256GB MLXW3SA/A": {
     "laptop_key": "Apple MacBook Air 13 M2 (2022) 8GB 256GB MLXW3SA/A",
@@ -3953,6 +4023,9 @@
         "reason": "rights_restricted",
         "notice": "All rights reserved"
       }
+    ],
+    "shared_with": [
+      "Apple MacBook Pro 14 M3 Max (2023) 36GB 1TB MRX53SA/A"
     ]
   },
   "Apple MacBook Pro 16 M3 Pro (2023) 18GB 512GB MRW13SA/A": {
@@ -5069,15 +5142,18 @@
     "modifications": "Thu nhỏ theo tỷ lệ, chuyển WebP; giữ nguyên ảnh sản phẩm.",
     "rights_notices": [],
     "rights_checked_scope": "Nội dung công khai trên trang sản phẩm; không suy diễn quyền từ việc HTTP 200.",
-    "source_rejections": []
+    "source_rejections": [],
+    "shared_with": [
+      "ASUS TUF Gaming F15 FX506HF-HN017W"
+    ]
   },
   "ASUS TUF Gaming F15 FX506HF-HN017W": {
     "laptop_key": "ASUS TUF Gaming F15 FX506HF-HN017W",
     "laptop_name": "ASUS TUF Gaming F15 FX506HF-HN017W",
-    "path": "",
-    "verification_status": "missing",
-    "missing_reason": "not_found",
-    "note": "Các ảnh tải được là ảnh bối cảnh người dùng, ảnh có nhãn quảng cáo hoặc ảnh ghép nhiều máy; chưa tìm được ảnh catalogue đủ chuẩn.",
+    "path": "images/laptops/616dfc4fb10503be.webp",
+    "verification_status": "verified",
+    "missing_reason": "",
+    "note": "Ảnh đại diện cùng dòng; chỉ khác RAM. Model ảnh nguồn: ASUS TUF Gaming F15 FX506HF-HN014W. Quyền sử dụng giữ nguyên trạng thái của nguồn ảnh, chưa được xác nhận cấp phép.",
     "checked_date": "2026-10-26",
     "search_query": "ASUS TUF Gaming F15 FX506HF-HN017W mua laptop chính hãng",
     "discovered_product_urls": [
@@ -5103,17 +5179,91 @@
       }
     ],
     "pilot": false,
-    "match_level": "unverified",
-    "image_type": "",
-    "visual_checked": false,
-    "source_url": "https://maytinhquangmau.vn/san-pham/asus-tuf-gaming-fx506hf-hn017w-i5-11400h/",
-    "image_url": "",
-    "model_evidence": "",
-    "rights_status": "not_reviewed",
-    "rights_note": "",
+    "match_level": "same_series_representative",
+    "image_type": "catalogue",
+    "visual_checked": true,
+    "source_url": "https://laptopnew.vn/laptop-asus-tuf-gaming-f15-fx506hf-hn014w",
+    "image_url": "https://bizweb.dktcdn.net/100/372/934/products/asus-tuf-gaming-f15-fa506-4.jpg?v=1719408979737",
+    "model_evidence": "Đã xem ảnh: một laptop mở máy, toàn bộ thân và màn hình trong khung; nền trắng, không có bối cảnh, banner hay sản phẩm ghép. Đối chiếu mã model trên tiêu đề trang và ảnh thuộc gallery của sản phẩm.",
+    "rights_status": "not_declared",
+    "rights_note": "Trang sản phẩm được kiểm tra không công bố giấy phép mở cho ảnh. Lưu nguồn để đối chiếu; không khẳng định ảnh thuộc phạm vi công cộng hoặc được cấp giấy phép mở.",
     "license": "",
     "license_url": "",
-    "source_rejections": []
+    "resolved_source_url": "https://laptopnew.vn/laptop-asus-tuf-gaming-f15-fx506hf-hn014w",
+    "source_title": "Laptop Asus Tuf Gaming F15 FX506HF HN014W\nLAPTOPNEW.vn",
+    "source_name": "laptopnew.vn",
+    "matched_model": "Laptop ASUS TUF Gaming F15. Part: FX506HF HN014W",
+    "gallery_binding": "product gallery: t col-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 mb-3  / product-fixed  / product-main-slide swiper-container  / swiper-wrapper  / swiper-slide asus-tuf-gaming-f15-fx506-cong-ket-noi-phai  / position-relative d-block aspect ratio1by1 modal-open rounded ",
+    "width": 550,
+    "height": 550,
+    "original_width": 550,
+    "original_height": 550,
+    "original_sha256": "f4359e9f23ba787e80b4e8924756e1b6155270e3d9ac3de07497e152ba19d2b5",
+    "sha256": "ec96fb9ca5881c34971c673e982b22c43ccd4a52968c986af4ff1879d1ba3187",
+    "alt": "ASUS TUF Gaming F15 FX506HF-HN017W — ảnh đại diện cùng dòng từ ASUS TUF Gaming F15 FX506HF-HN014W",
+    "modifications": "Thu nhỏ theo tỷ lệ, chuyển WebP; giữ nguyên ảnh sản phẩm.",
+    "rights_notices": [],
+    "rights_checked_scope": "Nội dung công khai trên trang sản phẩm; không suy diễn quyền từ việc HTTP 200.",
+    "source_rejections": [],
+    "representative_source_key": "ASUS TUF Gaming F15 FX506HF-HN014W",
+    "representative_comparison": {
+      "body_model": "FX506HF",
+      "generation": "TUF F15 FX506, Intel 11th gen / 2021 platform",
+      "screen_size": "15.6 inch",
+      "source_color": "Graphite Black / Xám Đen",
+      "target_color": "Graphite Black / Xám Đen",
+      "differences": "RAM 8GB → 16GB; cùng i5-11400H, RTX 2050, SSD 512GB.",
+      "evidence_urls": [
+        "https://www.asus.com/eg-en/laptops/for-gaming/tuf-gaming/2021-asus-tuf-gaming-f15/techspec/",
+        "https://sp-one.vn/product/laptop-asus-tuf-gaming-fx506hf-hn014w/"
+      ],
+      "checked_date": "2026-10-26"
+    },
+    "representative_evidence": "ASUS techspec xác nhận FX506HF thuộc TUF F15 FX506, 15.6 inch. SP-One URL kết thúc HN014W nhưng tiêu đề và cấu hình thực tế là HN017W, RAM 16GB, i5-11400H/RTX2050, Graphite Black. Nguồn Laptopnew của HN014W ghi RAM 8GB và màu Xám Đen (Grey). Đối chiếu cùng FX506HF/thế hệ/kích thước, chỉ khác RAM; đã xem lại ảnh nguyên máy nền trắng.",
+    "previous_missing_review": {
+      "laptop_key": "ASUS TUF Gaming F15 FX506HF-HN017W",
+      "laptop_name": "ASUS TUF Gaming F15 FX506HF-HN017W",
+      "path": "",
+      "verification_status": "missing",
+      "missing_reason": "not_found",
+      "note": "Các ảnh tải được là ảnh bối cảnh người dùng, ảnh có nhãn quảng cáo hoặc ảnh ghép nhiều máy; chưa tìm được ảnh catalogue đủ chuẩn.",
+      "checked_date": "2026-10-26",
+      "search_query": "ASUS TUF Gaming F15 FX506HF-HN017W mua laptop chính hãng",
+      "discovered_product_urls": [
+        "https://www.chotot.com/mua-ban-laptop-thanh-pho-bien-hoa-dong-nai/135104619.htm",
+        "https://maytinhquangmau.vn/san-pham/asus-tuf-gaming-fx506hf-hn017w-i5-11400h/",
+        "https://vienmaytinh.com/products/laptop-asus-tuf-gaming-f15-fx506hf-hn017w",
+        "https://thegioimaytinh.net.vn/products/laptop-asus-tuf-gaming-fx506hf-hn017w-i5-11400h-16gb-512gb-rtx-2050-4gb-15-6-inch-fhd"
+      ],
+      "attempts": [
+        {
+          "source_url": "https://maytinhquangmau.vn/san-pham/asus-tuf-gaming-fx506hf-hn017w-i5-11400h/",
+          "resolved_url": "https://maytinhquangmau.vn/san-pham/asus-tuf-gaming-fx506hf-hn017w-i5-11400h/",
+          "title": "Asus TUF Gaming FX506HF-HN017W i5 11400H - CTY TNHH MÁY TÍNH QUANG MẬU BIÊN HÒA",
+          "h1": "Asus TUF Gaming FX506HF-HN017W i5 11400H",
+          "http_status": 200
+        },
+        {
+          "source_url": "https://www.chotot.com/mua-ban-laptop-thanh-pho-bien-hoa-dong-nai/135104619.htm",
+          "resolved_url": "https://www.chotot.com/mua-ban-laptop-thanh-pho-bien-hoa-dong-nai/135104619.htm",
+          "title": "ASUS TUF Gaming F15 FX506HF-HN017W 16GB/512GB RTX - 135104619",
+          "h1": "ASUS TUF Gaming F15 FX506HF-HN017W 16GB/512GB RTX",
+          "http_status": 200
+        }
+      ],
+      "pilot": false,
+      "match_level": "unverified",
+      "image_type": "",
+      "visual_checked": false,
+      "source_url": "https://maytinhquangmau.vn/san-pham/asus-tuf-gaming-fx506hf-hn017w-i5-11400h/",
+      "image_url": "",
+      "model_evidence": "",
+      "rights_status": "not_reviewed",
+      "rights_note": "",
+      "license": "",
+      "license_url": "",
+      "source_rejections": []
+    }
   },
   "ASUS TUF Gaming A15 FA507NU-LP034W": {
     "laptop_key": "ASUS TUF Gaming A15 FA507NU-LP034W",
@@ -8417,7 +8567,7 @@
   "Apple MacBook Pro 14 M3 Max (2023) 36GB 1TB MRX53SA/A": {
     "laptop_key": "Apple MacBook Pro 14 M3 Max (2023) 36GB 1TB MRX53SA/A",
     "laptop_name": "Apple MacBook Pro 14 M3 Max (2023) 36GB 1TB MRX53SA/A",
-    "path": "images/laptops/1b87a08c850cc09a.webp",
+    "path": "images/laptops/2c64441c79dece64.webp",
     "verification_status": "verified",
     "missing_reason": "",
     "note": "Ảnh catalogue đối chiếu đúng mã model trên trang sản phẩm. Thông số dữ liệu gốc được giữ nguyên.",
@@ -8463,7 +8613,14 @@
       "ng đi]  \n           \n         \n       \n     \n   \n \n\n \n   \n     \n      Copyright © 2020 Công ty TNHH Máy tính và Viễn thông An Khang. GPKD số 0103728344 do Sở Kế Hoạch và Đầu Tư thành phố Hà Nội cấp.\n     \n   \n \n\n \n\n \n  \n \n\n \n   \n     \n     \n       1900 2655"
     ],
     "rights_checked_scope": "Nội dung công khai trên trang sản phẩm; không suy diễn quyền từ việc HTTP 200.",
-    "source_rejections": []
+    "source_rejections": [],
+    "asset_deduplication": {
+      "previous_path": "images/laptops/1b87a08c850cc09a.webp",
+      "shared_path": "images/laptops/2c64441c79dece64.webp",
+      "sha256": "3bd03588a58ba36252c650342c6ae25253a1a64763c24a87ac22a92e4dee9a26",
+      "checked_date": "2026-10-26",
+      "reason": "Hai tệp đã tồn tại giống byte-for-byte. Giữ nguyên bằng chứng model/nguồn độc lập và trạng thái exact_model; chỉ gộp lưu trữ, không ghép ảnh mới theo tên model."
+    }
   },
   "Apple MacBook Air 15 M3 (2024) 24GB 512GB Z1BR0006H": {
     "laptop_key": "Apple MacBook Air 15 M3 (2024) 24GB 512GB Z1BR0006H",

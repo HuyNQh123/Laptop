@@ -54,7 +54,7 @@ before the source commit. Virtual environments and local caches are ignored.
 
 ## Verification (2026-10-26)
 
-- 17 regression tests cover routes, real prediction/comparison, form validation, catalog search/filter/sort/pagination,
+- 21 regression/integration tests cover routes, real prediction/comparison, form validation, catalog search/filter/sort/pagination,
   unique mappings, image decoding/hash/size, catalogue visual gate, path confinement and separate rights states.
 - Tests use read-only SQLite, copied model and temporary output directories; input/model/database hashes are checked.
 - Browser checks and screenshots are documented in `docs/laptop-image-qa.md` after the final asset review.
@@ -64,3 +64,8 @@ before the source commit. Virtual environments and local caches are ignored.
 The working branch stays `feat/refresh-ui`. Main through a8075b8 has now been merged into this branch,
 including its sources/statistics changes. The two template conflicts were resolved by combining their behavior;
 see `docs/main-merge-review.md` for integration checks. PR #1 remains open and has not been merged into main.
+
+Targeted image pass (2026-10-26): 69 laptops have imagery (67 exact, 2 same-exterior representatives),
+156 still use the placeholder. Reusing assets and consolidating one byte-identical legacy duplicate leaves 66 WebP files; existing images
+and rights states are retained. See `docs/targeted-image-pass.md`, `data/image_targeted_review.json`,
+and `data/image_family_inventory.json` for all missing groups, match evidence and pending sources.

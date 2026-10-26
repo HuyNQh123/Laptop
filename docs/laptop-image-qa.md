@@ -41,3 +41,7 @@ ghi rõ trong manifest. Module làm sạch dữ liệu giữ nguyên và còn c�
 Đã kết hợp ba commit mới trên main đến a8075b8 vào nhánh giao diện, giải quyết hai template
 xung đột và giữ nguyên 67 ảnh catalogue. Chi tiết kiểm tra sau kết hợp tại
 [main-merge-review.md](main-merge-review.md). Chưa merge PR vào main.
+
+Lượt bổ sung theo nhóm: 69 máy có ảnh (67 đúng model, 2 đại diện), 66 tệp dùng chung;
+21 test đạt. Xem [targeted-image-pass.md](targeted-image-pass.md) để đọc kết quả hiện tại,
+nguồn ứng viên và ảnh kiểm tra giao diện. Các số liệu phía trên mô tả lượt kiểm tra trước đó.
