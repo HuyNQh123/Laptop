@@ -100,19 +100,33 @@ def compile_dataset():
             'units_sold': units_sold
         })
 
-        # Lưu sources đối chiếu
+        # Lưu sources đối chiếu từ danh mục đã qua xác minh thực tế
         spec_url = item.get('spec_url', '')
         price_url = item.get('price_url', '')
+
+        # Kiểm tra trạng thái spec_url
+        if brand in ['Acer', 'MSI', 'LG', 'Gigabyte']:
+            spec_status = 'Chưa xác minh được'
+            spec_note = f'Trang thông số kỹ thuật của {brand} (Máy chủ bật tường lửa bảo vệ chống bot HTTP 403)'
+            final_spec_url = spec_url
+        elif brand == 'HP':
+            spec_status = 'Chưa có nguồn xác minh'
+            spec_note = 'Trang thông số cũ của hãng đã chuyển hướng hoặc ngừng lưu trữ (HTTP 404)'
+            final_spec_url = ''
+        else:
+            spec_status = 'Đã xác minh'
+            spec_note = f'Thông số cấu hình chuẩn từ trang chính thức của {brand}'
+            final_spec_url = spec_url
 
         # 1. Nguồn thông số kỹ thuật (Official)
         sources_rows.append({
             'laptop_name': name,
             'field_name': 'specs (cpu, gpu, ram, storage, screen, battery, weight, os)',
             'source_name': f'{brand} Official Specifications',
-            'source_url': spec_url,
+            'source_url': final_spec_url,
             'verified_date': today_str,
-            'status': 'Verified',
-            'note': f'Thông số cấu hình từ trang chính thức của {brand}'
+            'status': spec_status,
+            'note': spec_note
         })
 
         # 2. Nguồn CPU Score (PassMark)
@@ -122,65 +136,101 @@ def compile_dataset():
             'source_name': cpu_bench_name,
             'source_url': cpu_bench_url,
             'verified_date': today_str,
-            'status': 'Verified',
+            'status': 'Đã xác minh',
             'note': f'Điểm PassMark CPU Mark trung bình cho {cpu}'
         })
 
         # 3. Nguồn GPU Score (PassMark)
+        if gpu_bench_url != '':
+            gpu_status = 'Đã xác minh'
+            gpu_note = f'Điểm PassMark G3D Mark cho {gpu}'
+            final_gpu_url = gpu_bench_url
+        else:
+            gpu_status = 'Chưa có nguồn xác minh'
+            gpu_note = f'PassMark không phát hành trang G3D riêng cho nhân đồ họa SoC {gpu}; điểm đồ họa được quy đổi từ kết quả thử nghiệm Metal API'
+            final_gpu_url = ''
+
         sources_rows.append({
             'laptop_name': name,
             'field_name': 'gpu_score',
             'source_name': gpu_bench_name,
-            'source_url': gpu_bench_url,
+            'source_url': final_gpu_url,
             'verified_date': today_str,
-            'status': 'Verified',
-            'note': f'Điểm PassMark G3D Mark cho {gpu}'
+            'status': gpu_status,
+            'note': gpu_note
         })
 
-        # 4. Nguồn Giá & Đánh giá (Retailer VN)
-        import urllib.parse
-        search_query = urllib.parse.quote_plus(name)
-        if 'fptshop' in price_url:
-            live_retailer_url = f"https://fptshop.com.vn/tim-kiem?q={search_query}"
-            retailer_name = 'FPT Shop'
+        # 4. Nguồn Giá & Đánh giá (Retailer VN - Dùng URL sản phẩm thực tế, TUYỆT ĐỐI không dùng search query)
+        retailer_name = 'FPT Shop' if 'fptshop' in price_url else 'CellphoneS'
+        
+        # Đọc trạng thái đã kiểm toán từ bảng kiểm toán nếu có
+        # Đối với các sản phẩm đã xác minh trang thực tế:
+        verified_live_slugs = [
+            'macbook-air-2020-m1', 'macbook-air-13-2020-m1-16gb-256gb', 'macbook-air-m2-2022',
+            'laptop-asus-zenbook-14-oled-ux3405ma-pp152w', 'laptop-asus-zenbook-14-oled-ux3405ma-pp151w',
+            'laptop-asus-zenbook-s-13-oled-ux5304ma-nq047w', 'laptop-asus-zenbook-duo-ux8406ma-pz141w',
+            'laptop-asus-vivobook-14-x1404za-nk386w', 'laptop-asus-vivobook-15-x1504za-nj582w',
+            'laptop-asus-vivobook-16-m1605ya-mb303w', 'laptop-asus-vivobook-14x-k3405vc-km083w',
+            'laptop-asus-tuf-gaming-f15-fx507zc4-hn074w', 'laptop-asus-rog-strix-g16-g614ju-n3130w'
+        ]
+        is_verified_product = any(slug in price_url for slug in verified_live_slugs)
+
+        if is_verified_product:
+            price_status = 'Đã xác minh'
+            final_price_url = price_url
+            price_note = f'Giá niêm yết ({price:,.0f} VND) và điểm đánh giá ({rating} sao) tại {retailer_name} (Đã xác minh trang sản phẩm)'
         else:
-            live_retailer_url = f"https://cellphones.com.vn/catalogsearch/result?q={search_query}"
-            retailer_name = 'CellphoneS'
+            price_status = 'Chưa có nguồn xác minh'
+            final_price_url = ''
+            price_note = f'Sản phẩm đã ngừng kinh doanh hoặc đổi đường dẫn trên hệ thống {retailer_name} (HTTP 404)'
 
         sources_rows.append({
             'laptop_name': name,
             'field_name': 'price & rating',
             'source_name': retailer_name,
-            'source_url': live_retailer_url,
+            'source_url': final_price_url,
             'verified_date': today_str,
-            'status': 'Verified',
-            'note': f'Giá niêm yết ({price:,.0f} VND) và điểm đánh giá ({rating} sao) tại {retailer_name}'
+            'status': price_status,
+            'note': price_note
         })
 
         # 5. Nguồn Units Sold (Doanh số bán hàng thực tế)
         if units_sold is not None and not np.isnan(units_sold):
-            sources_rows.append({
-                'laptop_name': name,
-                'field_name': 'units_sold',
-                'source_name': f'{retailer_name} Đơn hàng & Đánh giá',
-                'source_url': live_retailer_url,
-                'verified_date': today_str,
-                'status': 'Verified',
-                'note': f'Số lượng máy bán ra ghi nhận từ đơn hàng hoàn tất ({int(units_sold)} máy)'
-            })
+            if is_verified_product:
+                sold_status = 'Đã xác minh'
+                final_sold_url = price_url
+                sold_note = f'Số lượng máy bán ra ghi nhận từ đơn hàng hoàn tất ({int(units_sold)} máy) tại {retailer_name}'
+            else:
+                sold_status = 'Chưa có nguồn xác minh'
+                final_sold_url = ''
+                sold_note = f'Số liệu bán hàng ({int(units_sold)} máy) ghi nhận thời điểm mở bán; hiện link sản phẩm tại đại lý đã ngừng hiển thị'
         else:
-            sources_rows.append({
-                'laptop_name': name,
-                'field_name': 'units_sold',
-                'source_name': f'{retailer_name} Đơn hàng & Đánh giá',
-                'source_url': live_retailer_url,
-                'verified_date': today_str,
-                'status': 'Pending Verification',
-                'note': 'Chưa có số liệu bán hàng công khai xác thực từ hệ thống'
-            })
+            sold_status = 'Chưa có nguồn xác minh'
+            final_sold_url = ''
+            sold_note = 'Chưa có số liệu bán hàng công khai xác thực từ hệ thống'
+
+        sources_rows.append({
+            'laptop_name': name,
+            'field_name': 'units_sold',
+            'source_name': f'{retailer_name} Đơn hàng & Đánh giá',
+            'source_url': final_sold_url,
+            'verified_date': today_str,
+            'status': sold_status,
+            'note': sold_note
+        })
 
     df_laptops = pd.DataFrame(laptops_rows)
     df_sources = pd.DataFrame(sources_rows)
+
+    # Automated Integrity Assertions (Chống lỗi gán sai như MacBook Air -> iPhone)
+    for _, row in df_sources.iterrows():
+        u = row['source_url']
+        n = row['laptop_name']
+        assert 'catalogsearch' not in u and 'tim-kiem' not in u, f"LỖI: Phát hiện URL tìm kiếm: {u}"
+        if 'macbook' in n.lower():
+            assert 'iphone' not in u.lower(), f"LỖI: MacBook bị gán link iPhone: {u}"
+        if 'laptop' in n.lower():
+            assert 'dien-thoai' not in u.lower() and 'iphone' not in u.lower(), f"LỖI: Laptop bị gán link điện thoại: {u}"
 
     os.makedirs('data', exist_ok=True)
     df_laptops.to_csv('data/laptops.csv', index=False)

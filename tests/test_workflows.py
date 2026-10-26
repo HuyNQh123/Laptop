@@ -116,6 +116,62 @@ class WorkflowTests(unittest.TestCase):
                 self.assertEqual(response.status_code,200)
                 self.assertIn(b'<html lang="vi">',response.data)
 
+    def test_merged_analysis_uses_new_context_without_undefined_variables(self):
+        from flask import template_rendered
+        from jinja2 import StrictUndefined
+        from src.data_analysis import NUM_COLS, NUMERIC_COLS
+        contexts=[]
+        def capture(sender, template, context, **extra):
+            contexts.append(context)
+        old_undefined=self.app.jinja_env.undefined
+        self.app.jinja_env.undefined=StrictUndefined
+        template_rendered.connect(capture,self.app)
+        try:
+            response=self.client.get('/analysis')
+            self.assertEqual(response.status_code,200)
+            self.assertEqual(self.client.get('/stats').status_code,200)
+        finally:
+            self.app.jinja_env.undefined=old_undefined
+            template_rendered.disconnect(capture,self.app)
+        context=contexts[0]
+        self.assertEqual(context['num_cols'],NUM_COLS)
+        self.assertIn('units_sold',NUMERIC_COLS)  # main's clustering compatibility export
+        self.assertEqual(len(context['stats']),len(NUM_COLS)*(len(context['brands'])+1))
+        self.assertEqual(len(context['best_value_laptops']),5)
+        self.assertEqual(len(context['top_selling']),5)
+        html=response.get_data(as_text=True)
+        for col in NUM_COLS:
+            self.assertEqual(len(context['top_bottom'][col]['top3']),3)
+            for prefix in ['hist_overall_','hist_by_brand_']:
+                self.assertIn('charts/'+prefix+col+'.png',html)
+                self.assertTrue((ROOT/'static/charts'/f'{prefix}{col}.png').is_file())
+        self.assertIn('hardware_vs_price_analysis.png',html)
+        price=next(s for s in context['stats'] if s['brand']=='Toàn bộ' and s['feature']=='price')
+        self.assertIn(self.app.jinja_env.filters['vnd'](price['median']),html)
+        self.assertIn('id="stats-brand"',html)
+        self.assertIn('id="stats-search"',html)
+        self.assertIn('/download/results',html)
+        self.assertTrue(Path('data/laptop_results.csv').exists())
+
+    def test_download_statistics_and_strict_catalog_contract(self):
+        from jinja2 import StrictUndefined
+        response=self.client.get('/download/results')
+        self.assertEqual(response.status_code,200)
+        self.assertIn('attachment',response.headers['Content-Disposition'])
+        header=response.get_data(as_text=True).lstrip('\ufeff').splitlines()[0]
+        self.assertTrue({'brand','feature','mean','median','std','count'} <= set(header.split(',')))
+        response.close()
+        old_undefined=self.app.jinja_env.undefined
+        self.app.jinja_env.undefined=StrictUndefined
+        try:
+            html=self.client.get('/laptops?quick=apple&sort=price&direction=desc&per_page=10&page=2').get_data(as_text=True)
+            self.assertIn('name="per_page"',html)
+            self.assertIn('Ảnh sản phẩm:',html)
+            self.assertIn('data-source-id=',html)
+            self.assertIn('quick=apple',html)
+        finally:
+            self.app.jinja_env.undefined=old_undefined
+
     def test_real_comparison_and_invalid_selections(self):
         form={'laptop1':self.verified_names[0],'laptop2':self.verified_names[1],
               'attributes':['cpu_score','gpu_score','ram','storage','price']}

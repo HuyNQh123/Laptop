@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file
 import sys
 import os
 import time
@@ -8,7 +8,10 @@ import math
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from src.models import db, Laptop, LaptopSource
 from src.data_cleaning import load_data, clean_data
-from src.data_analysis import get_top_bottom, calculate_statistics, create_charts
+from src.data_analysis import (
+    NUM_COLS, COL_LABELS, compute_eda,
+    get_top_bottom, calculate_statistics, create_charts
+)
 from src.radar_chart import create_radar_chart
 from src.catalog import catalog_context, product_view
 
@@ -79,53 +82,47 @@ def analysis():
         return "Dataset not found", 404
         
     df_clean = clean_data(df_raw)
+    laptops_data = df_clean.to_dict(orient='records')
     
-    # Thống kê tổng quan
-    total_laptops = len(df_clean)
-    total_brands = df_clean['brand'].nunique()
-    
-    avg_price = df_clean['price'].mean()
-    med_price = df_clean['price'].median()
-    std_price = df_clean['price'].std()
-    
-    # Top/Bottom
-    top_price, bottom_price = get_top_bottom(df_clean, 'price', 3)
-    top_cpu, bottom_cpu = get_top_bottom(df_clean, 'cpu_score', 3)
-    top_gpu, bottom_gpu = get_top_bottom(df_clean, 'gpu_score', 3)
-    
-    # Bán chạy nhất
-    if 'units_sold' in df_clean.columns:
-        best_sellers, _ = get_top_bottom(df_clean, 'units_sold', 5)
-    else:
-        best_sellers = []
-    
-    # Bảng phân tích theo brand
-    brand_stats = df_clean.groupby('brand').agg({
-        'price': ['mean', 'median', 'std'],
-        'cpu_score': 'mean',
-        'gpu_score': 'mean'
-    }).reset_index()
-    # Làm phẳng multi-level columns
-    brand_stats.columns = ['Brand', 'Mean Price', 'Median Price', 'Std Price', 'Mean CPU', 'Mean GPU']
-    brand_stats_dict = brand_stats.to_dict(orient='records')
-    
-    # Tạo charts (ghi đè vào file ảnh cũ nếu có)
-    create_charts(df_clean)
-    
-    # Lưu file results2.csv
-    calculate_statistics(df_clean)
+    (
+        top_bottom, stats_data, leaders, evaluation, brands,
+        best_value_laptops
+    ) = compute_eda(df_clean)
 
-    return render_template('analysis.html', 
-                           total_laptops=total_laptops,
-                           total_brands=total_brands,
-                           avg_price=avg_price,
-                           med_price=med_price,
-                           std_price=std_price,
-                           top_price=top_price, bottom_price=bottom_price,
-                           top_cpu=top_cpu, bottom_cpu=bottom_cpu,
-                           top_gpu=top_gpu, bottom_gpu=bottom_gpu,
-                           best_sellers=best_sellers,
-                           brand_stats=brand_stats_dict)
+    # Top 5 máy bán chạy nhất dựa trên units_sold
+    if 'units_sold' in df_clean.columns:
+        top_selling = (
+            df_clean.dropna(subset=['units_sold'])
+            .nlargest(5, 'units_sold')[['name', 'brand', 'price', 'cpu', 'ram', 'units_sold', 'rating']]
+            .to_dict(orient='records')
+        )
+    else:
+        top_selling = []
+
+    return render_template('analysis.html',
+                           laptops=laptops_data,
+                           top_bottom=top_bottom,
+                           stats=stats_data,
+                           leaders=leaders,
+                           evaluation=evaluation,
+                           num_cols=NUM_COLS,
+                           col_labels=COL_LABELS,
+                           brands=brands,
+                           best_value_laptops=best_value_laptops,
+                           top_selling=top_selling)
+
+@app.route('/stats')
+def stats():
+    return analysis()
+
+@app.route('/download/results')
+def download_results():
+    filepath = os.path.join(os.path.dirname(__file__), 'data', 'laptop_results.csv')
+    if not os.path.exists(filepath):
+        filepath = os.path.join(os.path.dirname(__file__), 'data', 'results2.csv')
+    if os.path.exists(filepath):
+        return send_file(filepath, as_attachment=True, download_name='thong_ke_thi_truong_laptop.csv')
+    return "File not found", 404
 
 @app.route('/clustering')
 def clustering():
@@ -301,5 +298,5 @@ def predict():
 
 if __name__ == '__main__':
     # Chạy Flask ở debug mode
-    app.run(debug=True)
+    app.run(debug=True, port = 5001)
 

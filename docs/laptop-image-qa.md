@@ -38,5 +38,6 @@ Chưa kiểm tra MySQL thật, thiết bị iOS/Android thật, Safari/Firefox, 
 Quyền tái sử dụng không được xác nhận chỉ vì nguồn công khai; trạng thái chưa công bố được
 ghi rõ trong manifest. Module làm sạch dữ liệu giữ nguyên và còn cảnh báo deprecation pandas.
 
-Nhánh làm việc không đồng bộ ba commit mới trên main về nguồn dữ liệu/thống kê;
-PR hiện báo xung đột với các thay đổi độc lập đó. Chưa merge vào main.
+Đã kết hợp ba commit mới trên main đến a8075b8 vào nhánh giao diện, giải quyết hai template
+xung đột và giữ nguyên 67 ảnh catalogue. Chi tiết kiểm tra sau kết hợp tại
+[main-merge-review.md](main-merge-review.md). Chưa merge PR vào main.

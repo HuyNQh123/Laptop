@@ -251,6 +251,15 @@ h1,h2,h3 { line-height:1.25; }
 #cluster-count { font-size:13px; color:var(--muted); }
 #cluster-table { min-width:750px; }
 .btn:disabled { opacity:.45; cursor:default; }
+.analysis-links { display:flex; flex-wrap:wrap; gap:12px 24px; margin-bottom:28px; }
+.analysis-links a { padding-block:8px; }
+.analysis-page .disclosure { padding-block:16px; border-top:1px solid var(--line); }
+.analysis-page .chart-grid { margin-top:20px; }
+.analysis-page section[id] { scroll-margin-top:24px; }
+.stats-controls { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:16px; margin-block:20px; }
+.stats-controls input,.stats-controls select { width:100%; }
+#stats-count { color:var(--muted); font-size:13px; }
+@media(max-width:767px) { .stats-controls { grid-template-columns:1fr; } }
 @media(max-width:1050px) { .recommendation-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .three-columns { grid-template-columns:repeat(3,minmax(0,1fr)); } .metric strong { font-size:24px; } }
 @media(max-width:767px) {
     .surface { padding:20px; margin-bottom:24px; } .surface h2 { font-size:21px; }

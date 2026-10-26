@@ -61,5 +61,6 @@ before the source commit. Virtual environments and local caches are ignored.
 - Existing pandas deprecation warning remains; no training, algorithm or input feature change is part of this update.
 - Not verified: live MySQL, physical iOS/Android devices, Safari/Firefox, or JavaScript-disabled browser mode.
 
-The working branch stays `feat/refresh-ui`. Remote main advanced independently through a8075b8 (sources/statistics
-changes); the existing PR reports conflicts with those commits. This image update does not merge or replace that work.
+The working branch stays `feat/refresh-ui`. Main through a8075b8 has now been merged into this branch,
+including its sources/statistics changes. The two template conflicts were resolved by combining their behavior;
+see `docs/main-merge-review.md` for integration checks. PR #1 remains open and has not been merged into main.

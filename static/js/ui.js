@@ -55,13 +55,16 @@
         item.append(element('strong', labels[source.field_name] || source.field_name || 'Thông số khác'));
         item.append(element('p', (source.source_name || 'Chưa rõ đơn vị') + ' · Ngày xác minh: ' + (source.verified_date || 'Chưa có') + ' · Trạng thái: ' + (source.status || 'Chưa có')));
         if (source.note) item.append(element('p', source.note));
+        const verified = ['Đã xác minh', 'Verified'].includes(source.status);
+        const unverified = source.status === 'Chưa xác minh được';
         try {
           const url = new URL(source.source_url);
-          if (['http:', 'https:'].includes(url.protocol)) {
-            const a = element('a', 'Mở trang nguồn ↗');
+          if ((verified || unverified) && ['http:', 'https:'].includes(url.protocol)) {
+            const a = element('a', verified ? 'Mở trang nguồn ↗' : 'Xem liên kết hãng (chưa xác minh) ↗');
             a.href = url.href; a.target = '_blank'; a.rel = 'noopener noreferrer'; item.append(a);
           }
         } catch (_) { /* Missing source URLs are displayed as metadata only. */ }
+        if (!verified && !unverified) item.append(element('p', 'Chưa có liên kết nguồn xác minh khả dụng.'));
         list.append(item);
       }
       body.append(list.childElementCount ? list : element('p', 'Chưa có nguồn liên kết cho máy này.'));
