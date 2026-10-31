@@ -1,0 +1,8 @@
+<article class="product-card" data-laptop-id="{{ laptop.id }}">
+    {% include 'components/product_image.html' %}
+    <div class="product-content"><p class="product-brand">{{ laptop.brand }}</p><h3>{{ laptop.name }}</h3><p class="product-price">{{ laptop.price|vnd }} <span>Giá tham khảo</span></p>
+        <dl class="product-specs"><div><dt>CPU</dt><dd>{{ laptop.cpu }}</dd></div><div><dt>GPU</dt><dd>{{ laptop.gpu }}</dd></div><div><dt>Bộ nhớ</dt><dd>{{ laptop.ram }} GB RAM · {{ laptop.storage }} GB SSD</dd></div><div><dt>Màn hình</dt><dd>{{ laptop.screen_size }}″ · {{ laptop.refresh_rate }} Hz</dd></div><div><dt>Khối lượng</dt><dd>{{ laptop.weight }} kg</dd></div></dl>
+        <details class="extra-specs"><summary>Thông số đầy đủ</summary><dl><div><dt>Điểm CPU / GPU</dt><dd>{{ '{:,}'.format(laptop.cpu_score).replace(',', '.') }} / {{ '{:,}'.format(laptop.gpu_score).replace(',', '.') }}</dd></div><div><dt>Độ phân giải</dt><dd>{{ laptop.resolution or 'Chưa có dữ liệu' }}</dd></div><div><dt>Dung lượng pin</dt><dd>{{ laptop.battery }} Wh</dd></div><div><dt>Hệ điều hành</dt><dd>{{ laptop.operating_system }}</dd></div><div><dt>Đánh giá</dt><dd>{{ laptop.rating }} / 5</dd></div></dl></details>
+        <div class="product-actions"><a class="btn btn-outline-primary" href="{{ url_for('compare', laptop1=laptop.name) }}">So sánh</a>{% if laptop.id %}<a class="source-link" href="{{ url_for('get_laptop_sources', laptop_id=laptop.id) }}" data-source-id="{{ laptop.id }}" data-source-name="{{ laptop.name }}">Nguồn dữ liệu <span aria-hidden="true">↗</span></a>{% endif %}</div>
+    </div>
+</article>

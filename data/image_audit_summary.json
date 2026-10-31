@@ -1,0 +1,34 @@
+{
+  "audit_date": "2026-10-26",
+  "catalog_count": 225,
+  "unique_keys": 225,
+  "pilot_count": 13,
+  "pilot_verified": 11,
+  "exact_model": 67,
+  "same_series_representative": 2,
+  "verified": 69,
+  "missing": 156,
+  "missing_reasons": {
+    "not_found": 135,
+    "rights_restricted": 10,
+    "access_blocked": 3,
+    "source_unavailable": 3,
+    "model_mismatch": 5
+  },
+  "search_reviewed": 225,
+  "product_pages_attempted": 181,
+  "optimized_total_bytes": 1887472,
+  "rights": {
+    "not_declared": 69,
+    "open_license_claimed": 0
+  },
+  "unique_image_files": 66,
+  "targeted_pass": {
+    "date": "2026-10-26",
+    "before_verified": 67,
+    "before_missing": 158,
+    "new_shared_assignments": 2,
+    "new_image_files": 0,
+    "duplicate_files_removed": 1
+  }
+}

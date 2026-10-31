@@ -2,16 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for, flash, sen
 import sys
 import os
 import time
+import math
 
 # Cho phép Python tìm thấy thư mục src
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from src.models import db, Laptop, LaptopSource
-from src.data_cleaning import load_data, clean_data
-from src.data_analysis import (
-    NUM_COLS, COL_LABELS, compute_eda,
-    get_top_bottom, calculate_statistics, create_charts
-)
-from src.radar_chart import create_radar_chart
+from src.catalog import catalog_context, product_view
 
 app = Flask(__name__)
 app.secret_key = 'lapinsight-secret-key-super-secure'
@@ -23,6 +19,10 @@ db_uri, db_type = get_database_uri()
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+
+@app.template_filter('vnd')
+def format_vnd(value):
+    return f'{float(value or 0):,.0f}'.replace(',', '.') + ' ₫'
 
 @app.route('/')
 def index():
@@ -37,18 +37,32 @@ def index():
         avg_price = db.session.query(db.func.avg(Laptop.price)).scalar() or 0
         max_price = db.session.query(db.func.max(Laptop.price)).scalar() or 0
         
-    return render_template('index.html', 
+    hero_names = (
+        'ASUS Zenbook 14 OLED UX3405MA-PP152W',
+        'Apple MacBook Air 13 M1 (2020) 8GB 256GB MGN63SA/A',
+        'ASUS TUF Gaming F15 FX506HF-HN014W',
+    )
+    hero_rows = {l.name: product_view(l.to_dict()) for l in Laptop.query.filter(Laptop.name.in_(hero_names))}
+    return render_template('index.html',
+                           hero_laptops=[hero_rows[n] for n in hero_names if n in hero_rows and hero_rows[n]['has_image']],
                            total_laptops=total_laptops,
                            total_brands=total_brands,
                            avg_price=avg_price,
-                           max_price=max_price)
+                           max_price=max_price,
+                           featured_laptops=[product_view(l.to_dict()) for l in Laptop.query.order_by(Laptop.id.asc()).limit(3)],
+                           source_date=db.session.query(db.func.max(LaptopSource.verified_date)).scalar())
 
 @app.route('/laptops')
 def laptops():
     # Lấy danh sách 225 laptop từ Database SQLite
     laptops_list = Laptop.query.order_by(Laptop.id.asc()).all()
     laptops_data = [l.to_dict() for l in laptops_list]
-    return render_template('laptops.html', laptops=laptops_data)
+    context = catalog_context(laptops_data, request.args)
+    def catalog_url(**changes):
+        params = dict(context['state'], page=context['page'])
+        params.update(changes)
+        return url_for('laptops', **{k: v for k, v in params.items() if v != ''})
+    return render_template('laptops.html', **context, catalog_url=catalog_url)
 
 @app.route('/api/laptop-sources/<int:laptop_id>')
 def get_laptop_sources(laptop_id):
@@ -64,6 +78,10 @@ def get_laptop_sources(laptop_id):
 
 @app.route('/analysis')
 def analysis():
+    # Keep scientific imports (including the font cache) off the startup path.
+    from src.data_cleaning import load_data, clean_data
+    from src.data_analysis import NUM_COLS, COL_LABELS, compute_eda
+
     df_raw = load_data('data/laptops.csv')
     if df_raw is None:
         return "Dataset not found", 404
@@ -123,6 +141,8 @@ def clustering():
 
 @app.route('/compare', methods=['GET', 'POST'])
 def compare():
+    from src.data_cleaning import load_data, clean_data
+
     df_raw = load_data('data/laptops.csv')
     if df_raw is None:
         return "Dataset not found", 404
@@ -141,6 +161,7 @@ def compare():
     # Mặc định chọn một vài thuộc tính quan trọng
     selected_attributes = ['cpu_score', 'gpu_score', 'ram', 'storage', 'price']
     comparison_data = None
+    selected_laptops = []
     rand_val = int(time.time())
     
     if request.method == 'POST':
@@ -157,7 +178,13 @@ def compare():
             error = "Vui lòng chọn ít nhất 1 tiêu chí để so sánh."
         elif len(selected_attributes) < 3:
             error = "Cần chọn ít nhất 3 tiêu chí để vẽ biểu đồ mạng nhện (Radar Chart)."
+        elif laptop1_name not in laptop_names or laptop2_name not in laptop_names:
+            error = "Không tìm thấy laptop đã chọn trong dữ liệu."
+        elif len(set(selected_attributes)) != len(selected_attributes) or any(attr not in available_attributes for attr in selected_attributes):
+            error = "Tiêu chí so sánh không hợp lệ."
         else:
+            from src.radar_chart import create_radar_chart
+
             success = create_radar_chart(df_clean, laptop1_name, laptop2_name, selected_attributes)
             if success:
                 # Lấy dữ liệu thật để hiển thị trên bảng
@@ -170,7 +197,13 @@ def compare():
             else:
                 error = "Lỗi khi tạo biểu đồ. Vui lòng kiểm tra lại dữ liệu."
                 
-    return render_template('compare.html', 
+    for name in [laptop1_name, laptop2_name]:
+        match = df_clean[df_clean['name'] == name]
+        if not match.empty:
+            selected_laptops.append(product_view(match.iloc[0].to_dict()))
+
+    return render_template('compare.html',
+                           selected_laptops=selected_laptops,
                            laptop_names=laptop_names, 
                            available_attributes=available_attributes,
                            selected_attributes=selected_attributes,
@@ -240,7 +273,7 @@ def predict():
             
             # Kiểm tra giá trị không âm và hợp lý
             for key, val in features.items():
-                if val <= 0:
+                if not math.isfinite(val) or val <= 0:
                     raise ValueError(f"Giá trị của '{field_names_vi.get(key, key)}' phải lớn hơn 0.")
             
             if features['rating'] > 5.0:
@@ -255,6 +288,9 @@ def predict():
             
             # Gợi ý khoảng 5 mẫu laptop có cấu hình tương tự và chênh lệch khoảng 1-2 triệu
             recommendations = recommend_similar_laptops(features, predicted_price, top_n=5)
+            # Attach presentation metadata after prediction; model inputs remain unchanged.
+            catalog_rows = {l.name: l.to_dict() for l in Laptop.query.all()}
+            recommendations = [product_view({**catalog_rows.get(item['name'], {}), **item}) for item in recommendations]
             
         except ValueError as e:
             error = str(e)

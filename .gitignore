@@ -28,3 +28,9 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Local UI verification and rendering caches
+.runtime/
+.mpl-cache/
+.pytest_cache/
+.ruff_cache/

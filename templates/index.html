@@ -1,163 +1,30 @@
 {% extends 'base.html' %}
-
+{% block title %}Tra cứu cấu hình và giá laptop — LapInsight{% endblock %}
+{% block body_class %}home-page{% endblock %}
 {% block content %}
-<!-- Hero Section -->
-<div class="p-5 mb-5 bg-light rounded-3 shadow-sm border">
-    <div class="container-fluid py-4 text-center">
-        <h1 class="display-5 fw-bold text-primary mb-3">LapInsight – Phân tích và ước tính giá laptop</h1>
-        <p class="col-md-9 mx-auto fs-5 text-muted">
-            Khám phá thông số laptop, phân tích dữ liệu, tìm các nhóm sản phẩm tương đồng, so sánh cấu hình và ước tính giá bằng các mô hình học máy.
-        </p>
-        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-            <a href="/predict" class="btn btn-primary btn-lg shadow-sm px-4">🚀 Định giá & Tư vấn cấu hình</a>
-            <a href="/clustering" class="btn btn-outline-primary btn-lg shadow-sm px-4">🗺️ Bản đồ thị trường laptop</a>
-            <a href="/analysis" class="btn btn-outline-secondary btn-lg px-4">📊 Phân tích dữ liệu</a>
-        </div>
+<section class="home-hero technology-hero" aria-labelledby="home-title">
+    <div class="hero-copy">
+        <p class="eyebrow">THÔNG SỐ · GIÁ THAM KHẢO · SO SÁNH</p>
+        <h1 id="home-title">Tìm laptop phù hợp.<br><span>Bắt đầu từ cấu hình.</span></h1>
+        <p class="hero-description">Tra cứu {{ total_laptops }} mẫu máy từ {{ total_brands }} thương hiệu. Lọc theo ngân sách, cấu hình và trọng lượng để thu hẹp lựa chọn.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="{{ url_for('laptops') }}">Khám phá kho laptop <span aria-hidden="true">↗</span></a><a class="btn btn-outline-secondary" href="{{ url_for('compare') }}">So sánh cấu hình</a></div>
+        <form action="{{ url_for('laptops') }}" method="get" class="home-search" role="search"><label for="home-q">Tên máy, hãng hoặc bộ xử lý</label><div class="search-row"><input id="home-q" name="q" type="search" placeholder="Ví dụ: ASUS Zenbook, Core i5…" maxlength="200"><button class="btn btn-primary" type="submit">Tìm laptop <span aria-hidden="true">→</span></button></div></form>
+        <div class="suggested-links"><span>Lọc nhanh</span><a href="{{ url_for('laptops', quick='budget') }}">Đến 20 triệu</a><a href="{{ url_for('laptops', quick='light') }}">Đến 1,5 kg</a><a href="{{ url_for('laptops', quick='ram16') }}">RAM từ 16 GB</a></div>
     </div>
-</div>
-
-<!-- Key Statistics Overview -->
-<div class="row text-center mb-5 g-3">
-    <div class="col-md-3 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 bg-primary text-white">
-            <div class="card-body py-4">
-                <h6 class="text-white-50 text-uppercase">Tổng số laptop</h6>
-                <h2 class="card-text fw-bold">{{ total_laptops }}</h2>
-                <small class="text-white-50">Mẫu laptop thực tế trên thị trường</small>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 bg-success text-white">
-            <div class="card-body py-4">
-                <h6 class="text-white-50 text-uppercase">Số thương hiệu</h6>
-                <h2 class="card-text fw-bold">{{ total_brands }}</h2>
-                <small class="text-white-50">Hãng sản xuất hàng đầu</small>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 bg-info text-white">
-            <div class="card-body py-4">
-                <h6 class="text-white-50 text-uppercase">Giá trung bình</h6>
-                <h2 class="card-text fw-bold">{{ "{:,.0f}".format(avg_price) }}</h2>
-                <small class="text-white-50">Giá bán trung bình (VND)</small>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 bg-dark text-white">
-            <div class="card-body py-4">
-                <h6 class="text-white-50 text-uppercase">Giá cao nhất</h6>
-                <h2 class="card-text fw-bold">{{ "{:,.0f}".format(max_price) }}</h2>
-                <small class="text-white-50">Mức giá cao nhất (VND)</small>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Main Modules Feature Cards -->
-<div class="row mb-5">
-    <div class="col-12 text-center mb-4">
-        <h3 class="fw-bold text-secondary">Các chức năng cốt lõi của Hệ thống</h3>
-        <p class="text-muted">Chọn một phân hệ để bắt đầu khám phá và tương tác</p>
-    </div>
-
-    <!-- 1. Kho dữ liệu laptop -->
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card shadow-sm h-100 border-0 card-hover">
-            <div class="card-body d-flex flex-column p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="fs-2 me-3">💻</span>
-                    <h5 class="card-title fw-bold mb-0">Kho dữ liệu laptop</h5>
-                </div>
-                <p class="card-text text-muted flex-grow-1">
-                    Tra cứu và lọc thông số kỹ thuật chi tiết (CPU, GPU, RAM, Ổ cứng, Màn hình, Giá bán) của 225 mẫu laptop thực tế với bộ công cụ tìm kiếm và phân trang linh hoạt.
-                </p>
-                <a href="/laptops" class="btn btn-outline-primary w-100 mt-2">Xem danh sách laptop</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. Thống kê và phân tích dữ liệu -->
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card shadow-sm h-100 border-0 card-hover">
-            <div class="card-body d-flex flex-column p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="fs-2 me-3">📊</span>
-                    <h5 class="card-title fw-bold mb-0">Thống kê và phân tích dữ liệu</h5>
-                </div>
-                <p class="card-text text-muted flex-grow-1">
-                    Báo cáo thống kê toàn diện: Giá trị trung bình, trung vị, độ lệch chuẩn, phân bố giá theo từng hãng và biểu đồ tương quan phần cứng.
-                </p>
-                <a href="/analysis" class="btn btn-outline-primary w-100 mt-2">Mở phân tích dữ liệu</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. Phân nhóm laptop tự động -->
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card shadow-sm h-100 border-0 card-hover">
-            <div class="card-body d-flex flex-column p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="fs-2 me-3">🔍</span>
-                    <h5 class="card-title fw-bold mb-0">Phân nhóm laptop tự động</h5>
-                </div>
-                <p class="card-text text-muted flex-grow-1">
-                    Ứng dụng thuật toán học máy không giám sát K-Means để tự động phân nhóm laptop theo phân khúc thị trường dựa trên phương pháp khuỷu tay (Elbow) và Silhouette Score.
-                </p>
-                <a href="/clustering" class="btn btn-outline-primary w-100 mt-2">Khám phá phân nhóm</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. Trực quan hóa cấu hình 2D (PCA) -->
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card shadow-sm h-100 border-0 card-hover">
-            <div class="card-body d-flex flex-column p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="fs-2 me-3">🗺️</span>
-                    <h5 class="card-title fw-bold mb-0">Trực quan hóa cấu hình 2D (PCA)</h5>
-                </div>
-                <p class="card-text text-muted flex-grow-1">
-                    Kỹ thuật phân tích thành phần chính (PCA) giúp nén không gian cấu hình 10 chiều xuống mặt phẳng 2D, trực quan hóa ranh giới và đặc trưng giữa các nhóm laptop.
-                </p>
-                <a href="/clustering" class="btn btn-outline-primary w-100 mt-2">Xem biểu đồ 2D PCA</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. So sánh cấu hình laptop -->
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card shadow-sm h-100 border-0 card-hover">
-            <div class="card-body d-flex flex-column p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="fs-2 me-3">⚖️</span>
-                    <h5 class="card-title fw-bold mb-0">So sánh cấu hình laptop</h5>
-                </div>
-                <p class="card-text text-muted flex-grow-1">
-                    So sánh trực quan hai mẫu laptop bất kỳ theo các tiêu chí phần cứng tùy chọn thông qua biểu đồ mạng nhện (Radar Chart) và bảng thông số đối đầu.
-                </p>
-                <a href="/compare" class="btn btn-outline-primary w-100 mt-2">So sánh laptop</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. Ước tính giá laptop theo cấu hình -->
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card shadow-sm h-100 border-0 card-hover">
-            <div class="card-body d-flex flex-column p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="fs-2 me-3">🚀</span>
-                    <h5 class="card-title fw-bold mb-0">Ước tính giá laptop theo cấu hình</h5>
-                </div>
-                <p class="card-text text-muted flex-grow-1">
-                    Ước tính giá tham khảo dựa trên thông số kỹ thuật đầu vào bằng mô hình Machine Learning, kèm 5 gợi ý laptop tương đồng trong tầm giá chênh lệch ±1 - 2 triệu VNĐ.
-                </p>
-                <a href="/predict" class="btn btn-primary w-100 mt-2 shadow-sm">Ước tính giá ngay</a>
-            </div>
-        </div>
-    </div>
-
-</div>
+    <aside class="hero-showcase" aria-label="Một số laptop trong kho">
+        <span class="showcase-kicker">KHÁM PHÁ · ĐỐI CHIẾU · LỰA CHỌN</span>
+        {% for laptop in hero_laptops %}
+        <figure class="showcase-item showcase-item-{{ loop.index }}">
+            <a class="showcase-product" href="{{ url_for('compare', laptop1=laptop.name) }}" aria-label="So sánh {{ laptop.name }}">
+                <img src="{{ url_for('static', filename=laptop.image_path) }}" alt="{{ laptop.image_alt }}" width="{{ laptop.image_width }}" height="{{ laptop.image_height }}" decoding="async" {% if loop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} data-product-image data-product-name="{{ laptop.name }}" data-fallback="{{ url_for('static', filename='images/laptop-placeholder.svg') }}">
+                <span>{{ laptop.brand }} <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption><a href="{{ laptop.image_source_url }}" title="Nguồn ảnh: {{ laptop.image_author }}" target="_blank" rel="noopener noreferrer">Nguồn ảnh ↗</a></figcaption>
+        </figure>
+        {% endfor %}
+        {% if source_date %}<small class="showcase-date">Ngày nguồn mới nhất trong dữ liệu: {{ source_date }}</small>{% endif %}
+    </aside>
+</section>
+<section class="home-catalog" aria-labelledby="catalog-title"><div class="section-heading"><div><p class="eyebrow">KHO LAPTOP</p><h2 id="catalog-title">Bắt đầu khám phá</h2><p>Một vài mẫu trong bộ dữ liệu. Dùng bộ lọc để tìm theo nhu cầu của bạn.</p></div><a class="btn btn-outline-primary" href="{{ url_for('laptops') }}">Xem {{ total_laptops }} mẫu <span aria-hidden="true">→</span></a></div><div class="product-grid featured-grid">{% for laptop in featured_laptops %}{% include 'components/laptop_card.html' %}{% else %}<p>Chưa có dữ liệu laptop.</p>{% endfor %}</div></section>
+<section class="tool-links" aria-label="Công cụ hỗ trợ"><a href="{{ url_for('compare') }}"><span class="eyebrow">SO SÁNH</span><h2>Đặt hai cấu hình cạnh nhau <span aria-hidden="true">↗</span></h2><p>Đối chiếu thông số và chênh lệch giá của hai mẫu máy.</p></a><a href="{{ url_for('predict') }}"><span class="eyebrow">ƯỚC TÍNH GIÁ</span><h2>Tham khảo giá theo cấu hình <span aria-hidden="true">↗</span></h2><p>Nhập thông số để nhận ước tính từ mô hình hiện có.</p></a></section>
 {% endblock %}

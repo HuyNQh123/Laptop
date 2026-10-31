@@ -30,6 +30,12 @@ SQLITE_URI = f"sqlite:///{SQLITE_PATH}"
 
 def get_database_uri():
     """Kiểm tra kết nối MySQL. Nếu thành công dùng MySQL, nếu chưa kết nối được thì dùng SQLite dự phòng."""
+    # The Render demo can explicitly select the audited database shipped with Git.
+    backend = os.getenv('DATABASE_BACKEND', 'auto').strip().lower()
+    if backend == 'sqlite':
+        return SQLITE_URI, 'sqlite'
+    if backend != 'auto':
+        raise ValueError('DATABASE_BACKEND must be auto or sqlite')
     try:
         import pymysql
         # Thử kết nối đến MySQL server
